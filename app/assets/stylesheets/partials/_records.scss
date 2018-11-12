@@ -1,0 +1,34 @@
+.records .record-description {
+  margin-top: 2rem;
+  padding: 0 2rem;
+}
+
+.record-facets dt {
+  font-family: $serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.record-facets dd {
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.record-facets p {
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+
+.record-search {
+  margin-bottom: 3rem;
+}
+
+.record-search .search-input {
+  width: 100%;
+  padding: 1rem;
+  border: 0;
+}

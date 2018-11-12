@@ -1,0 +1,13 @@
+<h1><%= @user.first_name %>, we've recently added some records you may be interested in.</h1>
+
+<p>Based on your current subscription filters, we've identified the following records as being relevant to your interests.</p>
+
+<ul class="link-list">
+<% @records.each_with_index do |record, index| %>
+  <li class="<%= index % 2 == 0 ? 'even' : 'odd' %>"><%= link_to record.title, record_url(record) %></li>
+<% end %>
+</ul>
+
+<div class="a-center">
+  <%= link_to 'Manage My Filters', edit_user_registration_url, target: :_blank, class: 'button-green button-large' %>
+</div>

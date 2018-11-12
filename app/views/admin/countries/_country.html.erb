@@ -1,0 +1,8 @@
+<div class="table-row">
+  <div class="item-title cell">
+    <%= link_to country.title, edit_admin_country_path(country) %>
+  </div>
+  <div class="item-destroy">
+    <%= link_to 'Delete', admin_country_path(country), method: :delete, data: { confirm: "Are you sure?" }  %>
+  </div>
+</div>

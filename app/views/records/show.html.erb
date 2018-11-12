@@ -1,0 +1,56 @@
+<div class="layout-two-column-left">
+  <aside class="sidebar sidebar-green record-facets">
+    <dl>
+      <dt>Country</dt>
+      <dd>
+        <% @record.countries.each do |country| %>
+        <p><%= country.title %></p>
+        <% end %>
+      </dd>
+      <dt>Creator</dt>
+      <dd>
+        <p><%= @record.creator %></p>
+      </dd>
+      <dt>Collection Type</dt>
+      <dd>
+        <p><%= @record.category.title %></p>
+      </dd>
+      <dt>Jurisdiction</dt>
+      <dd>
+        <p><%= @record.jurisdiction.title %></p>
+      </dd>
+      <dt>Topics</dt>
+      <dd>
+        <% @record.topics.each do |topic| %>
+        <p><%= topic.title %></p>
+        <% end %>
+      </dd>
+    </dl>
+  </aside>
+  <main class="main-content records">
+    <div class="top-links">
+      <button class="sidebar-menu"></button>
+      <div class="breadcrumbs">
+        <%= render_breadcrumbs separator: ' / ' %> / <span><%= @record.title %></span>
+      </div>
+      <div class="sharing">
+        <div class="fb-like" data-href="<%= request.base_url + request.original_fullpath %>" data-layout="button" data-action="like" data-size="large" data-show-faces="false" data-share="false"></div>
+        <a class="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="large">Tweet</a>
+        <% if favorite = @record.favorited_by?(current_user) %>
+        <%= link_to '', favorite_path(favorite), method: :delete, class: 'favorite favorited', title: 'Remove from Favorites' %>
+        <% else %>
+        <%= link_to '', favorites_path(id: @record.id), method: :post, class: 'favorite', title: 'Add to Favorites' %>
+        <% end %>
+      </div>
+    </div>
+    <header class="page-header">
+      <h1><%= @record.title %></h1>
+    </header>
+    <% if @record.description.present? %>
+    <p class="record-description"><%= @record.description %></p>
+    <% end %>
+    <div class="list">
+      <%= render partial: 'records/item', collection: @record.items %>
+    </div>
+  </main>
+</div>

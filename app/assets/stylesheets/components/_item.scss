@@ -1,0 +1,86 @@
+.item {
+  position: relative;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  border: 1px solid $light-gray;
+  background-color: $faint-gray;
+  box-shadow: 0 1px 2px rgba(0,0,0,.075);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.item .item-title {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
+.item .item-links {
+  margin-bottom: 2rem;
+}
+
+.item .item-links span {
+  display: inline-block;
+  margin-right: 1rem;
+  padding-right: 1rem;
+  border-right: 1px solid $base-color;
+
+  &:last-child {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: 0;
+  }
+}
+
+.item .item-links a {
+  position: relative;
+  display: inline-block;
+  padding-left: 2rem;
+  color: $green;
+  background-repeat: no-repeat;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: block;
+    content: '';
+    transform: translateY(-50%);
+    background-size: contain;
+  }
+}
+
+.item .item-links .item-download::before {
+  width: 16px;
+  height: 16px;
+  background-image: asset-url('document.svg');
+}
+
+.item .item-links .item-view::before {
+  width: 14px;
+  height: 14px;
+  background-image: asset-url('link.svg');
+}
+
+.item .item-details dt,
+.item .item-details dd {
+  float: left;
+}
+
+.item .item-details dt {
+  margin-right: .5rem;
+}
+
+.item .item-details dd {
+  font-weight: bold;
+  line-height: 1.2;
+  margin-right: 1rem;
+  padding-right: 1rem;
+  border-right: 1px solid $medium-gray;
+
+  &:last-child {
+    border-right: 0;
+  }
+}

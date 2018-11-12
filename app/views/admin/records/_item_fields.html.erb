@@ -1,0 +1,69 @@
+<div class="nested-fields record-item">
+  <div class="remove">
+    <%= link_to_remove_association 'Remove', f %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :title, 'Title' %>
+    <%= f.text_field :title, placeholder: 'Title' %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :year, 'Year Published' %>
+    <%= f.text_field :year, placeholder: 'Year (YYYY)' %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :url, 'Website' %>
+    <%= f.text_field :url, placeholder: 'http://' %>
+  </div>
+
+  <div class="input-field">
+    <div class="checkbox-grid fill">
+      <div class="check">
+        <%= f.check_box :published, class: 'checkbox' %>
+        <%= f.label :published do %>
+          <span class="checkbox-background"></span>
+          Published
+        <% end %>
+      </div>
+      <div class="check">
+        <%= f.check_box :restricted, class: 'checkbox' %>
+        <%= f.label :restricted do %>
+          <span class="checkbox-background"></span>
+          Restricted
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :document, 'Attachment' %>
+    <%= f.file_field :document %>
+    <% if f.object.document.attached? %>
+    <div class="download-attachment">
+      <%= link_to f.object.document.blob.filename, f.object.document.service_url(expires_in: 1.hour, disposition: :attachment) %> (<%= number_to_human_size(f.object.document.blob.byte_size) %>)
+    </div>
+    <% end %>
+  </div>
+
+  <div class="input-field wysiwyg">
+    <%= f.label :description, 'Description' %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="input-field">
+    <label class="heading">Languages</label>
+    <div class="checkbox-grid">
+    <%= f.collection_check_boxes :language_ids, Language.all.order(title: :asc), :id, :title do |b| %>
+      <div class="check">
+        <%= b.check_box(class: 'checkbox') %>
+        <%= b.label do %>
+          <span class="checkbox-background"></span>
+          <%= b.object.title %>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>

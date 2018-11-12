@@ -1,0 +1,9 @@
+<div class="toolbar">
+  <h1 class="title">Languages</h1>
+  <div></div>
+  <%= link_to 'New Language', new_admin_language_path, class: 'button button-solid is-green' %>
+</div>
+
+<div class="table">
+  <%= render partial: 'admin/languages/language', collection: @languages %>
+</div>

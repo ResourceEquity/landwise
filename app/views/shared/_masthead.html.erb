@@ -1,0 +1,42 @@
+<header class="masthead">
+  <%= link_to root_path, class: 'main-logo' do %>
+    <%= image_tag 'logo-large.png', alt: 'Resource Equity' %>
+  <% end %>
+
+  <div class="links">
+    <% if user_signed_in? %>
+      <% if current_user.admin? %>
+      <%= link_to 'Admin', admin_index_path %>
+      <% end %>
+      <%= link_to 'My Account', edit_user_registration_path %>
+      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to 'Sign In', new_user_session_path %>
+      <%= link_to 'Sign Up', new_user_registration_path %>
+    <% end %>
+  </div>
+
+  <div class="google-translate">
+    <div id="translate" class="select"></div>
+  </div>
+
+  <nav class="main-nav">
+    <ul>
+      <li class="nav-link with-submenu">
+        <a href="/">Home</a>
+        <ul class="submenu">
+          <li><a href="/">LandWise Home</a></li>
+          <li><a href="https://resourceequity.org">Resource Equity Home</a></li>
+        </ul>
+      </li>
+      <li class="nav-link">
+        <a href="/guides">Practice Guides</a>
+      </li>
+      <% cms_pages.each do |page| %>
+      <li class="nav-link">
+        <%= link_to page.title, "/#{page.slug}" %>
+      </li>
+      <% end %>
+    </ul>
+  </nav>
+</header>

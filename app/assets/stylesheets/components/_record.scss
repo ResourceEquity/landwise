@@ -1,0 +1,28 @@
+.record .record-description {
+  font-style: italic;
+  line-height: 1.3;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.record .record-details dt,
+.record .record-details dd {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  float: left;
+}
+
+.record .record-details dt {
+  margin-right: .5rem;
+}
+
+.record .record-details dd {
+  font-weight: bold;
+  margin-right: 1rem;
+  padding-right: 1rem;
+  border-right: 1px solid $medium-gray;
+
+  &:last-child {
+    border-right: 0;
+  }
+}

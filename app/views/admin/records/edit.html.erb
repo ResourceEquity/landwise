@@ -1,0 +1,15 @@
+<%= form_with model: [:admin, @record], local: true do |f| %>
+<div class="dashboard">
+  <div class="toolbar dashboard-toolbar">
+    <div class="nav">
+      <%= render_breadcrumbs %><span>&nbsp;/&nbsp;</span><span><%= @record.title %></span>
+    </div>
+    <div></div>
+    <%= f.submit 'Save', class: 'button button-solid is-green' %>
+  </div>
+
+  <div class="dashboard-form">
+    <%= render partial: 'admin/records/form', locals: { f: f } %>
+  </div>
+</div>
+<% end %>

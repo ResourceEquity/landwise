@@ -1,0 +1,9 @@
+<div class="toolbar">
+  <h1 class="title">Subjects</h1>
+  <div></div>
+  <%= link_to 'New Subject', new_admin_subject_path, class: 'button button-solid is-green' %>
+</div>
+
+<div class="table">
+  <%= render partial: 'admin/subjects/subject', collection: @subjects %>
+</div>

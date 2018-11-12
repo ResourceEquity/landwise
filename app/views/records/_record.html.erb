@@ -1,0 +1,19 @@
+<article class="record paper">
+  <h4 class="paper-title"><%= link_to record.title, record_path(record), class: 'interactive-link' %></h4>
+  <% if record.description.present? %>
+  <em class="record-description"><%= record.description %></em>
+  <% end %>
+  <dl class="record-details clearfix">
+    <dt>Collection Type:</dt>
+    <dd><%= record.category.title %></dd>
+    <dt>Country:</dt>
+    <dd><%= record.countries.map(&:title).join(', ') %></dd>
+  </dl>
+
+  <!--
+  <div class="paper-check">
+    <input type="checkbox" value="<%= record.id %>" id="record_<%= record.id %>" class="checkbox" />
+    <label for="record_<%= record.id %>"><span class="checkbox-background"></span></label>
+  </div>
+  -->
+</article>

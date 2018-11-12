@@ -1,0 +1,90 @@
+$flash-red: #fcd7cf;
+$flash-green: #b1cec4;
+$flash-yellow: #ffecc3;
+$flash-padding: 1.5rem 2rem;
+
+.flash {
+  position: relative;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  padding: $flash-padding;
+  padding-right: 2rem*3;
+
+  &.alert {
+    color: darken($flash-red, 70%);
+    background-color: $flash-red;
+    .flash-close:before,
+    .flash-close:after {
+      background-color: darken($flash-red, 70%);
+    }
+  }
+
+  &.warning {
+    color: darken($flash-yellow, 70%);
+    background-color: $flash-yellow;
+    .flash-close:before,
+    .flash-close:after {
+      background-color: darken($flash-yellow, 70%);
+    }
+  }
+
+  &.notice {
+    color: darken($flash-green, 70%);
+    background-color: $flash-green;
+    .flash-close:before,
+    .flash-close:after {
+      background-color: darken($flash-green, 70%);
+    }
+  }
+}
+
+.flash-message {
+  font-family: sans-serif;
+  line-height: 22px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+}
+
+.flash-close {
+  position: absolute;
+  top: 1.4rem;
+  right: 2rem;
+  display: inline-block;
+  overflow: hidden;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  background: none;
+  &:before,
+  &:after {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    margin-top: -1px;
+    content: '';
+    background: #000;
+  }
+  &:before {
+    -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+         -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+  &:after {
+    -webkit-transform: rotate(-45deg);
+       -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+         -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+  }
+}

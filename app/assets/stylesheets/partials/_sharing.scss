@@ -1,0 +1,27 @@
+.sharing {
+  font-size: 0;
+  white-space: nowrap;
+}
+
+.sharing > * {
+  margin-right: 1rem;
+  vertical-align: top;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.sharing .favorite {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background-image: asset-url('heart-empty.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 25px 25px;
+}
+
+.sharing .favorited {
+  background-image: asset-url('heart-full.svg');
+}

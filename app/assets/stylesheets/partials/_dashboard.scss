@@ -1,0 +1,284 @@
+.dashboard {
+  min-height: 100%;
+}
+
+.dashboard .nav {
+  font-family: $serif;
+  font-size: 2.5rem;
+  line-height: 60px;
+  padding-left: 2rem;
+  color: $white;
+}
+
+.dashboard .nav a:hover {
+  text-decoration: underline;
+}
+
+.dashboard .nav a,
+.dashboard .nav span {
+  text-decoration: none;
+  color: $white;
+}
+
+.dashboard .actions {
+  display: grid;
+  padding: 1rem 2rem;
+  grid-template-columns: min-content auto;
+  grid-gap: 2rem 2rem;
+  align-items: center;
+}
+
+.dashboard .actions .info {
+  white-space: nowrap;
+}
+
+.dashboard .actions .info b {
+  font-weight: bold;
+}
+
+.dashboard .actions .pages {
+  text-align: right;
+}
+
+.dashboard .actions .reset-search {
+  margin-left: 1rem;
+  color: $green;
+}
+
+.dashboard-form {
+  padding: 2rem;
+}
+
+.dashboard-form {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  grid-gap: 2rem 2rem;
+}
+
+.dashboard-form .input-field {
+  margin-bottom: 3rem;
+}
+
+.dashboard-form .check {
+  height: 26px;
+  @include clearfix;
+}
+
+.dashboard-form label {
+  font-size: 1.3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.dashboard-form input[type='text'],
+.dashboard-form input[type='email'],
+.dashboard-form input[type='password'] {
+  font-size: 1.5rem;
+  width: 100%;
+  padding: 1.5rem;
+  transition: background-color 250ms ease-out;
+  border: 0;
+  border-radius: 3px;
+  outline: none;
+  background-color: $faint-gray;
+
+  &:focus {
+    background-color: $light-gray;
+  }
+}
+
+.dashboard-checkboxes .checkbox-grid .check label {
+  max-width: 200px;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 1rem 1rem;
+
+  &.fill {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+.input-field .heading {
+  font-family: $serif;
+  font-size: 1.6rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.checkbox-grid .check label {
+  overflow: hidden;
+  max-width: 265px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.guide-articles {
+  margin-bottom: 2rem;
+  box-shadow: 0 0 8px -2px rgba(0, 0, 0, .3);
+  @include clearfix;
+}
+
+.guide-articles .article .remove {
+  margin: 0 2rem;
+}
+
+.guide-articles .article .remove a {
+  font-size: 1.3rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: $red;
+}
+
+.article {
+  font-size: 1.5rem;
+}
+
+.article.sortable-ghost {
+  opacity: .2;
+}
+
+.article.sortable-ghost .sections {
+  display: none !important;
+}
+
+.article.sortable-ghost ~ .article .sections {
+  display: none !important;
+}
+
+.article .handle {
+  position: relative;
+  height: 100%;
+  cursor: pointer;
+  cursor: grab;
+  background-color: $faint-gray;
+
+  &::before,
+  &::after {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background-image: asset-url('handle.svg');
+    background-repeat: no-repeat;
+    background-size: 15px 100%;
+  }
+
+  &::before {
+    background-position: 4px center;
+  }
+
+  &::after {
+    background-position: 10px center;
+  }
+}
+
+.article .header {
+  display: grid;
+  border-bottom: 1px solid $light-gray;
+  background-color: $faint-gray;
+  grid-template-columns: 30px auto min-content 50px;
+  grid-gap: 0 0;
+  align-items: center;
+}
+
+.article .sections {
+  display: none;
+  padding: 2rem;
+  background-color: $white;
+  @include clearfix;
+}
+
+.article .sections .section {
+  position: relative;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  border: 1px solid $light-gray;
+  @include clearfix;
+
+  &.sortable-ghost {
+    border: 2px dashed $light-gray;
+
+     > * {
+      visibility: hidden;
+    }
+  }
+}
+
+.article .section .remove {
+  margin: 0;
+}
+
+.article .section .handle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 30px;
+  height: 30px;
+}
+
+.article .section:hover .handle {
+  display: block;
+}
+
+.article .section .wysiwyg {
+  margin-bottom: 0;
+}
+
+.article .section .remove {
+  font-size: 1.3rem;
+  float: right;
+  text-transform: uppercase;
+  color: $red;
+}
+
+.record-item {
+  margin-bottom: 2rem;
+  padding: 2rem;
+  border: 1px solid $light-gray;
+}
+
+.record-item .remove {
+  font-size: 1.3rem;
+  float: right;
+  text-transform: uppercase;
+}
+
+.record-item .remove a {
+  text-decoration: none;
+  color: $red;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.record-item .input-field:last-child {
+  margin-bottom: 0;
+}
+
+.add-section,
+.add-article,
+.add-item {
+  display: inline-block;
+  float: right;
+  color: $green;
+}
+
+.download-attachment {
+  font-size: 1.3rem;
+  margin-top: 1rem;
+}
+
+.download-attachment a {
+  color: $green;
+}
+
+.avatar {
+  float: right;
+}

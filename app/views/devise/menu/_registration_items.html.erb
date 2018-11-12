@@ -1,0 +1,14 @@
+<% if user_signed_in? %>
+  <li>
+  <%= link_to('My Account', "/account") %>
+  </li>
+  <% if current_user.role?(:admin) || current_user.role?(:manager) %>
+    <li>
+    <%= link_to('Admin', admin_path) %>
+    </li>
+  <% end %>
+<% else %>
+  <li>
+  <% # link_to('Register', new_user_registration_path)  %>
+  </li>
+<% end %>

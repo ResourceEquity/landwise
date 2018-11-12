@@ -1,0 +1,9 @@
+<div class="toolbar">
+  <h1 class="title">Roles</h1>
+  <div></div>
+  <%= link_to 'New Role', new_admin_role_path, class: 'button button-solid is-green' %>
+</div>
+
+<div class="table">
+  <%= render partial: 'admin/roles/role', collection: @roles %>
+</div>

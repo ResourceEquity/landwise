@@ -1,0 +1,9 @@
+<div class="toolbar">
+  <h1 class="title">Jurisdictions</h1>
+  <div></div>
+  <%= link_to 'New Jurisdiction', new_admin_jurisdiction_path, class: 'button button-solid is-green' %>
+</div>
+
+<div class="table">
+  <%= render partial: 'admin/jurisdictions/jurisdiction', collection: @jurisdictions %>
+</div>

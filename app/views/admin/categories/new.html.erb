@@ -1,0 +1,15 @@
+<%= form_with model: [:admin, @category], local: true do |f| %>
+<div class="dashboard">
+  <div class="toolbar dashboard-toolbar">
+    <div class="nav">
+      <%= render_breadcrumbs %> / <span>New Collection Type</span>
+    </div>
+    <div></div>
+    <%= f.submit 'Save', class: 'button button-solid is-green' %>
+  </div>
+
+  <div class="dashboard-form">
+    <%= render partial: 'admin/categories/form', locals: { f: f } %>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,150 @@
+<div class="account">
+  <div class="account-info">
+    <h1>Basic Info</h1>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <% devise_error_messages! %>
+
+      <div class="input-field">
+        <%= f.label :first_name, 'First Name' %>
+        <%= f.text_field :first_name %>
+      </div>
+
+      <div class="input-field">
+        <%= f.label :last_name, 'Last Name' %>
+        <%= f.text_field :last_name %>
+      </div>
+
+      <div class="input-field">
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="input-field">
+        <%= f.label :current_password, 'Current Password' %>
+        <%= f.password_field :current_password %>
+      </div>
+
+      <div class="input-field">
+        <%= f.label :password, 'New Password' %>
+        <%= f.password_field :password %>
+      </div>
+
+      <div class="input-field">
+        <%= f.label :password_confirmation, 'Password Confirmation' %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit 'Save', class: 'button button-ghost is-green full-width' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="account-settings">
+    <h2>Favorite Records</h2>
+
+    <% if resource.user_favorites.any? %>
+    <div class="favorites">
+      <% resource.user_favorites.includes(:record).each do |favorite| %>
+      <div class="favorite">
+        <%= link_to favorite.record.title, record_path(favorite.record), class: 'record interactive-link' %>
+        <%= link_to 'Remove', favorite_path(favorite), method: :delete, class: 'remove interactive-link' %>
+      </div>
+      <% end %>
+    </div>
+    <% else %>
+    <div class="favorites">
+      <p class="a-center">You have no favorited records.</p>
+    </div>
+    <% end %>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: 'edit_subscription', method: :put }) do |f| %>
+
+      <h3>Subscription Filters</h3>
+      <div class="subscription-filters">
+        <p>By completing this form you will receive automatic email notifications of new content as it is added to the LandWise library.</p>
+        <p>To edit your selection, click the checkbox to select or remove a filter from your email notifications. Any changes must be saved by clicking the 'Save Changes' button below.</p>
+
+        <div class="input-field">
+          <%= f.label :notification_interval, 'Notification Interval' %>
+          <%= f.select :notification_interval, User.notification_intervals.map { |label, value| [label.titleize, label] } %>
+          <small>How often you&apos;d like to receive notifications about newly added records that apply to your current filters. Note that you won&apos;t receive notifications unless records are added that apply.</small>
+        </div>
+
+        <%= f.submit 'Save', class: 'button button-ghost is-green' %>
+      </div>
+
+
+      <h4>Jurisdictions</h4>
+      <div class="checkbox-grid">
+      <%= f.collection_check_boxes :jurisdiction_ids, Jurisdiction.all.order(title: :asc), :id, :title do |b| %>
+        <div class="check">
+          <%= b.check_box(class: 'checkbox') %>
+          <%= b.label do %>
+            <span class="checkbox-background"></span>
+            <%= b.object.title %>
+          <% end %>
+        </div>
+      <% end %>
+      </div>
+
+      <h4>Collection Types</h4>
+      <div class="checkbox-grid">
+      <%= f.collection_check_boxes :category_ids, Category.all.order(title: :asc), :id, :title do |b| %>
+        <div class="check">
+          <%= b.check_box(class: 'checkbox') %>
+          <%= b.label do %>
+            <span class="checkbox-background"></span>
+            <%= b.object.title %>
+          <% end %>
+        </div>
+      <% end %>
+      </div>
+
+      <h4>Languages</h4>
+      <div class="checkbox-grid">
+      <%= f.collection_check_boxes :language_ids, Language.all.order(title: :asc), :id, :title do |b| %>
+        <div class="check">
+          <%= b.check_box(class: 'checkbox') %>
+          <%= b.label do %>
+            <span class="checkbox-background"></span>
+            <%= b.object.title %>
+          <% end %>
+        </div>
+      <% end %>
+      </div>
+
+      <h4>Topics</h4>
+      <div class="checkbox-grid">
+      <%= f.collection_check_boxes :topic_ids, Topic.all.order(title: :asc), :id, :title do |b| %>
+        <div class="check">
+          <%= b.check_box(class: 'checkbox') %>
+          <%= b.label do %>
+            <span class="checkbox-background"></span>
+            <%= b.object.title %>
+          <% end %>
+        </div>
+      <% end %>
+      </div>
+
+      <h4>Countries</h4>
+      <div class="checkbox-grid">
+      <%= f.collection_check_boxes :country_ids, Country.all.order(title: :asc), :id, :title do |b| %>
+        <div class="check">
+          <%= b.check_box(class: 'checkbox') %>
+          <%= b.label do %>
+            <span class="checkbox-background"></span>
+            <%= b.object.title %>
+          <% end %>
+        </div>
+      <% end %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

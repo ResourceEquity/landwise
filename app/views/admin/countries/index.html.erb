@@ -1,0 +1,9 @@
+<div class="toolbar">
+  <h1 class="title">Countries</h1>
+  <div></div>
+  <%= link_to 'New Country', new_admin_country_path, class: 'button button-solid is-green' %>
+</div>
+
+<div class="table">
+  <%= render partial: 'admin/countries/country', collection: @countries %>
+</div>

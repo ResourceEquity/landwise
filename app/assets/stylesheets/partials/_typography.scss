@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'Museo Slab';
+  font-weight: normal;
+  font-style: normal;
+  src: asset-url('Museo_Slab_500_2-webfont.woff2') format('woff2'),
+  asset-url('Museo_Slab_500_2-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Museo Slab';
+  font-weight: normal;
+  font-style: italic;
+  src: asset-url('Museo_Slab_500italic-webfont.woff2') format('woff2'),
+  asset-url('Museo_Slab_500italic-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Museo Sans';
+  font-weight: normal;
+  font-style: normal;
+  src: asset-url('MuseoSans_500-webfont.woff2') format('woff2'),
+  asset-url('MuseoSans_500-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Museo Sans';
+  font-weight: normal;
+  font-style: italic;
+  src: asset-url('MuseoSans_500_Italic-webfont.woff2') format('woff2'),
+  asset-url('MuseoSans_500_Italic-webfont.woff') format('woff');
+}

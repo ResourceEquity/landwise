@@ -1,0 +1,95 @@
+<div class="layout-two-column-left">
+  <aside class="sidebar sidebar-green search-filters">
+    <button class="sidebar-close"></button>
+
+    <% if has_filters?('user_ids', 'country_ids', 'subject_ids') %>
+    <%= link_to 'Reset Filters', guides_path, class: 'search-reset' %>
+
+    <div class="applied-filters">
+      <% current_filters(user_ids: User, country_ids: Country, subject_ids: Subject) do |item, remove_url| %>
+      <div class="applied-filter">
+        <em><%= item.label %></em><%= link_to '', remove_url, class: 'remove-filter', title: 'Remove this filter' %>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+
+    <% if has_facet? :subject_ids %>
+    <div class="facet">
+      <h3 class="facet-label">Subject</h3>
+      <% collection_for :subject_ids, Subject do |item, count| %>
+        <div class="facet-result">
+          <%= link_to item.title, replace_query_params(subject_ids: item.id) %>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
+
+    <% if has_facet? :user_ids %>
+    <div class="facet">
+      <h3 class="facet-label">Author</h3>
+      <% collection_for :user_ids, User do |item, count| %>
+        <div class="facet-result">
+          <%= link_to item.name, replace_query_params(user_ids: item.id) %>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
+
+    <% if has_facet? :country_ids %>
+    <div class="facet">
+      <h3 class="facet-label">Country</h3>
+      <% collection_for :country_ids, Country do |item, count| %>
+        <div class="facet-result">
+          <%= link_to item.title, replace_query_params(country_ids: item.id) %>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
+
+    <%= render partial: 'shared/global/email_updates' %>
+  </aside>
+  <main class="main-content">
+    <div class="top-links">
+      <button class="sidebar-menu"></button>
+      <div class="breadcrumbs">
+        <%= render_breadcrumbs separator: ' / ' %> / <span>Practice Guides</span>
+      </div>
+    </div>
+    <header class="page-header">
+      <h1>Practice Guides</h1>
+    </header>
+    <div class="list">
+      <div class="search-params">
+        <div></div>
+        <div class="sort">
+          <span class="filter-label">Sort By:</span>
+          <%= sort_links({ title_sort: 'Title', updated_at: 'Last Updated' }, { default: :updated_at }) %>
+        </div>
+      </div>
+
+      <%= render partial: 'guides/guide', collection: @search.results %>
+
+      <% if has_filters?(:user_ids) %>
+      <ul class="authors">
+        <% current_filters(user_ids: User) do |author, remove_url| %>
+        <li>
+          <div class="author">
+            <div class="author-avatar">
+              <% if author.avatar.attached? %>
+              <%= image_tag url_for(author.avatar), title: author.label %>
+              <% end %>
+            </div>
+            <div class="author-meta">
+              <h5 class="author-name"><%= author.name %></h5>
+              <small class="author-title"><%= author.title %></small>
+              <div class="author-bio"><%= simple_format author.bio %></div>
+            </div>
+          </div>
+        </li>
+        <% end %>
+      </ul>
+      <% end %>
+    </div>
+  </main>
+</div>

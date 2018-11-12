@@ -1,0 +1,5 @@
+<article class="guide paper">
+  <h4 class="paper-title"><%= link_to guide.title, guide_path(guide), class: 'interactive-link' %></h4>
+  <span class="guide-authors"><%= author_links(guide) %></span>
+  <span class="guide-date"><%= guide.updated_at.strftime('%b %-d, %Y') %></span>
+</article>

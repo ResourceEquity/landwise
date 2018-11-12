@@ -1,0 +1,42 @@
+<div class="dashboard-left">
+  <div class="input-field">
+    <%= f.label :title, 'Title' %>
+    <%= f.text_field :title, placeholder: 'Page Title' %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :slug, 'Slug' %>
+    <%= f.text_field :slug, placeholder: 'Slug' %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :keywords, 'Keywords' %>
+    <%= f.text_field :keywords, placeholder: 'Keywords' %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :description, 'Description' %>
+    <%= f.text_field :description, placeholder: 'Description' %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :position, 'Position In Menu' %>
+    <%= f.text_field :position, placeholder: 'Position' %>
+  </div>
+
+  <div class="input-field">
+    <div class="check">
+      <%= f.check_box :show_in_menu, class: 'checkbox' %>
+      <%= f.label :show_in_menu do %>
+        <span class="checkbox-background"></span>
+        Show In Menu
+      <% end %>
+    </div>
+  </div>
+
+</div>
+<div class="dashboard-right">
+  <div class="input-field wysiwyg">
+    <%= f.text_area :body %>
+  </div>
+</div>

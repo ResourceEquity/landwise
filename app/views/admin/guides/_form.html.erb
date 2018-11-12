@@ -1,0 +1,70 @@
+<div class="dashboard-left">
+  <div class="input-field">
+    <%= f.label :title, 'Title' %>
+    <%= f.text_field :title, placeholder: 'Guide Title' %>
+  </div>
+
+  <div class="input-field">
+    <div class="check">
+      <%= f.check_box :published, class: 'checkbox' %>
+      <%= f.label :published do %>
+        <span class="checkbox-background"></span>
+        Published
+      <% end %>
+    </div>
+  </div>
+
+  <div class="input-field">
+    <label class="heading">Subjects</label>
+    <div class="checkbox-grid">
+    <%= f.collection_check_boxes :subject_ids, Subject.all, :id, :title do |b| %>
+      <div class="check">
+        <%= b.check_box(class: 'checkbox') %>
+        <%= b.label do %>
+          <span class="checkbox-background"></span>
+          <%= b.object.title %>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="input-field">
+    <label class="heading">Authors</label>
+    <div class="checkbox-grid">
+    <%= f.collection_check_boxes :user_ids, User.authors, :id, :label do |b| %>
+      <div class="check">
+        <%= b.check_box(class: 'checkbox') %>
+        <%= b.label do %>
+          <span class="checkbox-background"></span>
+          <%= b.object.label %>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="input-field">
+    <label class="heading">Countries</label>
+    <div class="checkbox-grid">
+    <%= f.collection_check_boxes :country_ids, Country.all, :id, :title do |b| %>
+      <div class="check">
+        <%= b.check_box(class: 'checkbox') %>
+        <%= b.label do %>
+          <span class="checkbox-background"></span>
+          <%= b.object.title %>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="dashboard-right">
+  <div class="guide-articles sortable" data-group="articles" data-selector="article">
+    <%= f.fields_for :articles do |article| %>
+      <%= render partial: 'admin/guides/article_fields', locals: { f: article } %>
+    <% end %>
+  </div>
+  <%= link_to_add_association 'Add Article', f, :articles, class: 'add-article', data: { association_insertion_method: 'append', association_insertion_node: '.guide-articles' } %>
+</div>

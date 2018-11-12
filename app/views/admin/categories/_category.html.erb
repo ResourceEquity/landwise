@@ -1,0 +1,8 @@
+<div class="table-row">
+  <div class="item-title cell">
+    <%= link_to category.title, edit_admin_category_path(category) %>
+  </div>
+  <div class="item-destroy">
+    <%= link_to 'Delete', admin_category_path(category), method: :delete, data: { confirm: "Are you sure?" }  %>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+.list {
+  padding: 2rem;
+}
+
+.authors {
+  margin: 3rem 0 1rem;
+  padding-top: 3.5rem;
+  border-top: 2px solid $light-gray;
+}
+
+.authors li {
+  margin-bottom: 4rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

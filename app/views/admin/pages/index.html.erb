@@ -1,0 +1,9 @@
+<div class="toolbar">
+  <h1 class="title">Pages</h1>
+  <div></div>
+  <%= link_to 'New Page', new_admin_page_path, class: 'button button-solid is-green' %>
+</div>
+
+<div class="table">
+  <%= render partial: 'admin/pages/page', collection: @pages %>
+</div>

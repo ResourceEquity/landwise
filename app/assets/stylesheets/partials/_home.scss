@@ -1,0 +1,153 @@
+.hero {
+  position: relative;
+  min-height: 550px;
+  border-bottom: 16px solid $green;
+  background-image: image-url('nepal.jpg');
+
+  &::after {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    content: '';
+    background: rgba(0, 0, 0, .5);
+  }
+}
+
+.hero .raised {
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: 3.7rem;
+  font-weight: bold;
+  padding: 5rem 2rem;
+  text-align: center;
+  color: $white;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, .33);
+}
+
+.search {
+  display: flex;
+  width: 80%;
+  margin: 0 auto 4rem;
+}
+
+.search .search-input {
+  font-size: 1.6rem;
+  height: 42px;
+  margin-right: 1rem;
+  padding: .5rem 1rem;
+  color: $medium-gray;
+  flex: 1 1 auto;
+}
+
+.search .button {
+  margin-right: 1rem;
+  flex: 0 0 auto;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+
+/**
+ * Callout blocks within the hero image
+ */
+.callouts {
+  display: grid;
+  width: 80%;
+  margin: 0 auto;
+  padding-bottom: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 3rem 8%;
+}
+
+.callout h3 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  padding-bottom: .5rem;
+  text-transform: uppercase;
+  color: $white;
+  border-bottom: 4px solid transparent;
+}
+
+.callout .summary {
+  line-height: 2;
+  margin-bottom: 1rem;
+  color: $white;
+}
+
+.callout-about h3 {
+  border-bottom-color: $sky-blue;
+}
+
+.callout-guides h3 {
+  border-bottom-color: $yellow;
+}
+
+
+/**
+ * 3 column blocks on bottom half of page
+ */
+.home-blocks {
+  display: grid;
+  background-color: $faint-gray;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 2rem 2rem;
+}
+
+.home-blocks .block {
+  padding: 2rem;
+}
+
+.home-blocks .block h2 {
+  font-size: 2.7rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.home-blocks .block a {
+  color: $green;
+}
+
+.home-blocks .updates-form {
+  margin-top: 2rem;
+  color: $base-color;
+}
+
+.home-blocks .article {
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.home-blocks .article a {
+  line-height: 1.4;
+  display: block;
+}
+
+.home-blocks .article .article-date,
+.home-blocks .article .article-meta {
+  font-size: 1.3rem;
+  line-height: 1.4;
+}
+
+@media only screen and (max-width: 600px) {
+  .search {
+    flex-wrap: wrap;
+  }
+
+  .search .search-input {
+    margin: 0 0 1rem;
+    flex: 0 0 100%;
+  }
+
+  .search .button {
+    flex: 1 1 auto;
+  }
+}

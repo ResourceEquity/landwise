@@ -1,0 +1,24 @@
+<footer class="footer">
+  <div class="organization-info">
+    <%= image_tag 'logo-white.png' %>
+    <p class="nonprofit">Resource Equity is a 501(c)(3) nonprofit organization.</p>
+    <p class="copyright">&copy; <%= Time.current.year %> <a href="https://resourceequity.org">Resource Equity</a></p>
+  </div>
+
+  <div class="help-links">
+    <ul>
+      <li><a href="/">LandWise Home</a></li>
+      <li><a href="https://resourceequity.org">Resource Equity Home</a></li>
+      <% cms_pages.each do |page| %>
+      <li><%= link_to page.title, "/#{page.slug}" %></li>
+      <% end %>
+      <li><a href="https://resourceequity.org/contact">Contact</a></li>
+      <li><a href="https://resourceequity.org/terms-and-conditions/">Terms &amp; Conditions</a></li>
+      <li><a href="https://resourceequity.org/privacy-policy/">Privacy Policy</a></li>
+    </ul>
+  </div>
+
+  <div class="landesa-callout">
+    <%= image_tag 'landesa-logo.png', width: '45%' %>
+  </div>
+</footer>

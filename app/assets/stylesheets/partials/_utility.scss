@@ -1,0 +1,29 @@
+.interactive-link {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: ' ';
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.a-center {
+  text-align: center;
+}
+
+.f-right {
+  float: right;
+}
+
+.full-width {
+  width: 100%;
+}

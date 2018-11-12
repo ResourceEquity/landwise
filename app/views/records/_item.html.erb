@@ -1,0 +1,27 @@
+<article class="item">
+  <h2 class="item-title"><%= item.title %></h2>
+
+  <dl class="item-details clearfix">
+    <% if item.document.attached? || item.url.present? %>
+    <div class="item-links">
+      <% if item.document.attached? %>
+      <span><%= link_to 'Download', item.document.service_url(expires_in: 1.hour, disposition: :attachment), class: 'item-download' %> (<%= number_to_human_size(item.document.blob.byte_size) %>)</span>
+      <% end %>
+
+      <% if item.url.present? %>
+      <span><%= link_to 'View Website', item.url, class: 'item-view', target: :_blank %></span>
+      <% end %>
+    </div>
+    <% end %>
+
+    <% if item.year.present? %>
+    <dt>Year:</dt>
+    <dd><%= item.year %></dd>
+    <% end %>
+
+    <% if item.languages.any? %>
+    <dt>Languages:</dt>
+    <dd><%= item.languages.map(&:title).join(', ') %></dd>
+    <% end %>
+  </dl>
+</article>

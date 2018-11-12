@@ -1,0 +1,49 @@
+.text-field {
+  display: block;
+  margin-bottom: 1rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.text-field label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: .5rem;
+}
+
+.text-field input {
+  font-size: 1.5rem;
+  display: block;
+  width: 100%;
+  padding: .5rem;
+  border: 0;
+  background-color: $white;
+}
+
+.input-field {
+  margin-bottom: 2rem;
+}
+
+.input-field label {
+  display: block;
+  margin-bottom: .5rem;
+}
+
+.input-field input[type='text'],
+.input-field input[type='email'],
+.input-field input[type='password'] {
+  font-size: 1.5rem;
+  width: 100%;
+  padding: 1.5rem;
+  transition: background-color 250ms ease-out;
+  border: 0;
+  border-radius: 3px;
+  outline: none;
+  background-color: $faint-gray;
+
+  &:focus {
+    background-color: $light-gray;
+  }
+}

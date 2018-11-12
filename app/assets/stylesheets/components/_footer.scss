@@ -1,0 +1,42 @@
+.footer {
+  display: grid;
+  background-color: $navy-blue;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 0 2rem;
+}
+
+.organization-info,
+.help-links,
+.landesa-callout {
+  padding: 2rem;
+}
+
+.organization-info p {
+  margin-top: .5rem;
+  color: $white;
+}
+
+.organization-info a {
+  color: $yellow;
+}
+
+.organization-info img {
+  width: auto;
+  max-height: 65px;
+}
+
+.help-links a {
+  display: block;
+  margin-bottom: .5rem;
+  color: $white;
+}
+
+.landesa-callout {
+  text-align: right;
+}
+
+@media only screen and (max-width: 900px) {
+  .landesa-callout {
+    text-align: left;
+  }
+}

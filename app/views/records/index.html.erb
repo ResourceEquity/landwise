@@ -1,0 +1,105 @@
+<div class="layout-two-column-left">
+  <aside class="sidebar sidebar-green search-filters">
+    <h2>Search</h2>
+    <%= form_with url: records_path, method: :get, local: true, html: { class: 'record-search' } do |f| %>
+      <% current_filters(country_ids: Country, topic_ids: Topic, language_ids: Language, category_id: Category, jurisdiction_id: Jurisdiction) do |item, remove, param, value| %>
+        <%= f.hidden_field param, value: value %>
+      <% end %>
+      <%= f.text_field :q, value: params[:q], class: 'search-input', placeholder: 'Search the LandWise Library' %>
+      <%= f.submit 'Search', class: 'button button-ghost is-white full-width' %>
+    <% end %>
+
+    <h2>Filter Results</h2>
+
+    <% if has_filters?('country_ids', 'topic_ids', 'language_ids', 'category_id', 'jurisdiction_id', 'q') %>
+    <%= link_to 'Reset Filters', records_path, class: 'search-reset' %>
+
+    <div class="applied-filters">
+      <% current_filters(country_ids: Country, topic_ids: Topic, language_ids: Language, category_id: Category, jurisdiction_id: Jurisdiction) do |item, remove_url| %>
+      <div class="applied-filter">
+        <em><%= item.label %></em><%= link_to '', remove_url, class: 'remove-filter', title: 'Remove this filter' %>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+
+    <div class="facet">
+      <h3 class="facet-label">Language</h3>
+      <% collection_for :language_ids, Language do |item, count| %>
+        <div class="facet-result">
+          <%= link_to item.title, replace_query_params(language_ids: item.id) %><em><%= count %></em>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="facet">
+      <h3 class="facet-label">Country</h3>
+      <% collection_for :country_ids, Country do |item, count| %>
+        <div class="facet-result">
+          <%= link_to item.title, replace_query_params(country_ids: item.id) %><em><%= count %></em>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="facet">        
+      <h3 class="facet-label">Jurisdiction</h3>
+      <% collection_for :jurisdiction_id, Jurisdiction do |item, count| %>
+        <div class="facet-result">
+          <%= link_to item.title, replace_query_params(jurisdiction_id: item.id) %><em><%= count %></em>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="facet">
+      <h3 class="facet-label">Collection Type</h3>
+      <% collection_for :category_id, Category do |item, count| %>
+        <div class="facet-result">
+          <%= link_to item.title, replace_query_params(category_id: item.id) %><em><%= count %></em>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="facet">
+      <h3 class="facet-label">Topic</h3>
+      <% collection_for :topic_ids, Topic do |item, count| %>
+        <div class="facet-result">
+          <%= link_to item.title, replace_query_params(topic_ids: item.id) %><em><%= count %></em>
+        </div>
+      <% end %>
+    </div>
+  </aside>
+  <main class="main-content">
+    <div class="top-links">
+      <button class="sidebar-menu"></button>
+      <div class="breadcrumbs">
+        <%= render_breadcrumbs separator: ' / ' %> / <span>Search Results</span>
+      </div>
+    </div>
+    <header class="page-header">
+      <h1>Search Results <% if has_query? %> for &quot;<%= search_query %>&quot;<% end %></h1>
+    </header>
+    <div class="list">
+      <div class="search-params">
+        <div class="display">
+          <%= page_entries_info @search.hits, model: 'record' %>
+        </div>
+        <div class="sort">
+          <span class="filter-label">Sort By:</span>
+          <%= sort_links({ relevancy: 'Relevancy', title_sort: 'Title', updated_at: 'Last Updated', category_sort: 'Collection Type' }, { default: :relevancy }) %>
+        </div>
+      </div>
+      <div class="search-params pages">
+        <div class="paging">
+          <%= will_paginate @search.hits, previous_label: '&nbsp;', next_label: '&nbsp;', link_separator: '', inner_window: 2, outer_window: 1 %>
+        </div>
+        <div class="per">
+          <span class="filter-label">Show:</span>
+          <%= per_page_link 25 %>
+          <%= per_page_link 50 %>
+          <%= per_page_link 100 %>
+        </div>
+      </div>
+      <%= render partial: 'records/record', collection: @search.results %>
+    </div>
+  </main>
+</div>

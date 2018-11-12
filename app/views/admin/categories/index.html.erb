@@ -1,0 +1,9 @@
+<div class="toolbar">
+  <h1 class="title">Collection Types</h1>
+  <div></div>
+  <%= link_to 'New Collection Type', new_admin_category_path, class: 'button button-solid is-green' %>
+</div>
+
+<div class="table">
+  <%= render partial: 'admin/categories/category', collection: @categories %>
+</div>

@@ -1,0 +1,104 @@
+<div class="dashboard-left dashboard-checkboxes">
+  <div class="input-field">
+    <%= f.label :title, 'Title' %>
+    <%= f.text_field :title, placeholder: 'Record Title' %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :creator, 'Creator' %>
+    <%= f.text_field :creator, placeholder: 'Creator' %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :author, 'Author' %>
+    <%= f.text_field :author, placeholder: 'Author' %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :notes, 'Notes' %>
+    <%= f.text_field :notes, placeholder: 'Notes' %>
+  </div>
+
+  <div class="input-field wysiwyg">
+    <%= f.text_area :body %>
+  </div>
+
+  <div class="input-field">
+    <div class="check">
+      <%= f.check_box :published, class: 'checkbox' %>
+      <%= f.label :published do %>
+        <span class="checkbox-background"></span>
+        Published
+      <% end %>
+    </div>
+  </div>
+
+  <div class="input-field">
+    <label class="heading">Visibility</label>
+    <div class="checkbox-grid">
+    <%= f.collection_check_boxes :responsibility_ids, Responsibility.all.order(title: :asc), :id, :title do |b| %>
+      <div class="check">
+        <%= b.check_box(class: 'checkbox') %>
+        <%= b.label do %>
+          <span class="checkbox-background"></span>
+          <%= b.object.title %>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="input-field">
+    <label class="heading">Authors</label>
+    <div class="checkbox-grid">
+    <%= f.collection_check_boxes :user_ids, User.authors.order(first_name: :asc), :id, :label do |b| %>
+      <div class="check">
+        <%= b.check_box(class: 'checkbox') %>
+        <%= b.label do %>
+          <span class="checkbox-background"></span>
+          <%= b.object.label %>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="input-field">
+    <label class="heading">Topics</label>
+    <div class="checkbox-grid">
+    <%= f.collection_check_boxes :topic_ids, Topic.all.order(title: :asc), :id, :title do |b| %>
+      <div class="check">
+        <%= b.check_box(class: 'checkbox') %>
+        <%= b.label do %>
+          <span class="checkbox-background"></span>
+          <%= b.object.title %>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="input-field">
+    <label class="heading">Countries</label>
+    <div class="checkbox-grid">
+    <%= f.collection_check_boxes :country_ids, Country.all.order(title: :asc), :id, :title do |b| %>
+      <div class="check">
+        <%= b.check_box(class: 'checkbox') %>
+        <%= b.label do %>
+          <span class="checkbox-background"></span>
+          <%= b.object.title %>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="dashboard-right">
+  <div class="record-items">
+    <%= f.fields_for :items do |item| %>
+      <%= render partial: 'admin/records/item_fields', locals: { f: item } %>
+    <% end %>
+  </div>
+  <%= link_to_add_association 'Add Item', f, :items, class: 'add-item', data: { association_insertion_method: 'append', association_insertion_node: '.record-items' } %>
+</div>

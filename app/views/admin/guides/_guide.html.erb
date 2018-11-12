@@ -1,0 +1,8 @@
+<div class="table-row">
+  <div class="item-title cell">
+    <%= link_to guide.title, edit_admin_guide_path(guide) %>
+  </div>
+  <div class="item-destroy">
+    <%= link_to 'Delete', admin_guide_path(guide), method: :delete, data: { confirm: "Are you sure? Deleting a guide will also permanently delete all of it's articles and sections." }  %>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+.toolbar {
+  display: grid;
+  height: 60px;
+  white-space: nowrap;
+  background-color: $navy-blue;
+  grid-template-columns: 65% auto min-content;
+  grid-gap: 2rem 2rem;
+}
+
+.toolbar .nav {
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+}
+
+.toolbar .nav a,
+.toolbar .nav span {
+  display: inline-block;
+}
+
+.toolbar .title {
+  font-size: 2.5rem;
+  line-height: 60px;
+  padding-left: 2rem;
+  color: $white;
+}
+
+.toolbar .button {
+  line-height: 60px;
+  height: 60px;
+  padding: 0 2rem;
+  white-space: nowrap;
+}
+
+.toolbar .search form {
+  display: flex;
+  height: 100%;
+}
+
+.toolbar .search .input {
+  font-size: 1.6rem;
+  width: 100%;
+  height: 100%;
+  padding: 0 2rem;
+  transition: background-color 250ms ease-out;
+  color: $white;
+  border: 0;
+  outline: none;
+  background-color: darken($navy-blue, 4%);
+  flex: 1 1 auto;
+
+  &:focus {
+    background-color: darken($navy-blue, 8%);
+  }
+}
+
+.toolbar .search .submit {
+  cursor: pointer;
+  border: 0;
+  background-color: $navy-blue;
+  background-image: asset-url('search.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 25px 25px;
+  flex: 0 0 60px;
+}

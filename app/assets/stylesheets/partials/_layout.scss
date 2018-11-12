@@ -1,0 +1,162 @@
+.layout-two-column-left {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+}
+
+.layout-admin {
+  font-size: 1.6rem;
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: minmax(300px, 18%) 1fr;
+}
+
+.sidebar .sidebar-close {
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  display: none;
+  width: 20px;
+  height: 20px;
+  padding: 2rem;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  background-image: asset-url('close-white.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 20px 20px;
+}
+
+.sidebar-green {
+  padding: 2rem;
+  color: $white;
+  background-color: $green;
+}
+
+.sidebar-green h2,
+.sidebar-green p {
+  margin-bottom: 2rem;
+}
+
+.sidebar-green h2 {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+}
+
+.sidebar-green a {
+  color: $white;
+}
+
+.sidebar-green .button {
+  margin-top: 1rem;
+  @extend .is-white;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.sidebar-green .search-library {
+  margin-bottom: 2rem;
+}
+
+.page-header {
+  padding: 2rem 2rem 0;
+}
+
+.page-header h1 {
+  font-size: 2.7rem;
+  line-height: 1.3;
+  border-bottom: 2px solid $sky-blue;
+}
+
+.page-body {
+  padding: 2rem;
+}
+
+.top-links {
+  position: relative;
+  display: flex;
+  margin: 2rem 0 0;
+  padding: 0 2rem;
+}
+
+.top-links .sidebar-menu {
+  position: absolute;
+  top: -.6rem;
+  left: 1rem;
+  display: none;
+  box-sizing: content-box;
+  width: 20px;
+  height: 20px;
+  padding: 1rem;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  background-image: asset-url('menu.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 18px 18px;
+}
+
+.top-links .breadcrumbs {
+  line-height: 28px;
+  margin-right: 2rem;
+  flex: 1 1 auto;
+}
+
+.top-links .breadcrumbs a {
+  white-space: nowrap;
+  color: $green;
+}
+
+.top-links .breadcrumbs a,
+.top-links .breadcrumbs span {
+  display: inline-block;
+  overflow: hidden;
+  max-width: 200px;
+  vertical-align: top;
+  text-overflow: ellipsis;
+}
+
+.top-links .sharing {
+  text-align: right;
+  flex: 0 0 auto;
+}
+
+.top-links + .page-header {
+  padding-top: 1rem;
+}
+
+@media only screen and (max-width: 800px) {
+  .layout-two-column-left {
+    position: relative;
+    grid-template-columns: 0 1fr;
+  }
+
+  .layout-two-column-left.open .sidebar {
+    transform: translateX(0);
+  }
+
+  .sidebar {
+    position: relative;
+    z-index: 102;
+    width: 300px;
+    height: 100%;
+    transition: transform 250ms ease-out;
+    transform: translateX(-300px);
+    box-shadow: 3px 0 10px -2px rgba(0, 0, 0, .3);
+  }
+
+  .sidebar .sidebar-close {
+    display: block;
+  }
+
+  .top-links {
+    padding: 0 2rem 0 5rem;
+  }
+
+  .top-links .sidebar-menu {
+    display: block;
+  }
+}

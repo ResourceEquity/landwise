@@ -1,0 +1,43 @@
+/** @format */
+
+html,
+body {
+  font-size: 10px;
+}
+
+body {
+  font-family: $sans-serif;
+  color: $base-color;
+}
+
+input {
+  color: $base-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $serif;
+}
+
+.page {
+  background-color: $white;
+}
+
+.app {
+  font-size: 1.44rem;
+  width: 1200px;
+  max-width: 90%;
+  margin: 0 auto;
+  box-shadow: 0 0 22px 0 rgba(0, 0, 0, .4);
+}
+
+@media only screen and (max-width: 800px) {
+  .app {
+    width: 100%;
+    max-width: 100%;
+  }
+}

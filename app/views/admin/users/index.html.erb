@@ -1,0 +1,28 @@
+<div class="dashboard">
+  <div class="toolbar dashboard-toolbar">
+    <h1 class="title">Users</h1>
+    <div class="search">
+      <%= form_with url: admin_users_path, method: :get, local: true do |f| %>
+        <%= f.text_field :q, value: params[:q], placeholder: 'Search Users', class: 'input' %>
+        <%= f.submit '', class: 'submit' %>
+      <% end %>
+    </div>
+    <%= link_to 'New User', new_admin_user_path, class: 'button button-solid is-green' %>
+  </div>
+
+  <div class="actions">
+    <div class="info">
+      <%= page_entries_info @search.hits, model: 'record' %>
+      <% if params[:q].present? %>
+        <%= link_to 'Reset Search', admin_users_path, class: 'reset-search' %>
+      <% end %>
+    </div>
+    <div class="pages">
+      <%= will_paginate @search.hits, previous_label: '&nbsp;', next_label: '&nbsp;', link_separator: '', inner_window: 2, outer_window: 1 %>
+    </div>
+  </div>
+
+  <div class="table dashboard-list">
+    <%= render partial: 'admin/users/user', collection: @users %>
+  </div>
+</div>

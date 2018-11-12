@@ -1,0 +1,276 @@
+/**
+ * http://meyerweb.com/eric/tools/css/reset/ 
+ * v2.0 | 20110126
+ * License: none (public domain)
+ *
+ * @format
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  border: 0;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+p,
+li {
+  line-height: 1.45;
+}
+
+a {
+  color: #0064e6;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.ck-reset ol,
+.ck-reset ul {
+  margin: 0 0 2.5rem 1rem;
+  padding-left: 1rem;
+}
+
+.ck-reset ol {
+  list-style: decimal outside none;
+}
+
+.ck-reset ul {
+  list-style: disc outside none;
+}
+
+.ck-reset ol ol,
+.ck-reset ul ul,
+.ck-reset ul ol,
+.ck-reset ol ul {
+  margin: .5rem 0 .5rem 1rem;
+}
+
+.ck-reset li {
+  margin-bottom: .5rem;
+}
+
+.ck-reset strong {
+  font-weight: bold;
+}
+
+.ck-reset i {
+  font-style: italic;
+}
+
+.ck-reset a {
+  color: $green;
+}
+
+.ck-reset .ck-content blockquote {
+  padding: 1rem;
+  border-left-width: 3px;
+  border-left-color: $green;
+  background-color: $faint-gray;
+}
+
+.ck-reset h1,
+.ck-reset h2,
+.ck-reset h3,
+.ck-reset h4,
+.ck-reset h5 {
+  font-family: $serif;
+  font-weight: bold;
+  line-height: 1.45;
+}
+
+.ck-reset h1 {
+  font-size: 2.5rem;
+}
+.ck-reset h2 {
+  font-size: 2.2rem;
+}
+.ck-reset h3 {
+  font-size: 1.8rem;
+}
+.ck-reset h4 {
+  font-size: 1.6rem;
+}
+.ck-reset h5 {
+  font-size: 1.4rem;
+}
+
+.ck-reset .ck-heading_heading1 .ck-button__label,
+.ck-reset .ck-heading_heading2 .ck-button__label,
+.ck-reset .ck-heading_heading3 .ck-button__label,
+.ck-reset .ck-heading_heading4 .ck-button__label,
+.ck-reset .ck-heading_heading5 .ck-button__label {
+  font-family: $serif;
+  color: $base-color;
+}
+
+.ck-reset .ck-heading_heading1 .ck-button__label {
+  font-size: 2.5rem;
+}
+.ck-reset .ck-heading_heading2 .ck-button__label {
+  font-size: 2.2rem;
+}
+.ck-reset .ck-heading_heading3 .ck-button__label {
+  font-size: 1.8rem;
+}
+.ck-reset .ck-heading_heading4 .ck-button__label {
+  font-size: 1.6rem;
+}
+.ck-reset .ck-heading_heading5 .ck-button__label {
+  font-size: 1.4rem;
+}
+
+.ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar,
+.ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corners {
+  margin-bottom: 1rem;
+  border: 1px solid $light-gray;
+  border-radius: 0;
+}
+
+.ck-rounded-corners .ck.ck-editor__main > .ck-editor__editable.ck-content,
+.ck.ck-editor__main > .ck-editor__editable.ck-content.ck-rounded-corners {
+  padding: 0 1.5rem;
+  border-radius: 3px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.ck.ck-editor__main > .ck-content.ck-editor__editable {
+  transition: background 250ms ease-out;
+  border: 0;
+  background: $faint-gray;
+}
+
+.ck.ck-editor__main > .ck-content.ck-editor__editable.ck-focused {
+  border: 0;
+  background: $light-gray;
+  box-shadow: none;
+}

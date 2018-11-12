@@ -1,0 +1,40 @@
+# Configuration file for Sidekiq.
+# Options here can still be overridden by cmd line args.
+#   sidekiq -C config.yml
+---
+:concurrency: 4
+:timeout: 25
+test:
+  :pidfile: tmp/pids/sidekiq.pid
+  :verbose: false
+  :queues:
+    - [resourceequity_test_priority, 3]
+    - [resourceequity_test_mailers, 2]
+    - [resourceequity_test_sms, 1]
+    - [resourceequity_test_default, 1]
+    - default
+development:
+  :pidfile: tmp/pids/sidekiq.pid
+  :verbose: false
+  :queues:
+    - [resourceequity_development_priority, 3]
+    - [resourceequity_development_mailers, 2]
+    - [resourceequity_development_sms, 1]
+    - [resourceequity_development_default, 1]
+    - default
+staging:
+  :verbose: true
+  :queues:
+    - [resourceequity_staging_priority, 3]
+    - [resourceequity_staging_mailers, 2]
+    - [resourceequity_staging_sms, 1]
+    - [resourceequity_staging_default, 1]
+    - default
+production:
+  :verbose: true
+  :queues:
+    - [resourceequity_production_priority, 3]
+    - [resourceequity_production_mailers, 2]
+    - [resourceequity_production_sms, 1]
+    - [resourceequity_production_default, 1]
+    - default

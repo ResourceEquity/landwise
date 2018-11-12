@@ -1,0 +1,24 @@
+<div class="layout-two-column-left">
+  <aside class="sidebar sidebar-green">
+    <%= link_to 'Search The Library', root_path, class: 'button button-ghost is-white full-width search-library' %>
+    <h2>Announcements</h2>
+    <p>To improve our website's security and to comply with <a href="https://www.eugdpr.org/" target="_blank">GDPR</a> requirements we have temporarily removed any site features that require a login and password. For users who would like to be notified with updates regarding these features please contact us <a href="https://resourceequity.org/contact/" target="_blank">here</a>. Thank you.</p>
+    <h2>Featured Resources</h2>
+    <p>We are constantly adding new materials to our collection.</p>
+    <p>Please feel free to <a href="https://resourceequity.org/contact/" target="_blank">contact us</a> if you need help locating something.</p>
+  </aside>
+  <main class="main-content records">
+    <div class="top-links">
+      <button class="sidebar-menu"></button>
+      <div class="breadcrumbs">
+        <%= render_breadcrumbs separator: ' / ' %> / <span><%= @page.title %></span>
+      </div>
+    </div>
+    <header class="page-header">
+      <h1><%= @page.title %></h1>
+    </header>
+    <div class="page-body wysiwyg">
+      <%= @page.body.html_safe %>
+    </div>
+  </main>
+</div>

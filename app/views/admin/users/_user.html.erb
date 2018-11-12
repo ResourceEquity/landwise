@@ -1,0 +1,10 @@
+<div class="table-row">
+  <div class="item-title cell">
+    <%= link_to user.name, edit_admin_user_path(user) %>
+  </div>
+  <% unless current_user == user %>
+  <div class="item-destroy">
+    <%= link_to 'Delete', admin_user_path(user), method: :delete, data: { confirm: "Are you sure?" }  %>
+  </div>
+  <% end %>
+</div>

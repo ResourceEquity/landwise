@@ -1,0 +1,24 @@
+<div class="devise-form">
+  <h1 class="heading">Create a New Password</h1>
+
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <% devise_error_messages! %>
+    <%= voltron_flashes %>
+
+    <%= f.hidden_field :reset_password_token %>
+
+    <div class="input-field">
+      <%= f.label :password, "New Password" %>
+      <%= f.password_field :password, autofocus: true %>
+    </div>
+
+    <div class="input-field">
+      <%= f.label :password_confirmation, "Confirm New Password" %>
+      <%= f.password_field :password_confirmation, autocomplete: 'off' %>
+    </div>
+
+    <div class="actions clearfix">
+      <%= f.submit 'Change My Password', class: 'button button-ghost is-green full-width' %>
+    </div>
+  <% end %>
+</div>

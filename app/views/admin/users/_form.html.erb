@@ -1,0 +1,79 @@
+<div class="dashboard-left">
+  <div class="input-field">
+    <%= f.label :first_name, 'First Name' %>
+    <%= f.text_field :first_name, placeholder: 'First Name' %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :last_name, 'Last Name' %>
+    <%= f.text_field :last_name, placeholder: 'Last Name' %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :email, 'Login Email' %>
+    <%= f.email_field :email, placeholder: 'Login Email' %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :password, 'Password' %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :password_confirmation, 'Password Confirmation' %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div class="input-field">
+    <label class="heading">Roles</label>
+    <div class="checkbox-grid">
+    <%= f.collection_check_boxes :responsibility_ids, Responsibility.all.order(title: :asc), :id, :title do |b| %>
+      <div class="check">
+        <%= b.check_box(class: 'checkbox') %>
+        <%= b.label do %>
+          <span class="checkbox-background"></span>
+          <%= b.object.title %>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+
+</div>
+
+<div class="dashboard-right">
+  <div class="input-field">
+    <%= f.label :title, 'Title' %>
+    <%= f.text_field :title, placeholder: 'Job Title' %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :contact, 'Contact Email' %>
+    <%= f.email_field :contact, placeholder: 'Contact Email' %>
+  </div>
+
+  <div class="input-field">
+    <div class="check">
+      <%= f.check_box :author, class: 'checkbox' %>
+      <%= f.label :author do %>
+        <span class="checkbox-background"></span>
+        Author
+      <% end %>
+    </div>
+  </div>
+
+  <div class="input-field clearfix">
+    <%= f.label :avatar, 'Avatar' %>
+    <%= f.file_field :avatar, accept: 'image/jpeg,image/png' %>
+    <% if f.object.avatar.attached? %>
+    <div class="avatar">
+      <%= image_tag f.object.avatar, size: 80 %>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="input-field wysiwyg">
+    <%= f.label :bio, 'Bio' %>
+    <%= f.text_area :bio %>
+  </div>
+</div>

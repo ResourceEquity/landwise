@@ -1,0 +1,27 @@
+<div class="guide-pdf">
+  <section class="article-section">
+    <h4>Guide Contents</h4>
+    <ul>
+      <% @guide.articles.each do |article| %>
+      <li>
+        <%= link_to article.title, "##{article.title.parameterize}" %>
+        <ul>
+          <% article.sections.each do |section| %>
+          <li><%= link_to section.title, "##{section.title.parameterize}" %></li>
+          <% end %>
+        </ul>
+      </li>
+      <% end %>
+    </ul>
+  </section>
+
+  <% @guide.articles.each do |article| %>
+    <h2 id="<%= article.title.parameterize %>" class="article-title"><%= article.title %></h2>
+    <% article.sections.each do |section| %>
+    <section class="article-section">
+      <h4 id="<%= section.title.parameterize %>"><%= section.title %></h4>
+      <%= section.html %>
+    </section>
+    <% end %>
+  <% end %>
+</div>

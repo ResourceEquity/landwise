@@ -1,0 +1,34 @@
+.devise-form {
+  width: 400px;
+  max-width: 85%;
+  margin: 8rem auto;
+}
+
+.devise-form .heading {
+  font-family: $serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.devise-form a {
+  color: $green;
+}
+
+.devise-form .actions {
+  margin-bottom: 2rem;
+}
+
+.devise-form #flashes {
+  margin-bottom: 2rem;
+}
+
+.devise-form .flash {
+  border-radius: 3px;
+}
+
+@media only screen and (max-width: 600px) {
+  .devise-form {
+    margin: 3rem auto;
+  }
+}

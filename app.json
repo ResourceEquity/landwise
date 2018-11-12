@@ -1,0 +1,75 @@
+{
+  "name": "LandWise",
+  "website": "https://landwise.resourceequity.org",
+  "repository": "https://github.com/CKDev/resource-equity",
+  "image": "heroku/ruby",
+  "stack": "heroku-18",
+  "env": {
+    "RAILS_LOG_TO_STDOUT": {
+      "description": "Ensures CI does not attempt to log to a file when running",
+      "value": "enabled"
+    },
+    "REDIS_PROVIDER": {
+      "description": "Sets the env variable for sidekiq to the env variable defining the redis url",
+      "value": "REDIS_URL"
+    },
+    "MALLOC_ARENA_MAX": {
+      "description": "Causes sidekiq to use less memory",
+      "value": "2"
+    },
+    "LANG": {
+      "description": "Sets the default language",
+      "value": "en_US.UTF-8"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-redis",
+      "options": {
+        "version": "3.2"
+      }
+    },
+    {
+      "plan": "heroku-postgresql",
+      "options": {
+        "version": "10.5"
+      }
+    },
+    {
+      "plan": "mailgun"
+    }
+  ],
+  "environments": {
+    "production": {
+      "buildpacks": [
+        { "url": "https://github.com/gaffneyc/heroku-buildpack-jemalloc" },
+        { "url": "heroku/ruby" },
+        { "url": "https://github.com/heroku/heroku-buildpack-google-chrome" }
+      ]
+    },
+    "staging": {
+      "buildpacks": [
+        { "url": "https://github.com/gaffneyc/heroku-buildpack-jemalloc" },
+        { "url": "heroku/ruby" },
+        { "url": "https://github.com/heroku/heroku-buildpack-google-chrome" }
+      ]
+    },
+    "test": {
+      "buildpacks": [
+        { "url": "heroku/ruby" },
+        { "url": "https://github.com/heroku/heroku-buildpack-chromedriver" },
+        { "url": "https://github.com/heroku/heroku-buildpack-google-chrome" }
+      ],
+      "scripts": {
+        "test-setup": "bin/rails assets:precompile",
+        "test": "KNAPSACK_REPORT_PATH=spec/knapsack.json bundle exec rake knapsack:rspec"
+      },
+      "formation": {
+        "test": {
+          "quantity": 16
+        }
+      },
+      "addons": ["heroku-postgresql:in-dyno", "heroku-redis:in-dyno"]
+    }
+  }
+}

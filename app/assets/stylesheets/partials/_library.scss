@@ -1,0 +1,24 @@
+.library-results {
+  display: grid;
+  padding-bottom: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 0 2rem;
+}
+
+.library-results .library-column {
+  padding: 0 2rem;
+}
+
+.library-results .facet-label {
+  font-size: 1.8rem;
+  margin: 2rem 0 1rem;
+}
+
+.library-results .facet-result {
+  line-height: 1.45;
+}
+
+.library-results .facet-result a {
+  margin-right: 1rem;
+  color: $green;
+}

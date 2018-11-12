@@ -1,0 +1,24 @@
+<h2>Email Updates</h2>
+
+<p>To receive updates about new Practice Guides and other important LandWise developments, enter your name and email address below. We will never share your information with any third parties.</p>
+
+<%= form_with url: 'https://resourceequity.us11.list-manage.com/subscribe/post', method: :post, html: { class: 'updates-form' } do |f| %>
+  <%= f.hidden_field :u, value: 'bca3f03eef5910d41b6421144' %>
+  <%= f.hidden_field :id, value: 'b2e0733d3c' %>
+  <%= f.hidden_field :MERGE5, value: 'LW' %>
+
+  <div class="text-field">
+    <%= f.label :MERGE1, 'First Name' %>
+    <%= f.text_field :MERGE1 %>
+  </div>
+  <div class="text-field">
+    <%= f.label :MERGE2, 'Last Name' %>
+    <%= f.text_field :MERGE2 %>
+  </div>
+  <div class="text-field">
+    <%= f.label :MERGE0, 'Email' %>
+    <%= f.text_field :MERGE0 %>
+  </div>
+
+  <%= f.submit 'Submit', class: 'button button-ghost is-green' %>
+<% end %>

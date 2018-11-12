@@ -1,0 +1,15 @@
+<div class="nested-fields section">
+  <%= f.hidden_field :position, class: 'position' %>
+  <div class="handle"></div>
+  <%= link_to_remove_association 'Remove', f, class: 'remove' %>
+
+  <div class="input-field">
+    <%= f.label :title, 'Title' %>
+    <%= f.text_field :title, placeholder: 'Title' %>
+  </div>
+
+  <div class="input-field wysiwyg">
+    <%= f.label :body, 'Content' %>
+    <%= f.text_area :body %>
+  </div>
+</div>

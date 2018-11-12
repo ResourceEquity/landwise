@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LandWise from Resource Equity</title>
+    <%= csrf_meta_tags %>
+
+    <%= render partial: 'shared/scripts' %>
+
+    <%= stylesheet_link_tag     'application', media: :all %>
+    <%= javascript_include_tag  'application', defer: true %>
+
+    <%= render partial: 'shared/meta' %>
+  </head>
+
+  <body class="page <%= controller_name %>-page">
+    <div class="app">
+      <%= render partial: 'shared/masthead' %>
+      <%= voltron_flashes %>
+      <%= yield %>
+      <%= render partial: 'shared/footer' %>
+    </div>
+  </body>
+</html>

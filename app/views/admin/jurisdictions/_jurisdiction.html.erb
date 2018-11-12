@@ -1,0 +1,8 @@
+<div class="table-row">
+  <div class="item-title cell">
+    <%= link_to jurisdiction.title, edit_admin_jurisdiction_path(jurisdiction) %>
+  </div>
+  <div class="item-destroy">
+    <%= link_to 'Delete', admin_jurisdiction_path(jurisdiction), method: :delete, data: { confirm: "Are you sure?" }  %>
+  </div>
+</div>

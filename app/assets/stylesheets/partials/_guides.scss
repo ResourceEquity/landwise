@@ -1,0 +1,42 @@
+.guide {
+  font-size: 0;
+}
+
+.guide .paper-title {
+  margin-bottom: 1rem;
+}
+
+.guide .guide-authors,
+.guide .guide-date {
+  font-size: 1.4rem;
+  display: inline-block;
+}
+
+.guide .guide-authors::after {
+  display: inline-block;
+  padding: 0 .5rem;
+  content: '\00B7';
+}
+
+.guide .guide-authors a {
+  color: $green;
+}
+
+.guide-contents {
+  margin-bottom: 2rem;
+}
+
+.guide-contents a {
+  line-height: 1.8;
+  display: block;
+  color: $white;
+
+  &.is-active {
+    font-weight: bold;
+  }
+}
+
+.guide-download {
+  display: block;
+  margin-bottom: 2rem;
+}

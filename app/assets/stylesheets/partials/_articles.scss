@@ -1,0 +1,75 @@
+.article .meta {
+  font-size: 0;
+  margin-top: 1rem;
+}
+
+.article .meta a {
+  color: $green;
+}
+
+.article .guide-authors,
+.article .guide-date {
+  font-size: 1.4rem;
+  display: inline-block;
+}
+
+.article .guide-authors::after {
+  display: inline-block;
+  padding: 0 .5rem;
+  content: '\00B7';
+}
+
+.article-content .article-title {
+  font-size: 2rem;
+  margin: 2rem 0;
+}
+
+.article-section {
+  margin-bottom: 2rem;
+}
+
+.article-section h4 {
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: $sky-blue;
+  box-shadow: 0 1px 2px rgba(0,0,0,.075);
+}
+
+.article-section a {
+  color: $green;
+}
+
+.article-section sup {
+  font-size: smaller;
+  vertical-align: super;
+}
+
+.article-section sub {
+  font-size: smaller;
+  vertical-align: sub;
+}
+
+.article-section ul {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  list-style: disc;
+}
+
+.article-section ul ul {
+  margin: 1rem 0;
+  list-style-type: circle;
+}
+
+.article-section strong {
+  font-weight: bold;
+  letter-space: .3px;
+}
+
+.article-section p {
+  margin-bottom: 1rem;
+}
+
+.article-section > *:last-child {
+  margin-bottom: 0;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LandWise from Resource Equity</title>
+    <%= csrf_meta_tags %>
+
+    <%= render partial: 'shared/scripts' %>
+
+    <%= stylesheet_link_tag     'admin', media: :all %>
+    <%= javascript_include_tag  'admin', defer: true %>
+
+    <%= render partial: 'shared/meta' %>
+  </head>
+
+  <body class="page <%= controller_name %>-page">
+    <div class="layout-admin">
+      <aside class="sidebar-green admin-menu">
+        <%= link_to root_path do %>
+          <%= image_tag 'logo-white.png' %>
+        <% end %>
+        <div class="admin-links">
+          <%= link_to 'Home', root_path %>
+          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+        </div>
+        <nav class="admin-nav">
+          <ul>
+            <li class="<%= stylize(is_active: controller_name == 'records') %>"><%= link_to 'Records',              admin_records_path %></li>
+            <li class="<%= stylize(is_active: controller_name == 'guides') %>"><%= link_to 'Guides',                admin_guides_path %></li>
+            <li class="<%= stylize(is_active: controller_name == 'pages') %>"><%= link_to 'Pages',                  admin_pages_path %></li>
+            <li class="<%= stylize(is_active: controller_name == 'users') %>"><%= link_to 'Users',                  admin_users_path %></li>
+            <li class="is-divider"></li>
+            <li class="<%= stylize(is_active: controller_name == 'roles') %>"><%= link_to 'Roles',                  admin_roles_path %></li>
+            <li class="<%= stylize(is_active: controller_name == 'topics') %>"><%= link_to 'Topics',                admin_topics_path %></li>
+            <li class="<%= stylize(is_active: controller_name == 'categories') %>"><%= link_to 'Collection Types',  admin_categories_path %></li>
+            <li class="<%= stylize(is_active: controller_name == 'languages') %>"><%= link_to 'Languages',          admin_languages_path %></li>
+            <li class="<%= stylize(is_active: controller_name == 'countries') %>"><%= link_to 'Countries',          admin_countries_path %></li>
+            <li class="<%= stylize(is_active: controller_name == 'jurisdictions') %>"><%= link_to 'Jurisdictions',  admin_jurisdictions_path %></li>
+            <li class="<%= stylize(is_active: controller_name == 'subjects') %>"><%= link_to 'Subjects',            admin_subjects_path %></li>
+          </ul>
+        </nav>
+      </aside>
+      <main class="main-content">
+        <div class="flashes">
+          <%= voltron_flashes %>
+        </div>
+        <%= yield %>
+      </main>
+    </div>
+  </body>
+</html>

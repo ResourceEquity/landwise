@@ -1,0 +1,15 @@
+<div class="table-row">
+  <div class="item-title cell">
+    <%= link_to role.title, edit_admin_role_path(role) %>
+  </div>
+
+  <% if role.locked? %>
+  <div class="item-locked cell">
+    <div class="tooltip">This role is a system role and can not be edited or deleted.</div>
+  </div>
+  <% else %>
+  <div class="item-destroy cell">
+    <%= link_to 'Delete', admin_role_path(role), method: :delete, data: { confirm: "Are you sure?" }  %>
+  </div>
+  <% end %>
+</div>

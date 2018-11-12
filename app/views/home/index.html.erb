@@ -1,0 +1,42 @@
+<div class="hero">
+  <div class="raised">
+    <h1>Primary legal sources for women&apos;s empowerment</h1>
+    <%= form_with url: records_path, method: :get, local: true, html: { class: 'search' } do |f| %>
+      <%= f.text_field :q, class: 'search-input', placeholder: 'Search the LandWise Library' %>
+      <%= f.submit 'Search', class: 'button button-solid is-green' %>
+      <%= button_tag 'Browse', class: 'button button-ghost is-white', onclick: "window.location = '#{library_index_path}';", type: 'button' %>
+    <% end %>
+    <div class="callouts">
+      <div class="callout callout-about">
+        <h3 class="about-heading">About LandWise</h3>
+        <p class="summary">Welcome to LandWise, the industry’s most comprehensive source of legal materials, articles, and research for policymakers, researchers, legal practitioners, and advocates working to advance women’s land rights. We regularly update this resource with information published by the experts at Resource Equity as well as other trusted sources from around the world, so be sure to check in regularly.</p>
+        <%= button_tag 'Learn More', class: 'button button-ghost is-white', onclick: "window.location = '/about';" %>
+      </div>
+      <div class="callout callout-guides">
+        <h3 class="guides-heading">Practice Guides</h3>
+        <p class="summary">Our Practice Guides are checklists that will help you identify and assess issues that may affect women and men differently in relation to rights to and control over land. The guides will help you navigate through potential legal issues as well as social or cultural norms that may affect how the law is practiced.</p>
+        <%= button_tag 'Browse Practice Guides', class: 'button button-ghost is-white', onclick: "window.location = '#{guides_path}';" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<article class="home-blocks">
+  <section class="block announcements">
+    <h2>Announcements</h2>
+    <p>To improve our website's security and to comply with <a href="https://www.eugdpr.org/" target="_blank">GDPR</a> requirements we have temporarily removed any site features that require a login and password. For users who would like to be notified with updates regarding these features please contact us <a href="https://resourceequity.org/contact/" target="_blank">here</a>. Thank you.</p>
+  </section>
+  <section class="block recent">
+    <h2>Recently Added</h2>
+    <% @recent.each do |record| %>
+    <div class="article">
+      <%= link_to record.title, record_path(record) %>
+      <div class="article-date"><%= record.created_at.strftime('%B %-d, %Y') %></div>
+      <div class="article-meta"><%= record.category.title %> / <%= record.countries.map(&:title).join(', ') %></div>
+    </div>
+    <% end %>
+  </section>
+  <section class="block updates">
+    <%= render partial: 'shared/global/email_updates' %>
+  </section>
+</article>

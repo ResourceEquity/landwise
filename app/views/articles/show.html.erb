@@ -1,0 +1,53 @@
+<div class="layout-two-column-left">
+  <aside class="sidebar sidebar-green">
+    <h2>Contents</h2>
+    <nav class="guide-contents">
+      <ul>
+        <% @guide.articles.each do |article| %>
+        <li><%= link_to article.title, guide_article_path(@guide, article), class: (['interactive-link'] + [article.id == @article.id ? 'is-active' : '']).join(' ') %></li>
+        <% end %>
+      </ul>
+    </nav>
+    <h2>Download Guide</h2>
+    <%= link_to 'Download PDF', guide_path(@guide, format: :pdf), class: 'guide-download' %>
+    <h2>Author</h2>
+    <p>This guide is by <%= author_links(@guide, false) %>.</p>
+    <p>If you have any questions, feedback, or suggestions, you can contact the author by clicking here.</p>
+    <%= render partial: 'shared/global/email_updates' %>
+  </aside>
+  <main class="main-content article">
+    <div class="top-links">
+      <button class="sidebar-menu"></button>
+      <div class="breadcrumbs">
+        <%= render_breadcrumbs separator: ' / ' %> / <span><%= @article.title %></span>
+      </div>
+    </div>
+    <header class="page-header">
+      <h1><%= @guide.title %></h1>
+      <div class="meta">
+        <span class="guide-authors"><%= author_links(@guide) %></span>
+        <span class="guide-date"><%= @guide.updated_at.strftime('%b %-d, %Y') %></span>
+      </div>
+      <article class="article-content">
+        <h3 class="article-title"><%= @article.title %></h3>
+        <section class="article-section">
+          <h4>Page Contents</h4>
+          <p>This page will highlight a few areas for analysis.</p>
+          <p>To jump to one of the sections on this page use the below links:</p>
+          <ul>
+            <% @article.sections.each do |section| %>
+            <li><%= link_to section.title, "##{section.title.parameterize}" %></li>
+            <% end %>
+          </ul>
+        </section>
+
+        <% @article.sections.each do |section| %>
+        <section class="article-section">
+          <h4 id="<%= section.title.parameterize %>"><%= section.title %></h4>
+          <%= section.html %>
+        </section>
+        <% end %>
+      </article>
+    </header>
+  </main>
+</div>
