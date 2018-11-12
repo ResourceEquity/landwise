@@ -50,7 +50,7 @@ Voltron.setup do |config|
   # config.base_url = 'http://localhost:3000'
 
   # What logger calls to Voltron.log should use
-  # config.logger = Logger.new(Rails.root.join('log', 'voltron.log'))
+  config.logger = Logger.new(Rails.root.join('log', "#{Rails.env}.log"))
 
   # Set the log level for JS output in the browser console.
   # Available log levels are: :debug, :info, :warn, :error, :fatal, and :unknown,
