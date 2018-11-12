@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 source 'https://gem.minow.io' do
-  gem 'voltron', '~> 0.2'
-  gem 'voltron-flash', '~> 0.1.7'
+  gem 'voltron', '~> 0.3.2'
+  gem 'voltron-flash', '~> 0.1.8'
   gem 'voltron-notify', '~> 0.2.2'
 end
 
