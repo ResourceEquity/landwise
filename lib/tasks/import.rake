@@ -137,4 +137,15 @@ task import: :environment do
 
     guide.save!
   end
+
+  pages = JSON.parse(File.read('pages.json'))
+  pages.each do |p|
+    Page.create(
+      title: p['title'],
+      keywords: p['keywords'],
+      description: p['description'],
+      body: p['body'],
+      slug: p['slug']
+    )
+  end
 end
