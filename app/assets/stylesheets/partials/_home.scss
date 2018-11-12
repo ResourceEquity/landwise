@@ -138,6 +138,17 @@
 }
 
 @media only screen and (max-width: 600px) {
+  .hero h1 {
+    font-size: 3rem;
+    width: 90%;
+    margin: 0 auto;
+    padding: 3rem 0;
+  }
+
+  .callouts {
+    width: 90%;
+  }
+
   .search {
     flex-wrap: wrap;
   }
