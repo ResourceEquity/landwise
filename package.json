@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "chrome-headless-render-pdf": "^1.8.0"
+  }
+}

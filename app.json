@@ -43,6 +43,7 @@
     "production": {
       "buildpacks": [
         { "url": "https://github.com/gaffneyc/heroku-buildpack-jemalloc" },
+        { "url": "heroku/nodejs" },
         { "url": "heroku/ruby" },
         { "url": "https://github.com/heroku/heroku-buildpack-google-chrome" }
       ]
@@ -50,6 +51,7 @@
     "staging": {
       "buildpacks": [
         { "url": "https://github.com/gaffneyc/heroku-buildpack-jemalloc" },
+        { "url": "heroku/nodejs" },
         { "url": "heroku/ruby" },
         { "url": "https://github.com/heroku/heroku-buildpack-google-chrome" }
       ]
