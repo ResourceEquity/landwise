@@ -36,7 +36,7 @@ task import: :environment do
   current = nil
   records = JSON.parse(File.read(Rails.root.join('lib', 'tasks', 'records.json')))
 
-  records.shuffle[0..100].each do |r|
+  records.each do |r|
     begin
       current = r
 
