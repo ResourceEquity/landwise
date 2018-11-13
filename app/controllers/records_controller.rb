@@ -3,10 +3,8 @@ class RecordsController < ApplicationController
   def index
     session[:search_crumb] = search_params
 
-    @search = Record.search do
+    @search = Record.search(include: [:category, :record_countries, :countries]) do
       fulltext search_params[:q] || '*'
-
-      data_accessor_for(Record).include = [:category, :record_countries, :countries]
 
       facet :country_ids, :topic_ids, :language_ids, :category_id, :jurisdiction_id
 
@@ -20,6 +18,8 @@ class RecordsController < ApplicationController
       with(:jurisdiction_id,  search_filter(:jurisdiction_id))  if has_search_filter?(:jurisdiction_id)
       with(:category_id,      search_filter(:category_id))      if has_search_filter?(:category_id)
 
+      with :published, true
+
       if user_signed_in?
         with :roles, current_user.responsibilities.map(&:id)
       else
@@ -30,6 +30,8 @@ class RecordsController < ApplicationController
 
   def show
     @record = Record.includes(items: [:languages, :item_languages, document_attachment: [:blob]]).find(params[:id])
+
+    raise ActionController::RoutingError, 'Not Found' unless @record.published?
 
     add_breadcrumb 'Search Results', records_path(session[:search_crumb])
 
