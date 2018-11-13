@@ -46,6 +46,7 @@ task import: :environment do
       countries = r['countries'].map { |title| Country.find_by!(title: title) }
 
       record = Record.new(
+        id: r['id'],
         created_at: Time.parse(r['created_at']),
         updated_at: Time.parse(r['updated_at']),
         title: r['title'],
@@ -64,15 +65,15 @@ task import: :environment do
         record.users << User.find_by!(first_name: r['first_name'], last_name: r['last_name'])
       end
 
-      record.save!
+      record.save!(without_protection: true)
 
       record.responsibilities << public_role
       record.responsibilities << admin_role
 
-      r['paths'].each do |from|
-        to = Rails.application.routes.url_helpers.record_path(record)
-        Redirect.create!(from: from, to: to)
-      end
+      # r['paths'].each do |from|
+      #   to = Rails.application.routes.url_helpers.record_path(record)
+      #   Redirect.create!(from: from, to: to)
+      # end
 
       r['items'].each do |i|
         languages = i['languages'].map { |title| Language.find_by!(title: title) }
@@ -110,6 +111,7 @@ task import: :environment do
   guides = JSON.parse(File.read(Rails.root.join('lib', 'tasks', 'guides.json')))
   guides.each do |g|
     guide = Guide.new(
+      id: g['id'],
       title: g['title'],
       created_at: Time.parse(g['created_at']),
       updated_at: Time.parse(g['updated_at']),
@@ -130,6 +132,7 @@ task import: :environment do
 
     g['articles'].each do |a|
       article = guide.articles.build(
+        id: a['id'],
         title: a['title'],
         position: a['position'],
         created_at: Time.parse(a['created_at']),
@@ -147,20 +150,20 @@ task import: :environment do
       end
     end
 
-    guide.save!
+    guide.save!(without_protection: true)
 
-    g['paths'].each do |from|
-      to = Rails.application.routes.url_helpers.guide_path(guide)
-      Redirect.create!(from: from, to: to)
-    end
+    # g['paths'].each do |from|
+    #   to = Rails.application.routes.url_helpers.guide_path(guide)
+    #   Redirect.create!(from: from, to: to)
+    # end
 
-    g['articles'].each do |a|
-      article = guide.articles.find_by(title: a['title'])
-      a['paths'].each do |from|
-        to = Rails.application.routes.url_helpers.guide_article_path(guide, article)
-        Redirect.create!(from: from, to: to)
-      end
-    end
+    # g['articles'].each do |a|
+    #   article = guide.articles.find_by(title: a['title'])
+    #   a['paths'].each do |from|
+    #     to = Rails.application.routes.url_helpers.guide_article_path(guide, article)
+    #     Redirect.create!(from: from, to: to)
+    #   end
+    # end
   end
 
   pages = JSON.parse(File.read(Rails.root.join('lib', 'tasks', 'pages.json')))

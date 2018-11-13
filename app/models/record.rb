@@ -57,7 +57,7 @@ class Record < ApplicationRecord
     integer(:user_ids, multiple: true)     { users.map(&:id) }
     integer(:country_ids, multiple: true)  { countries.map(&:id) }
     integer(:topic_ids, multiple: true)    { topics.map(&:id) }
-    integer(:language_ids, multiple: true) { items.map { |item| item.languages.map(&:id) }.flatten }
+    integer(:language_ids, multiple: true) { items.map { |item| item.languages.map(&:id) }.flatten.uniq }
     integer(:category_id)                  { category.id }
     integer(:jurisdiction_id)              { jurisdiction.id }
 
