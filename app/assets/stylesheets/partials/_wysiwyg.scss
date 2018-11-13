@@ -1,0 +1,98 @@
+.wysiwyg p {
+  margin-bottom: 1rem;
+}
+
+.wysiwyg ol,
+.wysiwyg ul {
+  margin: 1rem;
+  padding-left: 1rem;
+}
+
+.wysiwyg ol {
+  list-style: decimal outside none;
+}
+
+.wysiwyg ul {
+  list-style: disc outside none;
+}
+
+.wysiwyg ol ol,
+.wysiwyg ul ul,
+.wysiwyg ul ol,
+.wysiwyg ol ul {
+  margin: .5rem 0 .5rem 1rem;
+}
+
+.wysiwyg li {
+  margin-bottom: .5rem;
+}
+
+.wysiwyg strong {
+  font-weight: bold;
+}
+
+.wysiwyg i {
+  font-style: italic;
+}
+
+.wysiwyg a {
+  color: $green;
+}
+
+.wysiwyg .ck-content blockquote {
+  padding: 1rem;
+  border-left-width: 3px;
+  border-left-color: $green;
+  background-color: $faint-gray;
+}
+
+.wysiwyg h1,
+.wysiwyg h2,
+.wysiwyg h3,
+.wysiwyg h4,
+.wysiwyg h5 {
+  font-family: $serif;
+  font-weight: bold;
+  line-height: 1.45;
+}
+
+.wysiwyg h1 {
+  font-size: 2.5rem;
+}
+.wysiwyg h2 {
+  font-size: 2.2rem;
+}
+.wysiwyg h3 {
+  font-size: 1.8rem;
+}
+.wysiwyg h4 {
+  font-size: 1.6rem;
+}
+.wysiwyg h5 {
+  font-size: 1.4rem;
+}
+
+.wysiwyg .ck-heading_heading1 .ck-button__label,
+.wysiwyg .ck-heading_heading2 .ck-button__label,
+.wysiwyg .ck-heading_heading3 .ck-button__label,
+.wysiwyg .ck-heading_heading4 .ck-button__label,
+.wysiwyg .ck-heading_heading5 .ck-button__label {
+  font-family: $serif;
+  color: $base-color;
+}
+
+.wysiwyg .ck-heading_heading1 .ck-button__label {
+  font-size: 2.5rem;
+}
+.wysiwyg .ck-heading_heading2 .ck-button__label {
+  font-size: 2.2rem;
+}
+.wysiwyg .ck-heading_heading3 .ck-button__label {
+  font-size: 1.8rem;
+}
+.wysiwyg .ck-heading_heading4 .ck-button__label {
+  font-size: 1.6rem;
+}
+.wysiwyg .ck-heading_heading5 .ck-button__label {
+  font-size: 1.4rem;
+}

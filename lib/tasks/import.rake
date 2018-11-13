@@ -2,20 +2,24 @@ require 'colorize'
 
 task import: :environment do
   public_role = Responsibility.find_by(title: 'Public')
+  admin_role = Responsibility.find_by(title: 'Admin')
 
   users = JSON.parse(File.read('users.json'))
-  users.each do |u|
+  users.each_with_index do |u, index|
     user = User.create!(
       first_name: u['first_name'],
       last_name: u['last_name'],
-      email: u['email'],
+      email: "user+#{index}@resourceequity.org",
       contact: u['contact'],
       title: u['title'],
       bio: u['bio'],
       password: 'password',
       password_confirmation: 'password',
-      author: true
+      author: true,
+      confirmed_at: Time.now
     )
+
+    user.responsibilities << admin_role
 
     if u['avatar']['url'].present?
       begin
@@ -60,6 +64,7 @@ task import: :environment do
       record.save!
 
       record.responsibilities << public_role
+      record.responsibilities << admin_role
 
       r['items'].each do |i|
         languages = i['languages'].map { |title| Language.find_by!(title: title) }
@@ -72,7 +77,6 @@ task import: :environment do
           url: i['url'],
           year: i['year'],
           published: i['published'],
-          restricted: i['restricted'],
           language_ids: languages.map(&:id)
         )
 
@@ -140,7 +144,7 @@ task import: :environment do
 
   pages = JSON.parse(File.read('pages.json'))
   pages.each do |p|
-    Page.create(
+    Page.create!(
       title: p['title'],
       keywords: p['keywords'],
       description: p['description'],
