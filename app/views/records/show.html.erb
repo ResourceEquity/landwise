@@ -50,7 +50,7 @@
     <p class="record-description"><%= @record.description %></p>
     <% end %>
     <div class="list">
-      <%= render partial: 'records/item', collection: @record.items %>
+      <%= render partial: 'records/item', collection: @record.items.where(published: true) %>
     </div>
   </main>
 </div>

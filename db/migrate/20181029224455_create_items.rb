@@ -7,7 +7,6 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.text :description
       t.string :url
       t.boolean :published, default: true
-      t.boolean :restricted, default: false
 
       t.timestamps
     end

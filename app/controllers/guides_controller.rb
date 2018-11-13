@@ -23,7 +23,7 @@ class GuidesController < ApplicationController
 	def show
 		@guide = Guide.find(params[:id])
 
-    raise ActionController::RoutingError, 'Not Found' unless @guide.published
+    raise ActionController::RoutingError, 'Not Found' unless @guide.published?
 
 		@article = @guide.articles.first
 
