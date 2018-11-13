@@ -212,4 +212,17 @@
     text-align: right;
     white-space: nowrap;
   }
+
+  .main-nav > ul {
+    display: flex;
+  }
+
+  .main-nav .nav-link {
+    flex: 1 1 auto;
+  }
+
+  .main-nav .nav-link a {
+    font-size: 1.3rem;
+    padding: .75rem;
+  }
 }

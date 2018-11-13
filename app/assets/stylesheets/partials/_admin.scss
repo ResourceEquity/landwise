@@ -59,3 +59,17 @@
   text-transform: uppercase;
   color: inherit;
 }
+
+.flashes .flash {
+  padding: 2rem 6rem 2rem 2rem;
+}
+
+.flashes .flash-close {
+  top: 2rem;
+  right: 2rem;
+}
+
+.actions .pagination a,
+.actions .pagination em {
+  margin-top: 0;
+}

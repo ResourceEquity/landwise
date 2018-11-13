@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_11_193810) do
+ActiveRecord::Schema.define(version: 2018_11_13_183242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,7 +115,6 @@ ActiveRecord::Schema.define(version: 2018_11_11_193810) do
     t.text "description"
     t.string "url"
     t.boolean "published", default: true
-    t.boolean "restricted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["record_id"], name: "index_items_on_record_id"
@@ -191,6 +190,14 @@ ActiveRecord::Schema.define(version: 2018_11_11_193810) do
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_records_on_category_id"
     t.index ["jurisdiction_id"], name: "index_records_on_jurisdiction_id"
+  end
+
+  create_table "redirects", force: :cascade do |t|
+    t.string "from"
+    t.string "to"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["from"], name: "index_redirects_on_from", unique: true
   end
 
   create_table "responsibilities", force: :cascade do |t|
@@ -330,7 +337,7 @@ ActiveRecord::Schema.define(version: 2018_11_11_193810) do
     t.boolean "author", default: false
     t.text "bio"
     t.integer "notification_interval", default: 0
-    t.datetime "last_notified"
+    t.datetime "last_notified", default: -> { "(CURRENT_TIMESTAMP - '31 days'::interval)" }
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

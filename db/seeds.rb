@@ -17,7 +17,14 @@ COUNTRIES.each      { |title| Country.create!(title: title.strip) }
 Responsibility.create!(title: 'Admin', locked: true)
 Responsibility.create!(title: 'Public', locked: true)
 
-@user = User.create!(first_name: 'Resource', last_name: 'Equity', email: 'info@resourceequity.org', password: 'password', password_confirmation: 'password', confirmed_at: Time.now)
+@user = User.create!(
+  first_name: 'Eric',
+  last_name: 'Hainer',
+  email: 'eric@commercekitchen.com',
+  password: Rails.application.credentials.admin[:password],
+  password_confirmation: Rails.application.credentials.admin[:password],
+  confirmed_at: Time.now
+)
 
 @user.responsibilities << Responsibility.find_by(title: 'Admin')
 @user.responsibilities << Responsibility.find_by(title: 'Public')

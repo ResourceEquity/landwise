@@ -18,6 +18,7 @@ class Ability
       can :manage, Page
       can :manage, User
       can :manage, Responsibility
+      can :manage, Redirect
     end
   end
 end

@@ -8,18 +8,21 @@ class NotificationJob < ApplicationJob
     search = Record.search do
       fulltext '*'
 
-      if user.weekly?
-        with(:created_at).greater_than(Time.current.end_of_day - 1.week)
-      elsif user.monthly?
-        with(:created_at).greater_than(Time.current.end_of_day - 1.month)
-      end
+      with(:created_at).greater_than(user.last_notified)
+      with :published, true
+      with :roles, user.responsibilities.map(&:id)
 
-      any do
-        with :country_ids,      user.topics.map(&:id)
-        with :topic_ids,        user.countries.map(&:id)
-        with :language_ids,     user.languages.map(&:id)
-        with :jurisdiction_id,  user.jurisdictions.map(&:id)
-        with :category_id,      user.categories.map(&:id)
+      any_of do
+        with :country_ids,  user.topics.map(&:id)
+        with :topic_ids,    user.countries.map(&:id)
+        with :language_ids, user.languages.map(&:id)
+
+        user.jurisdictions.each do |jurisdiction|
+          with :jurisdiction_id, jurisdiction.id
+        end
+        user.categories.each do |category|
+          with :category_id, category.id
+        end
       end
     end
 
@@ -30,5 +33,8 @@ class NotificationJob < ApplicationJob
         end.deliver_later
       end
     end
+
+    user.last_notified = Time.current
+    user.save(validate: false)
   end
 end

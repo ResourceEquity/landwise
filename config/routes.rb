@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :guides
     resources :records
     resources :subjects
+    resources :redirects
     resources :languages
     resources :countries
     resources :categories

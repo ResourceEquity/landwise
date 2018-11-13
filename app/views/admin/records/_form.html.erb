@@ -20,8 +20,18 @@
   </div>
 
   <div class="input-field wysiwyg">
-    <%= f.label :body, 'Description' %>
-    <%= f.text_area :body %>
+    <%= f.label :description, 'Description' %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :category_id, 'Collection Type' %>
+    <%= f.collection_select :category_id, Category.all.order(title: :asc), :id, :title %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :jurisdiction_id, 'Jurisdiction' %>
+    <%= f.collection_select :jurisdiction_id, Jurisdiction.all.order(title: :asc), :id, :title %>
   </div>
 
   <div class="input-field">

@@ -9,7 +9,6 @@
 #  published       :boolean          default(TRUE)
 #  author          :string
 #  notes           :string
-#  flagged         :boolean          default(FALSE)
 #  category_id     :bigint(8)
 #  jurisdiction_id :bigint(8)
 #  created_at      :datetime         not null
@@ -36,6 +35,8 @@ class Record < ApplicationRecord
 
   validates :title, presence: { message: '^Please provide a record title.' }
   validates :creator, presence: { message: '^Please provide a record creator.' }
+
+  after_initialize :assign_admin
 
   searchable do
     text :title, :creator, :description
@@ -68,5 +69,20 @@ class Record < ApplicationRecord
   def favorited_by?(user)
     user_favorites.where(user: user).first
   end
+
+  def visible_to?(user)
+    if user.present?
+      (user.responsibilities & responsibilities).any?
+    else
+      responsibilities.any? { |r| r.title.parameterize.underscore == 'public' }
+    end
+  end
+
+  private
+
+    def assign_admin
+      responsibilities << Responsibility.find_by(title: 'Admin') unless responsibilities.any? { |r| r.title == 'Admin' }
+      responsibilities << Responsibility.find_by(title: 'Public') unless responsibilities.any? { |r| r.title == 'Public' }
+    end
 
 end

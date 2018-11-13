@@ -21,7 +21,7 @@ class Admin::RecordsController < AdminController
   def edit; end
 
   def create
-    @record = Guide.new(record_params)
+    @record = Record.new(record_params)
 
     if @record.save
       redirect_to admin_records_path, notice: "#{@record.title} was created successfully."
@@ -56,7 +56,6 @@ class Admin::RecordsController < AdminController
         :creator,
         :description,
         :published,
-        :flagged,
         :notes,
         :author,
         :category_id,

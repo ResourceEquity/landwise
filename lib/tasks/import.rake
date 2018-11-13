@@ -1,25 +1,28 @@
 require 'colorize'
+require 'securerandom'
 
 task import: :environment do
   public_role = Responsibility.find_by(title: 'Public')
   admin_role = Responsibility.find_by(title: 'Admin')
 
-  users = JSON.parse(File.read('users.json'))
+  users = JSON.parse(File.read(Rails.root.join('lib', 'tasks', 'users.json')))
   users.each_with_index do |u, index|
+    password = SecureRandom.hex(32)
+
     user = User.create!(
       first_name: u['first_name'],
       last_name: u['last_name'],
-      email: "user+#{index}@resourceequity.org",
+      email: "eric+#{index}@ckdtech.co",
       contact: u['contact'],
       title: u['title'],
       bio: u['bio'],
-      password: 'password',
-      password_confirmation: 'password',
+      password: password,
+      password_confirmation: password,
       author: true,
       confirmed_at: Time.now
     )
 
-    user.responsibilities << admin_role
+    user.responsibilities << admin_role unless user.responsibilities.any? { |r| r.title == 'Admin' }
 
     if u['avatar']['url'].present?
       begin
@@ -31,9 +34,9 @@ task import: :environment do
   end
 
   current = nil
-  records = JSON.parse(File.read('records.json'))
+  records = JSON.parse(File.read(Rails.root.join('lib', 'tasks', 'records.json')))
 
-  records[0..100].each do |r|
+  records.shuffle[0..100].each do |r|
     begin
       current = r
 
@@ -65,6 +68,11 @@ task import: :environment do
 
       record.responsibilities << public_role
       record.responsibilities << admin_role
+
+      r['paths'].each do |from|
+        to = Rails.application.routes.url_helpers.record_path(record)
+        Redirect.create!(from: from, to: to)
+      end
 
       r['items'].each do |i|
         languages = i['languages'].map { |title| Language.find_by!(title: title) }
@@ -99,7 +107,7 @@ task import: :environment do
     end
   end
 
-  guides = JSON.parse(File.read('guides.json'))
+  guides = JSON.parse(File.read(Rails.root.join('lib', 'tasks', 'guides.json')))
   guides.each do |g|
     guide = Guide.new(
       title: g['title'],
@@ -140,9 +148,22 @@ task import: :environment do
     end
 
     guide.save!
+
+    g['paths'].each do |from|
+      to = Rails.application.routes.url_helpers.guide_path(guide)
+      Redirect.create!(from: from, to: to)
+    end
+
+    g['articles'].each do |a|
+      article = guide.articles.find_by(title: a['title'])
+      a['paths'].each do |from|
+        to = Rails.application.routes.url_helpers.guide_article_path(guide, article)
+        Redirect.create!(from: from, to: to)
+      end
+    end
   end
 
-  pages = JSON.parse(File.read('pages.json'))
+  pages = JSON.parse(File.read(Rails.root.join('lib', 'tasks', 'pages.json')))
   pages.each do |p|
     Page.create!(
       title: p['title'],

@@ -13,7 +13,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[4.2]
       t.text :bio
 
       t.integer :notification_interval, default: 0
-      t.datetime :last_notified
+      t.datetime :last_notified, default: -> { "CURRENT_TIMESTAMP - INTERVAL '31 DAYS'" }
 
       ## Recoverable
       t.string   :reset_password_token

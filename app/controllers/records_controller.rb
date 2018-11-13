@@ -15,8 +15,18 @@ class RecordsController < ApplicationController
       with(:country_ids,      search_filter(:country_ids))      if has_search_filter?(:country_ids)
       with(:topic_ids,        search_filter(:topic_ids))        if has_search_filter?(:topic_ids)
       with(:language_ids,     search_filter(:language_ids))     if has_search_filter?(:language_ids)
-      with(:jurisdiction_id,  search_filter(:jurisdiction_id))  if has_search_filter?(:jurisdiction_id)
-      with(:category_id,      search_filter(:category_id))      if has_search_filter?(:category_id)
+
+      if has_search_filter?(:jurisdiction_id)
+        search_filter(:jurisdiction_id).each do |jurisdiction_id|
+          with :jurisdiction_id, jurisdiction_id
+        end
+      end
+
+      if has_search_filter?(:category_id)
+        search_filter(:category_id).each do |category_id|
+          with :category_id, category_id
+        end
+      end
 
       with :published, true
 
@@ -31,7 +41,7 @@ class RecordsController < ApplicationController
   def show
     @record = Record.includes(items: [:languages, :item_languages, document_attachment: [:blob]]).find(params[:id])
 
-    raise ActionController::RoutingError, 'Not Found' unless @record.published?
+    raise ActionController::RoutingError, 'Not Found' unless @record.visible_to?(current_user)
 
     add_breadcrumb 'Search Results', records_path(session[:search_crumb])
 

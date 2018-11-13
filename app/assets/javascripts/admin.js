@@ -3,8 +3,9 @@
 //= require voltron-flash
 //= require cocoon
 //= require vendor/sortable.min
-//= require vendor/jquery.modal.min
 //= require vendor/ckeditor
+//= require vendor/jquery.selectric
+//= require_tree ./voltron
 
 var Admin = (function(){
   return {

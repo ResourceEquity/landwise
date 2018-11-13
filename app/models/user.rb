@@ -11,6 +11,8 @@
 #  title                  :string
 #  author                 :boolean          default(FALSE)
 #  bio                    :text
+#  notification_interval  :integer          default("never")
+#  last_notified          :datetime
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
@@ -22,6 +24,7 @@
 #  confirmation_token     :string
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
+#  unconfirmed_email      :string
 #  created_at             :datetime
 #  updated_at             :datetime
 #
@@ -79,7 +82,7 @@ class User < ApplicationRecord
   private
 
     def assign_public
-      responsibilities << Responsibility.find_by(title: 'Public')
+      responsibilities << Responsibility.find_by(title: 'Public') unless responsibilities.any? { |r| r.title == 'Public' }
     end
 
 end

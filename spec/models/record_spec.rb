@@ -9,7 +9,6 @@
 #  published       :boolean          default(TRUE)
 #  author          :string
 #  notes           :string
-#  flagged         :boolean          default(FALSE)
 #  category_id     :bigint(8)
 #  jurisdiction_id :bigint(8)
 #  created_at      :datetime         not null

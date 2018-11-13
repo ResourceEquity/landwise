@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: responsibilities
+#
+#  id         :bigint(8)        not null, primary key
+#  title      :string
+#  locked     :boolean          default(FALSE)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Responsibility < ApplicationRecord
 
   has_many :responsibility_users,   dependent: :delete_all
