@@ -21,6 +21,10 @@
       <div class="breadcrumbs">
         <%= render_breadcrumbs separator: ' / ' %> / <span><%= @article.title %></span>
       </div>
+      <div class="sharing">
+        <div class="fb-like" data-href="<%= request.url %>" data-layout="button" data-action="like" data-size="large" data-show-faces="false" data-share="false"></div>
+        <a class="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="large">Tweet</a>
+      </div>
     </div>
     <header class="page-header">
       <h1><%= @guide.title %></h1>
@@ -28,26 +32,44 @@
         <span class="guide-authors"><%= author_links(@guide) %></span>
         <span class="guide-date"><%= @guide.updated_at.strftime('%b %-d, %Y') %></span>
       </div>
-      <article class="article-content">
-        <h3 class="article-title"><%= @article.title %></h3>
-        <section class="article-section">
-          <h4>Page Contents</h4>
-          <p>This page will highlight a few areas for analysis.</p>
-          <p>To jump to one of the sections on this page use the below links:</p>
-          <ul>
-            <% @article.sections.each do |section| %>
-            <li><%= link_to section.title, "##{section.title.parameterize}" %></li>
-            <% end %>
-          </ul>
-        </section>
-
-        <% @article.sections.each do |section| %>
-        <section class="article-section">
-          <h4 id="<%= section.title.parameterize %>"><%= section.title %></h4>
-          <%= section.html %>
-        </section>
+      <div class="article-nav">
+        <% if @article.prev.present? %>
+          <%= link_to "&laquo; Previous Page".html_safe, guide_article_path(@guide, @article.prev) %>
         <% end %>
-      </article>
+        <% if @article.next.present? %>
+          <%= link_to "Next Page &raquo;".html_safe, guide_article_path(@guide, @article.next) %>
+        <% end %>
+      </div>
     </header>
+    <article class="article-content">
+      <h3 class="article-title"><%= @article.title %></h3>
+      <section class="article-section">
+        <h4>Page Contents</h4>
+        <p>This page will highlight a few areas for analysis.</p>
+        <p>To jump to one of the sections on this page use the below links:</p>
+        <ul>
+          <% @article.sections.each do |section| %>
+          <li><%= link_to section.title, "##{section.title.parameterize}" %></li>
+          <% end %>
+        </ul>
+      </section>
+
+      <% @article.sections.each do |section| %>
+      <section class="article-section">
+        <h4 id="<%= section.title.parameterize %>"><%= section.title %></h4>
+        <%= section.html %>
+      </section>
+      <% end %>
+    </article>
+    <footer class="article-footer">
+      <div class="article-nav">
+        <% if @article.prev.present? %>
+          <%= link_to "&laquo; Previous Page".html_safe, guide_article_path(@guide, @article.prev) %>
+        <% end %>
+        <% if @article.next.present? %>
+          <%= link_to "Next Page &raquo;".html_safe, guide_article_path(@guide, @article.next) %>
+        <% end %>
+      </div>
+    </footer>
   </main>
 </div>

@@ -98,6 +98,12 @@
   text-overflow: ellipsis;
 }
 
+.delete-account {
+  display: inline-block;
+  margin-top: 2rem;
+  color: $red;
+}
+
 @media only screen and (max-width: 1000px) {
   .account {
     grid-template-columns: 1fr;

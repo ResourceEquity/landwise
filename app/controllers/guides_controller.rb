@@ -21,7 +21,7 @@ class GuidesController < ApplicationController
 	end
 
 	def show
-		@guide = Guide.find(params[:id])
+		@guide = Guide.includes(articles: [:sections]).find(params[:id])
 
     raise ActionController::RoutingError, 'Not Found' unless @guide.published?
 

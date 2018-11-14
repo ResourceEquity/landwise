@@ -1,10 +1,47 @@
+.article .page-header {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.article .page-header h1 {
+  flex-basis: 100%;
+}
+
 .article .meta {
   font-size: 0;
   margin-top: 1rem;
+  margin-right: 2rem;
+  white-space: nowrap;
+  flex: 0 0 auto;
 }
 
 .article .meta a {
   color: $green;
+}
+
+.article .article-nav {
+  font-size: 0;
+  text-align: right;
+  flex: 1 1 auto;
+}
+
+.article .article-nav a {
+  font-size: 1.4rem;
+  display: inline-block;
+  margin: 1rem 1rem 0 0;
+  padding-right: 1rem;
+  color: $green;
+  border-right: 1px solid $light-gray;
+
+  &:last-child {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: 0;
+  }
+}
+
+.article .article-footer {
+  padding: 0 2rem 2rem;
 }
 
 .article .guide-authors,
@@ -17,6 +54,10 @@
   display: inline-block;
   padding: 0 .5rem;
   content: '\00B7';
+}
+
+.article-content {
+  padding: 0 2rem;
 }
 
 .article-content .article-title {
@@ -72,4 +113,15 @@
 
 .article-section > *:last-child {
   margin-bottom: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .article .meta,
+  .article .article-nav {
+    flex-basis: 100%;
+  }
+
+  .article .article-nav {
+    text-align: center;
+  }
 }

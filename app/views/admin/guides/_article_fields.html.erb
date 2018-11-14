@@ -14,6 +14,6 @@
         <%= render partial: 'admin/guides/section_fields', locals: { f: section } %>
       <% end %>
     </div>
-    <%= link_to_add_association 'Add Section', f, :sections, class: 'add-article', data: { association_insertion_method: 'append', association_insertion_node: "#sections_#{f.object.id}" } %>
+    <%= link_to_add_association 'Add Section', f, :sections, class: 'add-article', data: { association_insertion_method: 'append', association_insertion_node: '.sections-wrapper', association_insertion_traversal: 'prevAll' } %>
   </div>
 </div>

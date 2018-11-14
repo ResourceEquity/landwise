@@ -15,17 +15,92 @@
   box-shadow: none;
 }
 
-.article-section ul ul {
-  margin: 1rem 0;
-  list-style-type: circle;
+.article-header {
+  display: flex;
+  padding-bottom: 2rem;
+}
+
+.article-header .logo {
+  max-width: 26%;
+  margin-right: 2rem;
+  flex: 0 0 auto;
+}
+
+.article-header .logo img {
+  max-width: 100%;
+}
+
+.article-header .info {
+  flex: 1 1 auto;
+}
+
+.article-header .info h1 {
+  font-size: 3rem;
+  line-height: 1.3;
+  margin-bottom: .5rem;
+}
+
+.article-header .info a {
+  color: $green;
+}
+
+.article-header .info .author {
+  margin-bottom: .5rem;
 }
 
 .article-title {
   font-size: 1.8rem;
+  font-weight: bold;
   margin: 2rem 0;
   page-break-before: always;
 }
 
 .article-section:last-child {
   margin-bottom: 0;
+}
+
+.article-section {
+  page-break-inside: avoid;
+}
+
+.article-section p {
+  page-break-inside: avoid;
+}
+
+.article-section ul ul {
+  margin: 1rem 0;
+  list-style-type: circle;
+}
+
+.article-footer {
+  padding: 2rem;
+  color: $white;
+  background-color: $navy-blue;
+}
+
+.article-footer a {
+  color: $white;
+}
+
+.article-footer p {
+  margin-top: .5rem;
+}
+
+.article-footer .organization-info,
+.article-footer .landesa-callout {
+  display: inline-block;
+}
+
+.article-footer .organization-info img {
+  max-width: 50%;
+}
+
+.article-footer .landesa-callout {
+  float: right;
+  width: 20%;
+  text-align: right;
+}
+
+.article-footer .landesa-callout img {
+  max-width: 100%;
 }

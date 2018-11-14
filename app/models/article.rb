@@ -22,4 +22,20 @@ class Article < ApplicationRecord
 
   default_scope { order(position: :asc) }
 
+  def prev
+    idx = options.index { |article| article.id == id }
+    idx.zero? ? nil : options[idx - 1]
+  end
+
+  def next
+    idx = options.index { |article| article.id == id }
+    idx == options.length - 1 ? nil : options[idx + 1]
+  end
+
+  private
+
+    def options
+      @options ||= guide.articles.to_a
+    end
+
 end

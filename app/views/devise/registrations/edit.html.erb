@@ -41,6 +41,7 @@
 
       <div class="actions">
         <%= f.submit 'Save', class: 'button button-ghost is-green full-width' %>
+        <%= link_to 'Delete Account', user_registration_path, method: :delete, data: { confirm: "Are you sure? Deleting your account can not be undone.\r\n\r\nAny saved preferences and favorites will be permanently deleted. If you're sure you'd like to do this, click OK to continue. You will immediately be logged out." }, class: 'delete-account' %>
       </div>
     <% end %>
   </div>

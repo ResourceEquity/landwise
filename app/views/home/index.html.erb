@@ -24,7 +24,7 @@
 <article class="home-blocks">
   <section class="block announcements">
     <h2>Announcements</h2>
-    <p>To improve our website's security and to comply with <a href="https://www.eugdpr.org/" target="_blank">GDPR</a> requirements we have temporarily removed any site features that require a login and password. For users who would like to be notified with updates regarding these features please contact us <a href="https://resourceequity.org/contact/" target="_blank">here</a>. Thank you.</p>
+    <div class="wysiwyg"><%= @announcements.body.html_safe %></div>
   </section>
   <section class="block recent">
     <h2>Recently Added</h2>

@@ -1,4 +1,14 @@
 <div class="guide-pdf">
+  <header class="article-header">
+    <div class="logo">
+      <%= image_tag 'logo-large.png' %>
+    </div>
+    <div class="info">
+      <h1><%= @guide.title %></h1>
+      <div class="author">by <%= author_links(@guide) %></div>
+      <div class="date">Last updated <%= @guide.updated_at.strftime('%b %-d, %Y') %></div>
+    </div>
+  </header>
   <section class="article-section">
     <h4>Guide Contents</h4>
     <ul>
@@ -24,4 +34,16 @@
     </section>
     <% end %>
   <% end %>
+
+  <footer class="article-footer">
+    <div class="organization-info">
+      <%= image_tag 'logo-white.png' %>
+      <p class="nonprofit">Resource Equity is a 501(c)(3) nonprofit organization.</p>
+      <p class="copyright">&copy; <%= Time.current.year %> <a href="https://resourceequity.org">Resource Equity</a></p>
+    </div>
+
+    <div class="landesa-callout">
+      <%= image_tag 'landesa-logo.png' %>
+    </div>
+  </footer>
 </div>

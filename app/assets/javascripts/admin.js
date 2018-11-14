@@ -20,7 +20,10 @@ var Admin = (function(){
         self.makeSortable(this);
       });
 
-      $(document).on('cocoon:after-insert', '.sections-wrapper, .record-items', function(event, item){
+      $(document).on('cocoon:after-insert', '.sections-wrapper, .record-items, .guide-articles', function(event, item){
+        var id = new Date().getTime().toString();
+        $(item).find('.sections-wrapper').attr('id', 'sections_' + id).attr('data-group', 'sections_' + id);
+
         $(item).find('.sortable').each(function(){
           self.makeSortable(this);
         });

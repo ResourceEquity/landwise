@@ -34,7 +34,7 @@
         <%= render_breadcrumbs separator: ' / ' %> / <span><%= @record.title %></span>
       </div>
       <div class="sharing">
-        <div class="fb-like" data-href="<%= request.base_url + request.original_fullpath %>" data-layout="button" data-action="like" data-size="large" data-show-faces="false" data-share="false"></div>
+        <div class="fb-like" data-href="<%= request.url %>" data-layout="button" data-action="like" data-size="large" data-show-faces="false" data-share="false"></div>
         <a class="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="large">Tweet</a>
         <% if favorite = @record.favorited_by?(current_user) %>
         <%= link_to '', favorite_path(favorite), method: :delete, class: 'favorite favorited', title: 'Remove from Favorites' %>

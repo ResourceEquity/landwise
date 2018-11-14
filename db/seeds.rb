@@ -20,9 +20,9 @@ Responsibility.create!(title: 'Public', locked: true)
 @user = User.create!(
   first_name: 'Eric',
   last_name: 'Hainer',
-  email: 'eric@commercekitchen.com',
-  password: Rails.application.credentials.admin[:password],
-  password_confirmation: Rails.application.credentials.admin[:password],
+  email: 'eric@ckdtech.co',
+  password: Rails.env.development? ? 'password' : Rails.application.credentials.admin[:password],
+  password_confirmation: Rails.env.development? ? 'password' : Rails.application.credentials.admin[:password],
   confirmed_at: Time.now
 )
 

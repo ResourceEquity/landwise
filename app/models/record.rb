@@ -46,6 +46,7 @@ class Record < ApplicationRecord
     text(:topics)        { topics.map(&:title) }
     text(:countries)     { countries.map(&:title) }
     text(:users)         { users.map(&:name) }
+    text(:year)          { items.map(&:year).flatten.compact.join(' ') }
 
     boolean :published
     time    :updated_at

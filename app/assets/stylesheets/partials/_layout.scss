@@ -43,7 +43,8 @@
   text-transform: uppercase;
 }
 
-.sidebar-green a {
+.sidebar-green a,
+.sidebar-green .wysiwyg a {
   color: $white;
 }
 
@@ -79,6 +80,7 @@
   display: flex;
   margin: 2rem 0 0;
   padding: 0 2rem;
+  flex-wrap: wrap;
 }
 
 .top-links .sidebar-menu {
@@ -102,6 +104,7 @@
 .top-links .breadcrumbs {
   line-height: 28px;
   margin-right: 2rem;
+  margin-bottom: 1rem;
   flex: 1 1 auto;
 }
 
@@ -120,12 +123,13 @@
 }
 
 .top-links .sharing {
+  margin-bottom: 1rem;
   text-align: right;
   flex: 0 0 auto;
 }
 
 .top-links + .page-header {
-  padding-top: 1rem;
+  padding-top: 0;
 }
 
 @media only screen and (max-width: 800px) {
