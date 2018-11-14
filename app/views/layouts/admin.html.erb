@@ -9,6 +9,11 @@
     <%= stylesheet_link_tag     'admin', media: :all %>
     <%= javascript_include_tag  'admin', defer: true %>
 
+    <script type="text/javascript">
+    var CKEDITOR_CONFIG = '<%= javascript_path 'ckeditor/config.js' %>';
+    var CKEDITOR_STYLES = '<%= stylesheet_path 'ckeditor/contents.css' %>';
+    </script>
+
     <%= render partial: 'shared/meta' %>
   </head>
 

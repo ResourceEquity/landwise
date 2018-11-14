@@ -1,1 +1,1 @@
-Rails.application.config.assets.precompile += %w( mailer.css pdf.css admin.css admin.js )
+Rails.application.config.assets.precompile += %w( mailer.css pdf.css admin.css admin.js ckeditor/* ckeditor/contents.css ckeditor/config.js )

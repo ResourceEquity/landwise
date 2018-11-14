@@ -39,6 +39,8 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  mount Ckeditor::Engine => '/ckeditor'
+
   get '*path', to: 'cms#show', constraints: lambda { |request| request.path.exclude?('rails/active_storage') }
 
 end
