@@ -6,3 +6,7 @@ notify:
   cron: "30 8 * * *"
   class: SubscriptionJob
   queue: default
+sitemap_generation:
+  cron: "15 12 * * *"
+  class: SitemapJob
+  queue: default

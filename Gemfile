@@ -14,7 +14,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'autoprefixer-rails'
-gem 'aws-sdk-s3', require: false
+gem 'aws-sdk', require: false
 gem 'bcrypt', '~> 3.1.7'
 gem 'breadcrumbs_on_rails'
 gem 'cancancan'
@@ -23,7 +23,6 @@ gem 'cocoon'
 gem 'colorize'
 gem 'custom_error_message', github: 'thethanghn/custom-err-msg'
 gem 'devise'
-gem 'fog-aws'
 gem 'hiredis'
 gem 'jbuilder', '~> 2.5'
 gem 'jwt'
@@ -39,6 +38,7 @@ gem 'rolify'
 gem 'sass-rails', '~> 5.0'
 gem 'sidekiq'
 gem 'sidekiq-cron', '~> 0.6.3'
+gem 'sitemap_generator'
 gem 'sunspot_rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'will_paginate'

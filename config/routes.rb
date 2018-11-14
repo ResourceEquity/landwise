@@ -1,3 +1,6 @@
+require 'sidekiq/web'
+require 'sidekiq/cron/web'
+
 Rails.application.routes.draw do
 
   root to: 'home#index'
@@ -31,6 +34,10 @@ Rails.application.routes.draw do
   match '/404', to: 'errors#not_found', via: :all
   match '/422', to: 'errors#unprocessable_entity', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
+
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   get '*path', to: 'cms#show', constraints: lambda { |request| request.path.exclude?('rails/active_storage') }
 
