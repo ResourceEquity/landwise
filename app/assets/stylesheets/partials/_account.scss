@@ -99,9 +99,19 @@
 }
 
 .delete-account {
-  display: inline-block;
-  margin-top: 2rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  display: block;
+  margin-top: 1rem;
+  padding: 2rem;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
   color: $red;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 @media only screen and (max-width: 1000px) {
