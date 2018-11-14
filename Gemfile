@@ -62,6 +62,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
   gem 'rspec-rails'
+  gem 'sunspot_solr'
 end
 
 group :development do

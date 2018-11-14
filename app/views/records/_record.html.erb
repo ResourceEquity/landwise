@@ -8,6 +8,17 @@
     <dd><%= record.category.title %></dd>
     <dt>Country:</dt>
     <dd><%= record.countries.map(&:title).join(', ') %></dd>
+
+    <% if record.creator.present? %>
+    <dt>Creator:</dt>
+    <dd><%= record.creator %></dd>
+    <% end %>
+
+    <% years = record.items.map(&:year).flatten.compact.uniq.sort.reverse %>
+    <% if years.any? %>
+    <dt>Year<%= years.length > 1 ? 's' : '' %>:</dt>
+    <dd><%= years.join(', ') %></dd>
+    <% end %>
   </dl>
 
   <!--
