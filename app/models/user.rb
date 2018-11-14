@@ -81,6 +81,10 @@ class User < ApplicationRecord
 
   private
 
+    def send_devise_notification(notification, *args)
+      devise_mailer.send(notification, self, *args).deliver_later(queue: 'mailers')
+    end
+
     def assign_public
       responsibilities << Responsibility.find_by(title: 'Public') unless responsibilities.any? { |r| r.title == 'Public' }
     end

@@ -12,6 +12,6 @@
 <p>In order to get started, we first need to be sure it's you. Please confirm your LandWise account by clicking the button below.</p>
 <p><%= link_to 'Confirm My Account', confirmation_url(@resource, confirmation_token: @token), class: 'button-green button-large' %></p>
 <p class="expiration">Confirmation Expires: <%= (@resource.confirmation_sent_at + Devise.confirm_within).strftime('%B %-d, %Y') %></p>
-<p class="ignore">If you did not sign up for this account you can ignore this email and the account will be deleted.</p>
+<p class="ignore">If you did not sign up for this account you can safely ignore this email and the account will be deleted after <%= Devise.confirm_within / 1.day %> days.</p>
 
 <% end %>

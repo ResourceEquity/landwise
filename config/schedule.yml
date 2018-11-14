@@ -10,3 +10,7 @@ sitemap_generation:
   cron: "15 12 * * *"
   class: SitemapJob
   queue: default
+cleanup_unconfirmed:
+  cron: "0 4 * * *"
+  class: CleanupJob
+  queue: default
