@@ -41,12 +41,12 @@ class Record < ApplicationRecord
   searchable do
     text :title, :creator, :description
 
-    text(:category)             { category.title }
-    text(:jurisdiction)         { jurisdiction.title }
-    text(:topics)               { topics.map(&:title) }
-    text(:countries)            { countries.map(&:title) }
-    text(:users)                { users.map(&:name) }
-    text(:year, multiple: true) { items.map(&:year).flatten.compact }
+    text(:category)     { category.title }
+    text(:jurisdiction) { jurisdiction.title }
+    text(:topics)       { topics.map(&:title) }
+    text(:countries)    { countries.map(&:title) }
+    text(:users)        { users.map(&:name) }
+    text(:year)         { items.map(&:year).flatten.compact.join(' ') }
 
     boolean :published
     time    :updated_at
