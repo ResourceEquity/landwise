@@ -3,18 +3,25 @@ class RecordsController < ApplicationController
   def index
     session[:search_crumb] = search_params
 
-    @search = Record.search(include: [:category, :record_countries, :countries]) do
-      fulltext search_params[:q] || '*'
+    @search = Record.search(include: [:category, :record_countries, :countries, :items]) do
+      any do
+        fulltext search_params[:q] || '*'
 
-      facet :country_ids, :topic_ids, :language_ids, :category_id, :jurisdiction_id
+        if search_params[:q]
+          fulltext search_params[:q].to_s.split(/\s+/).join(' OR '), fields: :creator
+        end
+      end
+
+      facet :country_ids, :topic_ids, :language_ids, :category_id, :jurisdiction_id, :year
 
       paginate page: search_params[:page] || 1, per_page: search_params[:per] || 25
 
       order_by search_params[:sort] if ['title_sort', 'updated_at', 'category_sort'].include?(search_params[:sort])
 
-      with(:country_ids,      search_filter(:country_ids))      if has_search_filter?(:country_ids)
-      with(:topic_ids,        search_filter(:topic_ids))        if has_search_filter?(:topic_ids)
-      with(:language_ids,     search_filter(:language_ids))     if has_search_filter?(:language_ids)
+      with(:country_ids,  search_filter(:country_ids))  if has_search_filter?(:country_ids)
+      with(:topic_ids,    search_filter(:topic_ids))    if has_search_filter?(:topic_ids)
+      with(:language_ids, search_filter(:language_ids)) if has_search_filter?(:language_ids)
+      with(:year,         search_filter(:year))         if has_search_filter?(:year)
 
       if has_search_filter?(:jurisdiction_id)
         search_filter(:jurisdiction_id).each do |jurisdiction_id|
@@ -62,6 +69,6 @@ class RecordsController < ApplicationController
     end
 
     def search_params
-      params.permit(:q, :country_ids, :topic_ids, :language_ids, :jurisdiction_id, :category_id, :page, :per, :sort)
+      params.permit(:q, :country_ids, :topic_ids, :language_ids, :jurisdiction_id, :category_id, :year, :page, :per, :sort)
     end
 end

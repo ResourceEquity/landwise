@@ -36,10 +36,9 @@ Rails.application.routes.draw do
   match '/500', to: 'errors#internal_server_error', via: :all
 
   authenticate :user, lambda { |u| u.admin? } do
-    mount Sidekiq::Web => '/sidekiq'
+    mount Sidekiq::Web      => '/sidekiq'
+    mount Ckeditor::Engine  => '/ckeditor'
   end
-
-  mount Ckeditor::Engine => '/ckeditor'
 
   get '*path', to: 'cms#show', constraints: lambda { |request| request.path.exclude?('rails/active_storage') }
 

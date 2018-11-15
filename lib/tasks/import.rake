@@ -61,9 +61,9 @@ task import: :environment do
         notes: r['notes']
       )
 
-      if r['first_name'].present? && r['last_name'].present?
-        record.users << User.find_by!(first_name: r['first_name'], last_name: r['last_name'])
-      end
+      # if r['first_name'].present? && r['last_name'].present?
+      #   record.users << User.find_by!(first_name: r['first_name'], last_name: r['last_name'])
+      # end
 
       record.save!(without_protection: true)
 

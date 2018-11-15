@@ -10,11 +10,6 @@
   </div>
 
   <div class="input-field">
-    <%= f.label :author, 'Author' %>
-    <%= f.text_field :author, placeholder: 'Author' %>
-  </div>
-
-  <div class="input-field">
     <%= f.label :notes, 'Notes' %>
     <%= f.text_field :notes, placeholder: 'Notes' %>
   </div>
@@ -45,6 +40,11 @@
   </div>
 
   <div class="input-field">
+    <%= f.label :author, 'Record Created By' %>
+    <%= f.text_field :author, placeholder: 'Record Created By' %>
+  </div>
+
+  <div class="input-field">
     <label class="heading">Visibility</label>
     <div class="checkbox-grid">
     <%= f.collection_check_boxes :responsibility_ids, Responsibility.all.order(title: :asc), :id, :title do |b| %>
@@ -53,21 +53,6 @@
         <%= b.label do %>
           <span class="checkbox-background"></span>
           <%= b.object.title %>
-        <% end %>
-      </div>
-    <% end %>
-    </div>
-  </div>
-
-  <div class="input-field">
-    <label class="heading">Authors</label>
-    <div class="checkbox-grid">
-    <%= f.collection_check_boxes :user_ids, User.authors.order(first_name: :asc), :id, :label do |b| %>
-      <div class="check">
-        <%= b.check_box(class: 'checkbox') %>
-        <%= b.label do %>
-          <span class="checkbox-background"></span>
-          <%= b.object.label %>
         <% end %>
       </div>
     <% end %>

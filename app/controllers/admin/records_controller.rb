@@ -60,7 +60,6 @@ class Admin::RecordsController < AdminController
         :author,
         :category_id,
         :jurisdiction_id,
-        user_ids: [],
         topic_ids: [],
         country_ids: [],
         responsibility_ids: [],

@@ -1,9 +1,16 @@
 module ApplicationHelper
 
-  def collection_for(facet, constructor)
+  def collection_for(facet, constructor=nil)
     mapping = @search.facet(facet).rows.map { |f| { f.value => f.count } }.reduce(Hash.new, :merge)
-    constructor.where(id: mapping.keys).order(title: :asc).each do |item|
-      yield item, (mapping[item.id] || 0)
+
+    if constructor.present?
+      constructor.where(id: mapping.keys).order(title: :asc).each do |item|
+        yield item, (mapping[item.id] || 0)
+      end
+    else
+      mapping.to_a.sort_by { |r| r[0] }.reverse.each do |title, value|
+        yield title, value
+      end
     end
   end
 
@@ -16,13 +23,23 @@ module ApplicationHelper
       filter_ids = params[filter_param].to_s.split(',').map(&:to_i)
 
       if filter_ids.any?
-        results = model.where(id: filter_ids)
+        if model.present?
+          results = model.where(id: filter_ids)
 
-        results.map do |result|
+          results.map do |result|
+            if filter_ids.one?
+              [result, replace_query_params(filter_param => nil), filter_param, params[filter_param]]
+            else
+              [result, replace_query_params(filter_param => filter_ids - [result.id]), filter_param, params[filter_param]]
+            end
+          end
+        else
           if filter_ids.one?
-            [result, replace_query_params(filter_param => nil), filter_param, params[filter_param]]
+            [[OpenStruct.new(label: filter_ids.first), replace_query_params(filter_param => nil), filter_param, params[filter_param]]]
           else
-            [result, replace_query_params(filter_param => filter_ids - [result.id]), filter_param, params[filter_param]]
+            filter_ids.map do |result|
+              [OpenStruct.new(label: result), replace_query_params(filter_param => filter_ids - [result]), filter_param, params[filter_param]]
+            end
           end
         end
       end

@@ -2,7 +2,7 @@
   <aside class="sidebar sidebar-green search-filters">
     <h2>Search</h2>
     <%= form_with url: records_path, method: :get, local: true, html: { class: 'record-search' } do |f| %>
-      <% current_filters(country_ids: Country, topic_ids: Topic, language_ids: Language, category_id: Category, jurisdiction_id: Jurisdiction) do |item, remove, param, value| %>
+      <% current_filters(country_ids: Country, topic_ids: Topic, language_ids: Language, category_id: Category, jurisdiction_id: Jurisdiction, year: nil) do |item, remove, param, value| %>
         <%= f.hidden_field param, value: value %>
       <% end %>
       <%= f.text_field :q, value: params[:q], class: 'search-input', placeholder: 'Search the LandWise Library' %>
@@ -11,11 +11,11 @@
 
     <h2>Filter Results</h2>
 
-    <% if has_filters?('country_ids', 'topic_ids', 'language_ids', 'category_id', 'jurisdiction_id', 'q') %>
+    <% if has_filters?('country_ids', 'topic_ids', 'language_ids', 'category_id', 'jurisdiction_id', 'year', 'q') %>
     <%= link_to 'Reset Filters', records_path, class: 'search-reset' %>
 
     <div class="applied-filters">
-      <% current_filters(country_ids: Country, topic_ids: Topic, language_ids: Language, category_id: Category, jurisdiction_id: Jurisdiction) do |item, remove_url| %>
+      <% current_filters(country_ids: Country, topic_ids: Topic, language_ids: Language, category_id: Category, jurisdiction_id: Jurisdiction, year: nil) do |item, remove_url| %>
       <div class="applied-filter">
         <em><%= item.label %></em><%= link_to '', remove_url, class: 'remove-filter', title: 'Remove this filter' %>
       </div>
@@ -64,6 +64,15 @@
       <% collection_for :topic_ids, Topic do |item, count| %>
         <div class="facet-result">
           <%= link_to item.title, replace_query_params(topic_ids: item.id) %><em><%= count %></em>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="facet">
+      <h3 class="facet-label">Year</h3>
+      <% collection_for :year do |year, count| %>
+        <div class="facet-result">
+          <%= link_to year, replace_query_params(year: year) %><em><%= count %></em>
         </div>
       <% end %>
     </div>
