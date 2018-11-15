@@ -1,10 +1,16 @@
+.wysiwyg * {
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 .wysiwyg p {
   margin-bottom: 1rem;
 }
 
 .wysiwyg ol,
 .wysiwyg ul {
-  margin: 1rem;
+  margin: 0 0 1rem;
   padding-left: 1rem;
 }
 
@@ -39,10 +45,43 @@
   color: $green;
 }
 
-.wysiwyg .ck-content blockquote {
-  padding: 1rem;
-  border-left-width: 3px;
-  border-left-color: $green;
+.wysiwyg img {
+  display: block;
+}
+
+.wysiwyg table {
+  margin: 0 0 1.5rem;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.wysiwyg table th,
+.wysiwyg table td {
+  padding: 1rem 2rem;
+}
+
+.wysiwyg table,
+.wysiwyg th,
+.wysiwyg td {
+  text-align: left;
+  border: 1px solid $light-gray;
+}
+
+.wysiwyg table tbody tr:first-child td,
+.wysiwyg table th {
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color: $white;
+  background-color: $navy-blue;
+}
+
+.wysiwyg blockquote {
+  margin: 0 0 1rem;
+  padding: 1.5rem;
+  border-left: 3px solid $green;
   background-color: $faint-gray;
 }
 
@@ -50,10 +89,12 @@
 .wysiwyg h2,
 .wysiwyg h3,
 .wysiwyg h4,
-.wysiwyg h5 {
+.wysiwyg h5,
+.wysiwyg h6 {
   font-family: $serif;
   font-weight: bold;
   line-height: 1.45;
+  margin: 0 0 1rem;
 }
 
 .wysiwyg h1 {
@@ -68,31 +109,7 @@
 .wysiwyg h4 {
   font-size: 1.6rem;
 }
-.wysiwyg h5 {
-  font-size: 1.4rem;
-}
-
-.wysiwyg .ck-heading_heading1 .ck-button__label,
-.wysiwyg .ck-heading_heading2 .ck-button__label,
-.wysiwyg .ck-heading_heading3 .ck-button__label,
-.wysiwyg .ck-heading_heading4 .ck-button__label,
-.wysiwyg .ck-heading_heading5 .ck-button__label {
-  font-family: $serif;
-  color: $base-color;
-}
-
-.wysiwyg .ck-heading_heading1 .ck-button__label {
-  font-size: 2.5rem;
-}
-.wysiwyg .ck-heading_heading2 .ck-button__label {
-  font-size: 2.2rem;
-}
-.wysiwyg .ck-heading_heading3 .ck-button__label {
-  font-size: 1.8rem;
-}
-.wysiwyg .ck-heading_heading4 .ck-button__label {
-  font-size: 1.6rem;
-}
-.wysiwyg .ck-heading_heading5 .ck-button__label {
-  font-size: 1.4rem;
+.wysiwyg h5,
+.wysiwyg h6 {
+  font-size: 1.5rem;
 }
