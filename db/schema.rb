@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_214156) do
+ActiveRecord::Schema.define(version: 2018_11_16_235749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,27 @@ ActiveRecord::Schema.define(version: 2018_11_14_214156) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "import_errors", force: :cascade do |t|
+    t.string "message"
+    t.string "field"
+    t.integer "line"
+    t.text "trace"
+    t.text "row"
+    t.bigint "import_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["import_id"], name: "index_import_errors_on_import_id"
+  end
+
+  create_table "imports", force: :cascade do |t|
+    t.integer "total", default: 0
+    t.integer "complete", default: 0
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_imports_on_user_id"
+  end
+
   create_table "item_languages", force: :cascade do |t|
     t.bigint "language_id"
     t.bigint "item_id"
@@ -142,6 +163,16 @@ ActiveRecord::Schema.define(version: 2018_11_14_214156) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "links", force: :cascade do |t|
+    t.string "url"
+    t.integer "code"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resource_type", "resource_id"], name: "index_links_on_resource_type_and_resource_id"
   end
 
   create_table "pages", force: :cascade do |t|
@@ -425,6 +456,8 @@ ActiveRecord::Schema.define(version: 2018_11_14_214156) do
   add_foreign_key "guide_subjects", "subjects"
   add_foreign_key "guide_users", "guides"
   add_foreign_key "guide_users", "users"
+  add_foreign_key "import_errors", "imports"
+  add_foreign_key "imports", "users"
   add_foreign_key "item_languages", "items"
   add_foreign_key "item_languages", "languages"
   add_foreign_key "items", "records"

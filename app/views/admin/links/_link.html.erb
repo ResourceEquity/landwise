@@ -1,0 +1,8 @@
+<div class="table-row">
+  <div class="item-title cell">
+    <%= link_to link.url, link.resource.admin_path %> (<%= link_to 'Visit', link.url, target: :_blank %>)
+  </div>
+  <div class="item-code">
+    <%= "#{http_status_label(link.code)} (#{link.code})" %>
+  </div>
+</div>

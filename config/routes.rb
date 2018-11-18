@@ -20,8 +20,10 @@ Rails.application.routes.draw do
     resources :pages
     resources :users
     resources :roles
+    resources :links
     resources :topics
     resources :guides
+    resources :imports
     resources :records
     resources :subjects
     resources :redirects

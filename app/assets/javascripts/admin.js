@@ -41,6 +41,9 @@ var Admin = (function(){
     toggleSection: function(button){
       $(button).closest('.header').nextAll('.sections').slideToggle(250);
     },
+    toggleTrace: function(el){
+      $(el).parent().next('.trace-content').slideToggle(250);
+    },
     makeWysiwyg: function(elm){
       CKEDITOR.replace(elm.id);
     },

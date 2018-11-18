@@ -128,3 +128,19 @@
   height: 50px;
   padding: 0 50px;
 }
+
+.import-errors {
+  margin-bottom: 20px;
+  border-left: 3px solid $red;
+  background-color: $faint-gray;
+}
+
+.import-errors .error-message {
+  padding: 10px 15px;
+  border-top: 1px solid $light-gray;
+  border-right: 1px solid $light-gray;
+
+  &:last-child {
+    border-bottom: 1px solid $light-gray;
+  }
+}

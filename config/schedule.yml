@@ -1,11 +1,11 @@
 reindex:
   cron: "0 9 * * 0"
-  class: Solr::ReindexJob
+  class: ReindexJob
   queue: default
 notify:
   cron: "30 8 * * *"
   class: SubscriptionJob
-  queue: default
+  queue: mailers
 sitemap_generation:
   cron: "15 12 * * *"
   class: SitemapJob

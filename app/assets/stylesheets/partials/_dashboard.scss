@@ -2,6 +2,11 @@
   min-height: 100%;
 }
 
+.dashboard-wide a {
+  font-size: 1.5rem;
+  color: $green;
+}
+
 .dashboard .nav {
   font-family: $serif;
   font-size: 2.5rem;
@@ -46,13 +51,14 @@
 }
 
 .dashboard-form {
-  padding: 2rem;
-}
-
-.dashboard-form {
   display: grid;
+  padding: 2rem;
   grid-template-columns: 40% 1fr;
   grid-gap: 2rem 2rem;
+}
+
+.dashboard-wide {
+  padding: 2rem;
 }
 
 .dashboard-form .input-field {
@@ -64,15 +70,15 @@
   @include clearfix;
 }
 
-.dashboard-form label {
+.dashboard label {
   font-size: 1.3rem;
   display: block;
   margin-bottom: 1rem;
 }
 
-.dashboard-form input[type='text'],
-.dashboard-form input[type='email'],
-.dashboard-form input[type='password'] {
+.dashboard input[type='text'],
+.dashboard input[type='email'],
+.dashboard input[type='password'] {
   font-size: 1.5rem;
   width: 100%;
   padding: 1.5rem;
@@ -281,4 +287,109 @@
 
 .avatar {
   float: right;
+}
+
+.import-stats {
+  font-size: 1.5rem;
+  margin: 2rem 0;
+}
+
+.import-stats dt {
+  font-weight: bold;
+  float: left;
+  margin-right: .5rem;
+}
+
+.import-stats dt,
+.import-stats dd {
+  line-height: 1.45;
+}
+
+.log h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.import-error {
+  max-width: 100%;
+  margin-bottom: 2rem;
+  border-left: 3px solid $red;
+  background-color: $faint-gray;
+}
+
+.import-error .error-message,
+.import-error .error-trace small,
+.import-error .error-csv td,
+.import-error .error-csv th {
+  padding: 1rem;
+}
+
+.import-error .error-csv td,
+.import-error .error-csv th {
+  position: sticky;
+  left: 0;
+  border-bottom: 1px solid $light-gray;
+  border-left: 1px solid $light-gray;
+  background-color: $faint-gray;
+}
+
+.import-error .error-csv th {
+  font-weight: bold;
+  text-align: left;
+}
+
+.import-error .error-message,
+.import-error .error-csv,
+.import-error .error-trace {
+  border-top: 1px solid $light-gray;
+  border-right: 1px solid $light-gray;
+}
+
+.import-error .error-csv {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.import-error .error-row {
+  white-space: nowrap;
+}
+
+.import-error .error-trace {
+  border-bottom: 1px solid $light-gray;
+}
+
+.import-error .error-trace small {
+  font-size: 1.3rem;
+  position: relative;
+  display: block;
+  padding: .5rem 1rem .5rem 2rem;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    width: 0;
+    height: 0;
+    margin-top: -5px;
+    content: '';
+    pointer-events: none;
+    border: solid transparent;
+    border-color: rgba(0, 0, 0, 0);
+    border-top-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 6px;
+    border-left-color: $navy-blue;
+  }
+}
+
+.import-error .error-trace a {
+  font-size: 1.3rem;
+  color: $base-color;
+}
+
+.import-error .error-trace .trace-content {
+  font-size: 1.4rem;
+  display: none;
+  padding: 1rem;
 }

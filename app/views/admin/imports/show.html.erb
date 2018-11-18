@@ -1,0 +1,46 @@
+<%= form_with model: [:admin, @import], local: true do |f| %>
+<div class="dashboard">
+  <div class="toolbar dashboard-toolbar">
+    <div class="nav">
+      <%= render_breadcrumbs %> / <span><%= @import.created_at.strftime('%B %-d, %Y') %></span>
+    </div>
+    <div></div>
+  </div>
+
+  <div class="dashboard-wide">
+    <%= label_tag 'Source File' %>
+    <%= link_to @import.import.blob.filename, @import.import.service_url(disposition: :attachment) %>
+
+    <dl class="import-stats">
+      <dt>Total Records:</dt>
+      <dd><%= @import.total %></dd>
+      <dt>Processed:</dt>
+      <dd><%= @import.complete %></dd>
+      <dt>Failed:</dt>
+      <dd><%= @import.total - @import.complete %></dd>
+    </dl>
+
+    <% if @import.import_errors.any? %>
+    <%= link_to 'Retry Import', admin_import_path(@import), method: :patch %>
+    <hr />
+    <div class="log">
+      <h2>Error Log</h2>
+      <% @import.import_errors.each do |error| %>
+        <div class="import-error">
+          <div class="error-message"><%= error.message %></div>
+          <% if error.row.present? %>
+          <div class="error-csv">
+            <%= tableize(error.row, error.line, @import.import.service_url, class: 'error-row').html_safe %>
+          </div>
+          <% end %>
+          <div class="error-trace">
+            <small><a href="javascript:void(0);" onclick="Admin.toggleTrace(this);">Stuff for Nerds</a></small>
+            <div class="trace-content"><%= simple_format(error.trace) %></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>
+<% end %>

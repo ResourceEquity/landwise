@@ -13,11 +13,25 @@
 
 class Section < ApplicationRecord
 
+  LINK_FIELDS = [:body]
+
   belongs_to :article, inverse_of: :sections
+
+  has_many :links, as: :resource
+
+  after_create :scan
 
   validates :title, presence: { message: '^Please provide a title for each article section.' }
 
   default_scope { order(position: :asc) }
+
+  def scan(delay = 1.week)
+    ScanJob.set(wait: delay).perform_later(self)
+  end
+
+  def admin_path
+    Rails.application.routes.url_helpers.edit_admin_guide_path(article.guide)
+  end
 
   def html
     doc = Nokogiri::HTML(body)

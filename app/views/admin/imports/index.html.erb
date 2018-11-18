@@ -1,0 +1,9 @@
+<div class="toolbar">
+  <h1 class="title">Imports</h1>
+  <div></div>
+  <%= link_to 'New Import', new_admin_import_path, class: 'button button-solid is-green' %>
+</div>
+
+<div class="table">
+  <%= render partial: 'admin/imports/import', collection: @imports %>
+</div>

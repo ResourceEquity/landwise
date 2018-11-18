@@ -36,7 +36,7 @@ task import: :environment do
   current = nil
   records = JSON.parse(File.read(Rails.root.join('lib', 'tasks', 'records.json')))
 
-  records[0..20].each do |r|
+  records.each do |r|
     begin
       current = r
 
@@ -61,19 +61,10 @@ task import: :environment do
         notes: r['notes']
       )
 
-      # if r['first_name'].present? && r['last_name'].present?
-      #   record.users << User.find_by!(first_name: r['first_name'], last_name: r['last_name'])
-      # end
-
       record.save!(without_protection: true)
 
       record.responsibilities << public_role
       record.responsibilities << admin_role
-
-      # r['paths'].each do |from|
-      #   to = Rails.application.routes.url_helpers.record_path(record)
-      #   Redirect.create!(from: from, to: to)
-      # end
 
       r['items'].each do |i|
         languages = i['languages'].map { |title| Language.find_by!(title: title) }
@@ -89,7 +80,7 @@ task import: :environment do
           language_ids: languages.map(&:id)
         )
 
-        if i['document']['url'].present?
+        if i['document']['url'].present? && !Rails.env.development?
           begin
             item.document.attach(io: open(i['document']['url']), filename: i['document']['filename'], content_type: i['document']['content_type'])
           rescue Errno::ENOENT, OpenURI::HTTPError => e
@@ -151,19 +142,6 @@ task import: :environment do
     end
 
     guide.save!(without_protection: true)
-
-    # g['paths'].each do |from|
-    #   to = Rails.application.routes.url_helpers.guide_path(guide)
-    #   Redirect.create!(from: from, to: to)
-    # end
-
-    # g['articles'].each do |a|
-    #   article = guide.articles.find_by(title: a['title'])
-    #   a['paths'].each do |from|
-    #     to = Rails.application.routes.url_helpers.guide_article_path(guide, article)
-    #     Redirect.create!(from: from, to: to)
-    #   end
-    # end
   end
 
   pages = JSON.parse(File.read(Rails.root.join('lib', 'tasks', 'pages.json')))
@@ -176,4 +154,14 @@ task import: :environment do
       slug: p['slug']
     )
   end
+
+  # Change the auto increment id to something higher than the highest id found, to avoid conflict
+  id = Record.all.order(id: :desc).first.id
+  ActiveRecord::Base.connection.execute("ALTER SEQUENCE records_id_seq RESTART WITH #{id + 1}")
+
+  id = Guide.all.order(id: :desc).first.id
+  ActiveRecord::Base.connection.execute("ALTER SEQUENCE guides_id_seq RESTART WITH #{id + 1}")
+
+  id = Article.all.order(id: :desc).first.id
+  ActiveRecord::Base.connection.execute("ALTER SEQUENCE articles_id_seq RESTART WITH #{id + 1}")
 end

@@ -1,0 +1,15 @@
+<div class="table-row">
+  <div class="item-title cell">
+    <%= link_to import.title, admin_import_path(import) %>
+  </div>
+  <div class="item-progress">(<%= import.complete %> / <%= import.total %>)</div>
+  <div class="item-status">
+    <% if import.total.zero? %>
+    <span class="pending">Pending</span>
+    <% elsif import.complete == import.total %>
+    <span class="complete">Complete</span>
+    <% elsif import.complete < import.total %>
+    <span class="errors"><%= import.total - import.complete %> Errors</span>
+    <% end %>
+  </div>
+</div>

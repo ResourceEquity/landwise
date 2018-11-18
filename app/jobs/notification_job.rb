@@ -1,6 +1,6 @@
 class NotificationJob < ApplicationJob
 
-  queue_as :default
+  queue_as :mailers
 
   def perform(user)
     return if user.never?

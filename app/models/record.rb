@@ -17,6 +17,8 @@
 
 class Record < ApplicationRecord
 
+  LINK_FIELDS = [:description]
+
   belongs_to :category
   belongs_to :jurisdiction
 
@@ -29,12 +31,15 @@ class Record < ApplicationRecord
   has_many :countries,        through: :record_countries
   has_many :responsibilities, through: :responsibility_records
 
-  has_many :items, inverse_of: :record
+  has_many :items, inverse_of: :record, dependent: :destroy
+  has_many :links, as: :resource
+
+  after_create :scan
+
+  after_initialize :assign_admin
 
   validates :title, presence: { message: '^Please provide a record title.' }
   validates :creator, presence: { message: '^Please provide a record creator.' }
-
-  after_initialize :assign_admin
 
   searchable do
     text :title, boost: 2
@@ -65,6 +70,14 @@ class Record < ApplicationRecord
   end
 
   accepts_nested_attributes_for :items, reject_if: :all_blank, allow_destroy: true
+
+  def scan(delay = 1.week)
+    ScanJob.set(wait: delay).perform_later(self)
+  end
+
+  def admin_path
+    Rails.application.routes.url_helpers.edit_admin_record_path(self)
+  end
 
   def favorited_by?(user)
     user_favorites.where(user: user).first

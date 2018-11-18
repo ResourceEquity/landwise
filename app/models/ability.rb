@@ -19,6 +19,8 @@ class Ability
       can :manage, User
       can :manage, Responsibility
       can :manage, Redirect
+      can :manage, Import
+      can :manage, Link
     end
   end
 end

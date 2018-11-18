@@ -1,0 +1,17 @@
+<h1><%= @user.first_name %>, your LandWise import has finished.</h1>
+
+<% if @import.import_errors.any? %>
+<p>The import file <strong><%= @import.import.blob.filename %></strong> has finished processing with <%= @import.import_errors.count %> errors.</p>
+<p>Sign in below to view the details of the import errors.</p>
+<div class="import-errors">
+  <% @import.import_errors.each do |error| %>
+  <div class="error-message"><strong><%= "Line #{error.line}" %>:</strong> <%= error.message %></div>
+  <% end %>
+</div>
+<% else %>
+<p>The import file <strong><%= @import.import.blob.filename %></strong> has finished processing successfully.</p>
+<% end %>
+
+<div class="a-center">
+  <%= link_to 'View Details', admin_import_url(@import), target: :_blank, class: 'button-green button-large' %>
+</div>

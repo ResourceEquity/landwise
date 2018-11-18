@@ -6,8 +6,14 @@
 .layout-admin {
   font-size: 1.6rem;
   display: grid;
+  max-width: 100%;
   min-height: 100vh;
   grid-template-columns: minmax(300px, 18%) 1fr;
+}
+
+.layout-admin .main-content {
+  overflow: hidden;
+  width: auto;
 }
 
 .sidebar .sidebar-close {

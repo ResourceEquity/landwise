@@ -1,6 +1,6 @@
 class SubscriptionJob < ApplicationJob
 
-  queue_as :default
+  queue_as :mailers
 
   def perform
     users = User.where(notification_interval: :weekly).where('last_notified < ?', Time.current - 1.week)

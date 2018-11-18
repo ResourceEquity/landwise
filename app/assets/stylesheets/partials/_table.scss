@@ -71,6 +71,34 @@
   top: -3px;
 }
 
+.table-row .item-progress,
+.table-row .item-status {
+  width: 120px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.table-row .item-status {
+  padding-right: 2rem;
+}
+
+.table-row .item-status .pending {
+  color: saturate(darken($flash-yellow, 35%), 10%);
+}
+
+.table-row .item-status .complete {
+  color: saturate(darken($flash-green, 35%), 10%);
+}
+
+.table-row .item-status .errors {
+  color: saturate(darken($flash-red, 35%), 10%);
+}
+
+.table-row .item-code {
+  text-align: right;
+  white-space: nowrap;
+}
+
 .table-row .item-edit a,
 .table-row .item-destroy a {
   font-size: 1.3rem;

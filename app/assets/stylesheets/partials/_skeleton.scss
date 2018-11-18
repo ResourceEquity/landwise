@@ -23,6 +23,11 @@ h6 {
   font-family: $serif;
 }
 
+hr {
+  margin: 4rem 0;
+  border: 1px solid $light-gray;
+}
+
 .page {
   background-color: $white;
 }
