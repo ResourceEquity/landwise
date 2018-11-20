@@ -1,11 +1,13 @@
 class Admin::LinksController < AdminController
 
-  load_and_authorize_resource only: [:edit, :update, :destroy]
+  load_and_authorize_resource only: [:edit, :show, :update, :destroy]
 
   add_breadcrumb 'Link Checker', '/admin/links'
 
   def index
     @links = Link.all.order(created_at: :desc)
   end
+
+  def show; end
 
 end

@@ -168,6 +168,8 @@ ActiveRecord::Schema.define(version: 2018_11_16_235749) do
   create_table "links", force: :cascade do |t|
     t.string "url"
     t.integer "code"
+    t.text "stdout"
+    t.text "stderr"
     t.string "resource_type"
     t.bigint "resource_id"
     t.datetime "created_at", null: false

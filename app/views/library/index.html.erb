@@ -1,5 +1,13 @@
 <div class="layout-two-column-left">
   <aside class="sidebar sidebar-green">
+    <h2>Search</h2>
+    <%= form_with url: records_path, method: :get, local: true, html: { class: 'record-search' } do |f| %>
+      <% current_filters(country_ids: Country, topic_ids: Topic, language_ids: Language, category_id: Category, jurisdiction_id: Jurisdiction) do |item, remove, param, value| %>
+        <%= f.hidden_field param, value: value %>
+      <% end %>
+      <%= f.text_field :q, value: params[:q], class: 'search-input', placeholder: 'Search the LandWise Library' %>
+      <%= f.submit 'Search', class: 'button button-ghost is-white full-width' %>
+    <% end %>
     <%= render partial: 'shared/global/email_updates' %>
   </aside>
   <main class="main-content">

@@ -1,6 +1,6 @@
 <div class="table-row">
   <div class="item-title cell">
-    <%= link_to link.url, link.resource.admin_path %> (<%= link_to 'Visit', link.url, target: :_blank %>)
+    <%= link_to link.url, admin_link_path(link) %> (<%= link_to "Edit #{link.resource.class.name.titleize}", link.resource.admin_path %>)
   </div>
   <div class="item-code">
     <%= "#{http_status_label(link.code)} (#{link.code})" %>

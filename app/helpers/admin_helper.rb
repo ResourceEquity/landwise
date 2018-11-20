@@ -52,7 +52,8 @@ module AdminHelper
     505 => 'HTTP Version Not Supported',
     507 => 'Insufficient Storage',
     510 => 'Not Extended',
-    600 => 'Application Error'
+    600 => 'Application Error',
+    601 => 'Scan Error'
   }
 
   def tableize(row, line, url, options={})
@@ -72,7 +73,7 @@ module AdminHelper
   end
 
   def http_status_label(code)
-    HTTP_STATUS_CODES[code] || 'Unknown'
+    HTTP_STATUS_CODES[code] || "Unknown Code: #{code}"
   end
 
 end

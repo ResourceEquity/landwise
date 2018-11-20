@@ -15,7 +15,7 @@ class ScanJob < ApplicationJob
       links = URI.extract(value.to_s, ['http', 'https', 'ftp'])
 
       links.each do |link|
-        route = URI.parse(link).route
+        route, stdout, stderr = URI.parse(link).route
 
         if route.first.code == 301 && route.last.code == 200
           instance.update(attribute => value.gsub(link, route.last.location.to_s))
@@ -25,7 +25,8 @@ class ScanJob < ApplicationJob
           record = instance.links.find_by(url: link)
           record.destroy if record.present?
         else
-          instance.links.find_or_create_by(url: link, code: route.first.code).touch
+          record = instance.links.find_or_create_by(url: link)
+          record.update(code: route.last.code, stdout: stdout, stderr: stderr)
         end
       end
     end
