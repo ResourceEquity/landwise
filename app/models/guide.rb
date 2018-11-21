@@ -42,6 +42,10 @@ class Guide < ApplicationRecord
     integer(:country_ids, multiple: true)  { countries.map(&:id) }
   end
 
+  def to_param
+    "#{id}-#{title.parameterize.truncate(80, omission: '')}"
+  end
+
   def to_pdf
     tmp = Tempfile.new([id.to_s, '.pdf'], Rails.root.join('tmp'))
     system "chrome-headless-render-pdf --url=#{pdf_url} --pdf=#{tmp.path} --include-background --window-size 1920x1080"

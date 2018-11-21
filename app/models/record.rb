@@ -79,6 +79,10 @@ class Record < ApplicationRecord
     Rails.application.routes.url_helpers.edit_admin_record_path(self)
   end
 
+  def to_param
+    "#{id}-#{title.parameterize.truncate(80, omission: '')}"
+  end
+
   def favorited_by?(user)
     user_favorites.where(user: user).first
   end

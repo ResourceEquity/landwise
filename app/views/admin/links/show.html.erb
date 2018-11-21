@@ -8,30 +8,32 @@
 
   <div class="dashboard-wide">
     <div class="input-field">
-      <%= label_tag 'Last Checked' %>
+      <%= label_tag :last_checked, 'Last Checked' %>
       <div><%= @link.updated_at.strftime('%B %-d, %Y, %-l:%m %p') %></div>
     </div>
 
     <div class="input-field">
-      <%= label_tag 'Offending Link' %>
+      <%= label_tag :offending_link, 'Offending Link' %>
       <%= link_to @link.url, @link.url, target: :_blank %>
     </div>
 
     <div class="input-field">
-      <%= label_tag "Offending #{@link.resource.class.name.titleize}" %>
+      <%= label_tag :offending_item, "Offending #{@link.resource.class.name.titleize}" %>
       <%= link_to @link.resource.title, @link.resource.admin_path %>
     </div>
 
+    <hr />
+
     <% if @link.stdout.present? %>
     <div class="input-field">
-      <%= label_tag 'Scan Output' %>
+      <%= label_tag :scan_output, 'Scan Output' %>
       <blockquote><%= @link.stdout.to_s.strip %></blockquote>
     </div>
     <% end %>
 
     <% if @link.stderr.present? %>
     <div class="input-field">
-      <%= label_tag 'Scan Errors' %>
+      <%= label_tag :scan_errors, 'Scan Errors' %>
       <blockquote class="is-error"><%= @link.stderr.to_s.strip %></blockquote>
     </div>
     <% end %>
