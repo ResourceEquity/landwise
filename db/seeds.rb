@@ -16,6 +16,7 @@ COUNTRIES.each      { |title| Country.create!(title: title.strip) }
 
 Responsibility.create!(title: 'Admin', locked: true)
 Responsibility.create!(title: 'Public', locked: true)
+Responsibility.create!(title: 'Restricted')
 
 @user = User.create!(
   first_name: 'Eric',
@@ -28,3 +29,4 @@ Responsibility.create!(title: 'Public', locked: true)
 
 @user.responsibilities << Responsibility.find_by(title: 'Admin')
 @user.responsibilities << Responsibility.find_by(title: 'Public')
+@user.responsibilities << Responsibility.find_by(title: 'Restricted')

@@ -45,7 +45,8 @@
   </div>
 
   <div class="input-field">
-    <label class="heading">Visibility</label>
+    <label class="heading no-margin">Visible To</label>
+    <small>A user must have <span class="italic strong">at least one</span> of the checked roles for the record to be visible. All logged out users are treated as if they have a &quot;Public&quot; role.</small>
     <div class="checkbox-grid">
     <%= f.collection_check_boxes :responsibility_ids, Responsibility.all.order(title: :asc), :id, :title do |b| %>
       <div class="check">

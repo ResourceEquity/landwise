@@ -4,6 +4,7 @@ require 'securerandom'
 task import: :environment do
   public_role = Responsibility.find_by(title: 'Public')
   admin_role = Responsibility.find_by(title: 'Admin')
+  restricted_role = Responsibility.find_by(title: 'Restricted')
 
   users = JSON.parse(File.read(Rails.root.join('lib', 'tasks', 'users.json')))
   users.each_with_index do |u, index|
@@ -44,6 +45,7 @@ task import: :environment do
       jurisdiction = Jurisdiction.find_by!(title: r['jurisdiction'])
       topics = r['topics'].map { |title| Topic.find_by!(title: title) }
       countries = r['countries'].map { |title| Country.find_by!(title: title) }
+      restricted = topics.any? { |t| t.title == 'Restricted Access' }
 
       record = Record.new(
         id: r['id'],
@@ -63,8 +65,9 @@ task import: :environment do
 
       record.save!(without_protection: true)
 
-      record.responsibilities << public_role
       record.responsibilities << admin_role
+      record.responsibilities << public_role unless restricted
+      record.responsibilities << restricted_role if restricted
 
       r['items'].each do |i|
         languages = i['languages'].map { |title| Language.find_by!(title: title) }

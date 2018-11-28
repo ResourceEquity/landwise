@@ -36,7 +36,7 @@ class Record < ApplicationRecord
 
   after_create :scan
 
-  after_initialize :assign_admin
+  after_initialize :assign_admin, if: :new_record?
 
   validates :title, presence: { message: '^Please provide a record title.' }
   validates :creator, presence: { message: '^Please provide a record creator.' }
@@ -99,7 +99,7 @@ class Record < ApplicationRecord
 
     def assign_admin
       responsibilities << Responsibility.find_by(title: 'Admin') unless responsibilities.any? { |r| r.title == 'Admin' }
-      responsibilities << Responsibility.find_by(title: 'Public') unless responsibilities.any? { |r| r.title == 'Public' }
+      responsibilities << Responsibility.find_by(title: 'Public') unless responsibilities.any? { |r| r.title == 'Public' } || topics.any? { |t| t.title == 'Restricted Access' }
     end
 
 end
