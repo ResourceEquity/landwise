@@ -71,6 +71,7 @@ class Admin::RecordsController < AdminController
           :url,
           :published,
           :document,
+          :position,
           :_destroy,
           language_ids: []
         ]

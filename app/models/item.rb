@@ -30,6 +30,8 @@ class Item < ApplicationRecord
   validates :title, presence: { message: '^Please enter an item title.' }
   validates :year, numericality: { message: '^Please enter a valid 4-digit year.', allow_nil: true, only_integer: true, greater_than_or_equal_to: 0 }
 
+  default_scope { order(position: :asc) }
+
   def scan(delay = 1.week)
     ScanJob.set(wait: delay).perform_later(self)
   end

@@ -92,7 +92,7 @@
 </div>
 
 <div class="dashboard-right">
-  <div class="record-items">
+  <div class="record-items sortable" data-group="items" data-selector="record-item">
     <%= f.fields_for :items do |item| %>
       <%= render partial: 'admin/records/item_fields', locals: { f: item } %>
     <% end %>

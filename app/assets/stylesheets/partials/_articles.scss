@@ -78,7 +78,11 @@
 }
 
 .article-section a {
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
   color: $green;
+  overflow-wrap: break-word;
 }
 
 .article-section sup {

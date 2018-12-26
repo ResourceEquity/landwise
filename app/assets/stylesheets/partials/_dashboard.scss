@@ -181,7 +181,8 @@
   display: none !important;
 }
 
-.article .handle {
+.article .handle,
+.record-item .handle {
   position: relative;
   height: 100%;
   cursor: pointer;
@@ -225,7 +226,8 @@
   @include clearfix;
 }
 
-.article .sections .section {
+.article .sections .section,
+.record-item {
   position: relative;
   margin-bottom: 2rem;
   padding: 2rem;
@@ -245,7 +247,8 @@
   margin: 0;
 }
 
-.article .section .handle {
+.article .section .handle,
+.record-item .handle {
   position: absolute;
   top: 0;
   left: 0;
@@ -254,7 +257,8 @@
   height: 30px;
 }
 
-.article .section:hover .handle {
+.article .section:hover .handle,
+.record-item:hover .handle {
   display: block;
 }
 
