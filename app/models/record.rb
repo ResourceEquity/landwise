@@ -95,6 +95,10 @@ class Record < ApplicationRecord
     end
   end
 
+  def restricted?
+    responsibilities.any? { |r| r.title == 'Restricted' }
+  end
+
   private
 
     def assign_admin

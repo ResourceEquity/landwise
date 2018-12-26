@@ -52,10 +52,15 @@
       </div>
     </div>
     <header class="page-header">
-      <h1><%= @record.title %></h1>
+      <h1>
+        <% if @record.restricted? %>
+        <%= image_tag 'restricted.svg', size: 18, title: 'Restricted', class: 'restricted' %>
+        <% end %>
+        <%= @record.title %>    
+      </h1>
     </header>
     <% if @record.description.present? %>
-    <p class="record-description"><%= @record.description %></p>
+    <div class="record-description"><%= simple_format @record.description %></div>
     <% end %>
     <div class="list">
       <%= render partial: 'records/item', collection: @record.items.where(published: true) %>

@@ -26,3 +26,14 @@
     border-right: 0;
   }
 }
+
+.record .restricted {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: .5rem;
+}
+
+.record .interactive-link {
+  vertical-align: top;
+}

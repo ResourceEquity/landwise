@@ -1,7 +1,12 @@
 <article class="record paper">
-  <h4 class="paper-title"><%= link_to record.title, record_path(record), class: 'interactive-link' %></h4>
+  <h4 class="paper-title">
+    <% if record.restricted? %>
+    <%= image_tag 'restricted.svg', size: 18, title: 'Restricted', class: 'restricted' %>
+    <% end %>
+    <%= link_to record.title, record_path(record), class: 'interactive-link' %>
+  </h4>
   <% if record.description.present? %>
-  <em class="record-description"><%= record.description %></em>
+  <em class="record-description"><%= simple_format record.description %></em>
   <% end %>
   <dl class="record-details clearfix">
     <dt>Collection Type:</dt>
