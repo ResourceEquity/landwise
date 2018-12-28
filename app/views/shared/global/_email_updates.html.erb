@@ -2,7 +2,7 @@
 
 <p>To receive updates about new Practice Guides and other important LandWise developments, enter your name and email address below. We will never share your information with any third parties.</p>
 
-<%= form_with url: 'https://resourceequity.us11.list-manage.com/subscribe/post', method: :post, html: { class: 'updates-form' } do |f| %>
+<%= form_with url: 'https://resourceequity.us11.list-manage.com/subscribe/post', method: :post, local: true, html: { class: 'updates-form' } do |f| %>
   <%= f.hidden_field :u, value: 'bca3f03eef5910d41b6421144' %>
   <%= f.hidden_field :id, value: 'b2e0733d3c' %>
   <%= f.hidden_field :MERGE5, value: 'LW' %>
