@@ -9,4 +9,9 @@ task launch: :environment do
     content.gsub! '/record/', '/records/'
     section.update(body: content)
   end
+
+  ['Restricted Access', 'VPP Readings'].each do |title|
+    topic = Topic.find_by(title: title)
+    topic.destroy if topic.present?
+  end
 end

@@ -43,7 +43,7 @@ task import: :environment do
 
       category = Category.find_by!(title: r['category'])
       jurisdiction = Jurisdiction.find_by!(title: r['jurisdiction'])
-      topics = r['topics'].reject { |title| ['Restricted Access', 'VPP Readings'].include?(title) }.map { |title| Topic.find_by!(title: title) }
+      topics = r['topics'].map { |title| Topic.find_by!(title: title) }
       countries = r['countries'].map { |title| Country.find_by!(title: title) }
       restricted = topics.any? { |t| t.title == 'Restricted Access' }
 
