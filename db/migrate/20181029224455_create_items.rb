@@ -6,6 +6,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer :year
       t.text :description
       t.string :url
+      t.integer :position
       t.boolean :published, default: true
 
       t.timestamps

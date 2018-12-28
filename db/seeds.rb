@@ -16,7 +16,7 @@ COUNTRIES.each      { |title| Country.create!(title: title.strip) }
 
 Responsibility.create!(title: 'Admin', locked: true)
 Responsibility.create!(title: 'Public', locked: true)
-Responsibility.create!(title: 'Restricted')
+Responsibility.create!(title: 'Restricted', locked: true)
 
 @user = User.create!(
   first_name: 'Eric',
