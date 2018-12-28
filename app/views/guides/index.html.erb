@@ -68,8 +68,6 @@
         </div>
       </div>
 
-      <%= render partial: 'guides/guide', collection: @search.results %>
-
       <% if has_filters?(:user_ids) %>
       <ul class="authors">
         <% current_filters(user_ids: User) do |author, remove_url| %>
@@ -90,6 +88,8 @@
         <% end %>
       </ul>
       <% end %>
+      
+      <%= render partial: 'guides/guide', collection: @search.results %>
     </div>
   </main>
 </div>
