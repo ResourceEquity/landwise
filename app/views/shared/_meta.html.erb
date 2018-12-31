@@ -10,10 +10,10 @@
 <meta property="og:url" content="<%= request.url %>">
 <meta property="og:type" content="website">
 
-<link rel="preload" as="apple-touch-icon" sizes="144x144" href="<%= image_url('apple-touch-icon.png') %>">
-<link rel="preload" as="icon" type="image/png" sizes="32x32" href="<%= image_url('favicon-32x32.png') %>">
-<link rel="preload" as="icon" type="image/png" sizes="16x16" href="<%= image_url('favicon-16x16.png') %>">
-<link rel="preload" as="manifest" href="<%= asset_url('site.webmanifest') %>">
-<link rel="preload" as="mask-icon" href="<%= asset_url('safari-pinned-tab.svg') %>" color="#2e4f6d">
+<link as="image" rel="preload apple-touch-icon" sizes="144x144" href="<%= image_url('apple-touch-icon.png') %>">
+<link as="image" rel="preload icon" type="image/png" sizes="32x32" href="<%= image_url('favicon-32x32.png') %>">
+<link as="image" rel="preload icon" type="image/png" sizes="16x16" href="<%= image_url('favicon-16x16.png') %>">
+<link as="image" rel="preload mask-icon" href="<%= asset_url('safari-pinned-tab.svg') %>" color="#2e4f6d">
+<link rel="manifest" href="<%= asset_url('site.webmanifest') %>">
 <meta name="msapplication-TileColor" content="#2e4f6d">
 <meta name="theme-color" content="#2e4f6d">
