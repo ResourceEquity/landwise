@@ -3,7 +3,7 @@ class RecordsController < ApplicationController
   def index
     session[:search_crumb] = search_params
 
-    @search = Record.search(include: [:category, :record_countries, :countries, :items]) do
+    @search = Record.search(include: [:category, :record_countries, :countries, :items, :responsibility_records, :responsibilities]) do
       any do
         fulltext search_params[:q] || '*'
 
