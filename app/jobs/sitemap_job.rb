@@ -26,7 +26,7 @@ class SitemapJob < ApplicationJob
       end
 
       records.results.each do |record|
-        add record_path(record), lastmod: record.updated_at, priority: 0.9, changefreq: 'yearly'
+        add record_path(record), lastmod: record.updated_at, priority: 0.9, changefreq: 'daily'
       end
 
       guides = Guide.search do
@@ -36,7 +36,7 @@ class SitemapJob < ApplicationJob
 
       guides.results.each do |guide|
         guide.articles.each do |article|
-          add guide_article_path(guide, article), lastmod: article.updated_at, priority: 0.8, changefreq: 'yearly'
+          add guide_article_path(guide, article), lastmod: article.updated_at, priority: 0.8, changefreq: 'daily'
         end
       end
 
