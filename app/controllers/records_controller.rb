@@ -48,6 +48,7 @@ class RecordsController < ApplicationController
   def show
     @record = Record.includes(items: [:languages, :item_languages, document_attachment: [:blob]]).find(params[:id])
 
+    puts current_user.to_yaml
     raise ActionController::RoutingError, 'Not Found' unless @record.visible_to?(current_user)
 
     add_breadcrumb 'Search Results', records_path(session[:search_crumb])
