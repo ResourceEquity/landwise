@@ -23,6 +23,8 @@ class SitemapJob < ApplicationJob
 
         with :published, true
         with :roles, [Responsibility.find_by(title: 'Public').id]
+
+        paginate page: 1, per_page: Record.count
       end
 
       records.results.each do |record|
@@ -32,6 +34,8 @@ class SitemapJob < ApplicationJob
       guides = Guide.search do
         fulltext '*'
         with :published, true
+
+        paginate page: 1, per_page: Guide.count
       end
 
       guides.results.each do |guide|

@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     resources :jurisdictions
   end
 
-  match '/record/:id', to: 'records#show'
+  match '/record/:id', to: 'records#show', via: :get
 
   match '/404', to: 'errors#not_found', via: :all
   match '/422', to: 'errors#unprocessable_entity', via: :all
