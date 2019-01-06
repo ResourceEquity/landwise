@@ -15,7 +15,11 @@ class ScanJob < ApplicationJob
       links = URI.extract(value.to_s, ['http', 'https', 'ftp'])
 
       links.each do |link|
-        route, stdout, stderr = URI.parse(link).route
+        begin
+          route, stdout, stderr = URI.parse(link).route
+        rescue URI::InvalidURIError
+          route, stdout, stderr = URI.parse(URI.escape(link)).route
+        end
 
         if route.first.code == 301 && route.last.code == 200
           instance.update(attribute => value.gsub(link, route.last.location.to_s))
