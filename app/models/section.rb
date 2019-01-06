@@ -35,7 +35,7 @@ class Section < ApplicationRecord
 
   def html
     doc = Nokogiri::HTML(body)
-    doc.xpath('//@style').remove
+    # doc.xpath('//@style').remove
     doc.css('p').find_all { |node| node.name != 'br' && node.content.strip.blank? }.each(&:remove)
     doc.css('body').map(&:inner_html).join.html_safe
   end
