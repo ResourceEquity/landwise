@@ -12,7 +12,7 @@ class RecordsController < ApplicationController
         end
       end
 
-      facet :country_ids, :topic_ids, :language_ids, :category_id, :jurisdiction_id, :year
+      facet :country_ids, :topic_ids, :language_ids, :category_id, :jurisdiction_id, :year, limit: -1
 
       paginate page: search_params[:page] || 1, per_page: search_params[:per] || 25
 

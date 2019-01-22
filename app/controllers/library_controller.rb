@@ -3,7 +3,7 @@ class LibraryController < ApplicationController
   def index
     @search = Record.search do
       fulltext '*'
-      facet :country_ids, :topic_ids, :language_ids, :category_id, :jurisdiction_id
+      facet :country_ids, :topic_ids, :language_ids, :category_id, :jurisdiction_id, limit: -1
 
       with :published, true
 
