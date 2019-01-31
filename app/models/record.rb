@@ -44,7 +44,7 @@ class Record < ApplicationRecord
   searchable do
     text :title, boost: 2
     text :creator, boost: 3
-    text :description          { "#{description} #{items.map(&:description).join(' ')}" }
+    text(:description)         { "#{description} #{items.map(&:description).join(' ')}" }
 
     text(:category)            { category.title }
     text(:jurisdiction)        { jurisdiction.title }
