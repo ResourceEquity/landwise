@@ -15,7 +15,7 @@ class Section < ApplicationRecord
 
   LINK_FIELDS = [:body]
 
-  belongs_to :article, inverse_of: :sections
+  belongs_to :article, inverse_of: :sections, touch: true
 
   has_many :links, as: :resource
 

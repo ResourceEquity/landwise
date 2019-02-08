@@ -12,7 +12,7 @@
 
 class Article < ApplicationRecord
 
-  belongs_to :guide, inverse_of: :articles
+  belongs_to :guide, inverse_of: :articles, touch: true
 
   has_many :sections, inverse_of: :article, dependent: :destroy
 
