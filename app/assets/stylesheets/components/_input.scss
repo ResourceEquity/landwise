@@ -22,6 +22,16 @@
   background-color: $white;
 }
 
+.text-field .required {
+  color: #d30000;
+}
+
+.text-field .error {
+  font-size: 13px;
+  color: #d30000;
+  line-height: 2;
+}
+
 .input-field {
   margin-bottom: 2rem;
 }
