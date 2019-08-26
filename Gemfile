@@ -1,11 +1,5 @@
 source 'https://rubygems.org'
 
-source 'https://gem.minow.io' do
-  gem 'voltron', '~> 0.3.2'
-  gem 'voltron-flash', '~> 0.1.8'
-  gem 'voltron-notify', '~> 0.2.2'
-end
-
 ruby '2.5.1'
 
 git_source(:github) do |repo_name|
@@ -45,6 +39,9 @@ gem 'sidekiq-cron', '~> 0.6.3'
 gem 'sitemap_generator'
 gem 'sunspot_rails'
 gem 'uglifier', '>= 1.3.0'
+gem 'voltron', '~> 0.3.2'
+gem 'voltron-flash', '~> 0.1.8'
+gem 'voltron-notify', '~> 0.2.2'
 gem 'will_paginate'
 gem 'yajl-ruby', require: 'yajl/json_gem'
 
