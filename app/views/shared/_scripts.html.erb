@@ -1,7 +1,10 @@
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
 
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=initTranslate" async defer></script>
+
+<% if Rails.env.production? %>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js" async defer></script>
+<% end %>
 
 <script type="text/javascript">
 function initTranslate() {

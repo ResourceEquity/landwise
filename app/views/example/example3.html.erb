@@ -1,0 +1,16 @@
+<div class="search">
+  <input type="text" class="search-input" placeholder="Search the LandWise Library" />
+  <button type="button" class="search-button button button-solid is-green">Search</button>
+</div>
+
+<div class="paging">
+  <%= will_paginate @search.hits, previous_label: '&nbsp;', next_label: '&nbsp;', link_separator: '', inner_window: 1, outer_window: 1 %>
+</div>
+
+<div class="results">
+  <%= render partial: 'records/record', collection: @search.results %>
+</div>
+
+<div class="paging bottom">
+  <%= will_paginate @search.hits, previous_label: '&nbsp;', next_label: '&nbsp;', link_separator: '', inner_window: 1, outer_window: 1 %>
+</div>

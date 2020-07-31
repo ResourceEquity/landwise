@@ -1,0 +1,61 @@
+.example-page {
+  padding: 2rem;
+}
+
+.example-page .example-box {
+  display: inline-block;
+  margin-right: 4rem;
+  width: calc(33.3333% - 4rem);
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.example-page .example-box iframe {
+  border: 2px solid #aaa;
+}
+
+.example-page .info {
+  margin-bottom: 2rem;
+  min-height: 80px;
+}
+
+.example-page .info h3 {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.example-page .info p {
+  margin-top: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.example-page .search {
+  margin: 0 0 2rem;
+  display: flex;
+  width: 100%;
+}
+
+.example-page .search .search-input {
+  flex: 1 1 auto;
+  margin-right: 1rem;
+  background-color: #eee;
+  border: 0;
+  margin-bottom: 0;
+}
+
+.example-page .search .search-button {
+  flex: 1 0 auto;
+  height: 42px;
+}
+
+.example-page .paging {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+
+  &.bottom {
+    margin-top: 2rem;
+    margin-bottom: 0;
+  }
+}

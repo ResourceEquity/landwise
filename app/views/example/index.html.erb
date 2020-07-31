@@ -1,0 +1,23 @@
+<div class="examples">
+  <div class="example-box">
+    <div class="info">
+      <h3>Example 1</h3>
+      <p>Search only within, no pagination (all records in one single list)</p>
+    </div>
+    <iframe src="<%= example1_path %>" width="100%" height="600"></iframe>
+  </div>
+  <div class="example-box">
+    <div class="info">
+      <h3>Example 2</h3>
+      <p>Pagination only, search occurs from the outside by dynamically <a href="javascript:Example.setFrameSrc();">changing the frame source</a>. Number of records shown per page could be fixed or a field to change it could be added.</p>
+    </div>
+    <iframe src="<%= example2_path %>" id="example2" width="100%" height="600"></iframe>
+  </div>
+  <div class="example-box">
+    <div class="info">
+      <h3>Example 3</h3>
+      <p>Search and pagination are both contained within the frame</p>
+    </div>
+    <iframe src="<%= example3_path %>" width="100%" height="600"></iframe>
+  </div>
+</div>

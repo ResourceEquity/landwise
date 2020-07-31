@@ -3,6 +3,8 @@
     <h1>Primary legal sources for women&apos;s empowerment</h1>
     <%= form_with url: records_path, method: :get, local: true, html: { class: 'search' } do |f| %>
       <%= f.text_field :q, class: 'search-input', placeholder: 'Search the LandWise Library' %>
+      <%= f.select :country, [], class: 'search-country', prompt: 'Country' %>
+      <%= f.select :topic, [], class: 'search-topic', prompt: 'Legal Topic' %>
       <%= f.submit 'Search', class: 'button button-solid is-green' %>
       <%= button_tag 'Browse', class: 'button button-ghost is-white', onclick: "window.location = '#{library_index_path}';", type: 'button' %>
     <% end %>

@@ -45,6 +45,17 @@
   color: $medium-gray;
   border-radius: 0;
   flex: 1 1 auto;
+  border: 0;
+}
+
+.search .selectric-wrapper {
+  margin-right: 1rem;
+}
+
+.search .selectric-wrapper .selectric, 
+.search .selectric-wrapper .label {
+  height: 42px;
+  line-height: 42px;
 }
 
 .search .button {
