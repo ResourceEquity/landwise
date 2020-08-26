@@ -38,9 +38,16 @@ var Admin = (function(){
         self.setPositions();
       });
 
-      $(document).on('focus', '.auto-select', function(){
-        $(this).select();
-        $(this).attr('type', 'text');
+      $(document).on('click', '.toggle-visibility', function(){
+        var field = $('#' + $(this).attr('target'));
+        if(field.attr('type') == 'password'){
+          field.attr('type', 'text');
+          field.select();
+          $(this).text('Hide API Key');
+        }else{
+          field.attr('type', 'password');
+          $(this).text('Show API Key');
+        }
       });
     },
     toggleSection: function(button){
