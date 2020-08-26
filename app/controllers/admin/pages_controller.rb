@@ -5,17 +5,20 @@ class Admin::PagesController < AdminController
   add_breadcrumb 'Pages', '/admin/pages'
 
   def index
-    @pages = Page.all.order(title: :asc)
+    @pages = Page.accessible_by(current_ability, :read).order(title: :asc)
+    authorize! :read, Page
   end
 
   def new
     @page = Page.new
+    authorize! :create, @page
   end
 
   def edit; end
 
   def create
     @page = Page.new(page_params)
+    authorize! :create, @page
 
     if @page.save
       redirect_to admin_pages_path, notice: "#{@page.title} was created successfully."

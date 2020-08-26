@@ -2,10 +2,10 @@
 #
 # Table name: imports
 #
-#  id         :bigint(8)        not null, primary key
+#  id         :bigint           not null, primary key
 #  total      :integer          default(0)
 #  complete   :integer          default(0)
-#  user_id    :bigint(8)
+#  user_id    :bigint
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

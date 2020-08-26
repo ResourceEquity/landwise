@@ -2,9 +2,9 @@
 #
 # Table name: record_users
 #
-#  id         :bigint(8)        not null, primary key
-#  user_id    :bigint(8)
-#  record_id  :bigint(8)
+#  id         :bigint           not null, primary key
+#  user_id    :bigint
+#  record_id  :bigint
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

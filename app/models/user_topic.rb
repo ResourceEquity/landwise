@@ -2,9 +2,9 @@
 #
 # Table name: user_topics
 #
-#  id         :bigint(8)        not null, primary key
-#  user_id    :bigint(8)
-#  topic_id   :bigint(8)
+#  id         :bigint           not null, primary key
+#  user_id    :bigint
+#  topic_id   :bigint
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

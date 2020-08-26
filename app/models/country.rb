@@ -2,7 +2,7 @@
 #
 # Table name: countries
 #
-#  id         :bigint(8)        not null, primary key
+#  id         :bigint           not null, primary key
 #  title      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -16,5 +16,7 @@ class Country < ApplicationRecord
   validates :title, presence: { message: '^Please enter a name for the country.' }
 
   alias_attribute :label, :title
+
+  attr_accessor :count
 
 end

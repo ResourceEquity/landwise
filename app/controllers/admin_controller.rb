@@ -4,14 +4,24 @@ class AdminController < ApplicationController
 
   before_action :authorize_admin!
 
+  rescue_from CanCan::AccessDenied do |exception|
+    render template: 'errors/unauthorized', layout: 'application'
+  end
+
   def index
-    redirect_to admin_records_path
+    if current_user.admin?
+      redirect_to admin_records_path
+    else
+      redirect_to admin_users_path
+    end
   end
 
   private
 
     def authorize_admin!
-      raise ActionController::RoutingError, 'Not Found' unless current_user.admin?
+      if !current_user.admin? && !current_user.developer?
+        raise ActionController::RoutingError, 'Not Found'
+      end
     end
 
 end

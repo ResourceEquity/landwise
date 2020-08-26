@@ -2,7 +2,7 @@
 #
 # Table name: pages
 #
-#  id           :bigint(8)        not null, primary key
+#  id           :bigint           not null, primary key
 #  title        :string
 #  show_in_menu :boolean          default(FALSE)
 #  body         :text

@@ -5,17 +5,20 @@ class Admin::RolesController < AdminController
   add_breadcrumb 'Roles', '/admin/roles'
 
   def index
-    @roles = Responsibility.all.order(title: :asc)
+    @roles = Responsibility.accessible_by(current_ability, :read).order(title: :asc)
+    authorize! :read, Responsibility
   end
 
   def new
     @role = Responsibility.new
+    authorize! :create, @role
   end
 
   def edit; end
 
   def create
     @role = Responsibility.new(responsibility_params)
+    authorize! :create, @role
 
     if @role.save
       redirect_to admin_roles_path, notice: "#{@role.title} was created successfully."

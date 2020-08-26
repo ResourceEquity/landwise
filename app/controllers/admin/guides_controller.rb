@@ -12,16 +12,19 @@ class Admin::GuidesController < AdminController
     end
 
     @guides = @search.results
+    authorize! :read, Guide
   end
 
   def new
     @guide = Guide.new
+    authorize! :create, @guide
   end
 
   def edit; end
 
   def create
     @guide = Guide.new(guide_params)
+    authorize! :create, @guide
 
     if @guide.save
       redirect_to admin_guides_path, notice: "#{@guide.title} was created successfully."

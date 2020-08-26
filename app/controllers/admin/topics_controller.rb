@@ -6,16 +6,19 @@ class Admin::TopicsController < AdminController
 
   def index
     @topics = Topic.all.order(title: :asc)
+    authorize! :read, Topic
   end
 
   def new
     @topic = Topic.new
+    authorize! :create, @topic
   end
 
   def edit; end
 
   def create
     @topic = Topic.new(topic_params)
+    authorize! :create, @topic
 
     if @topic.save
       redirect_to admin_topics_path, notice: "#{@topic.title} was created successfully."

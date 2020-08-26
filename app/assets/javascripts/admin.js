@@ -37,6 +37,11 @@ var Admin = (function(){
       $(document).on('submit', 'form', function(){
         self.setPositions();
       });
+
+      $(document).on('focus', '.auto-select', function(){
+        $(this).select();
+        $(this).attr('type', 'text');
+      });
     },
     toggleSection: function(button){
       $(button).closest('.header').nextAll('.sections').slideToggle(250);

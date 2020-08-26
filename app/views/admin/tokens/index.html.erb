@@ -1,0 +1,9 @@
+<div class="toolbar">
+  <h1 class="title">API Keys</h1>
+  <div></div>
+  <%= link_to 'New API Key', new_admin_token_path, class: 'button button-solid is-green' %>
+</div>
+
+<div class="table">
+  <%= render partial: 'admin/tokens/token', collection: @tokens %>
+</div>

@@ -1,0 +1,13 @@
+<div class="dashboard-left">
+  <div class="input-field">
+    <%= f.label :title, 'Title' %>
+    <%= f.text_field :title, placeholder: 'API Key Title' %>
+  </div>
+
+  <% if @token.token.present? %>
+  <div class="input-field">
+    <%= f.label :token, 'API Key' %>
+    <%= f.text_field :token, readonly: true, type: :password, class: 'auto-select' %>
+  </div>
+  <% end %>
+</div>

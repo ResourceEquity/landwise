@@ -5,17 +5,20 @@ class Admin::JurisdictionsController < AdminController
   add_breadcrumb 'Jurisdictions', '/admin/jurisdictions'
 
   def index
-    @jurisdictions = Jurisdiction.all.order(title: :asc)
+    @jurisdictions = Jurisdiction.accessible_by(current_ability, :read).order(title: :asc)
+    authorize! :read, Jurisdiction
   end
 
   def new
     @jurisdiction = Jurisdiction.new
+    authorize! :create, @jurisdiction
   end
 
   def edit; end
 
   def create
     @jurisdiction = Jurisdiction.new(jurisdiction_params)
+    authorize! :create, @jurisdiction
 
     if @jurisdiction.save
       redirect_to admin_jurisdictions_path, notice: "#{@jurisdiction.title} was created successfully."

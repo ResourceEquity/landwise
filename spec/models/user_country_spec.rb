@@ -2,9 +2,9 @@
 #
 # Table name: user_countries
 #
-#  id         :bigint(8)        not null, primary key
-#  user_id    :bigint(8)
-#  country_id :bigint(8)
+#  id         :bigint           not null, primary key
+#  user_id    :bigint
+#  country_id :bigint
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

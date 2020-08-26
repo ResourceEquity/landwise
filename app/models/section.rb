@@ -2,8 +2,8 @@
 #
 # Table name: sections
 #
-#  id         :bigint(8)        not null, primary key
-#  article_id :bigint(8)
+#  id         :bigint           not null, primary key
+#  article_id :bigint
 #  title      :string
 #  body       :text
 #  position   :integer

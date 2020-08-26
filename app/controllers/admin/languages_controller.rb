@@ -5,17 +5,20 @@ class Admin::LanguagesController < AdminController
   add_breadcrumb 'Languages', '/admin/languages'
 
   def index
-    @languages = Language.all.order(title: :asc)
+    @languages = Language.accessible_by(current_ability, :read).order(title: :asc)
+    authorize! :read, Language
   end
 
   def new
     @language = Language.new
+    authorize! :create, @language
   end
 
   def edit; end
 
   def create
     @language = Language.new(language_params)
+    authorize! :create, @language
 
     if @language.save
       redirect_to admin_languages_path, notice: "#{@language.title} was created successfully."

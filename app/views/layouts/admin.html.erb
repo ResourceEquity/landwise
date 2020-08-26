@@ -29,21 +29,22 @@
         </div>
         <nav class="admin-nav">
           <ul>
-            <li class="<%= stylize(is_active: controller_name == 'records') %>"><%= link_to 'Records',              admin_records_path %></li>
-            <li class="<%= stylize(is_active: controller_name == 'guides') %>"><%= link_to 'Guides',                admin_guides_path %></li>
-            <li class="<%= stylize(is_active: controller_name == 'pages') %>"><%= link_to 'Pages',                  admin_pages_path %></li>
-            <li class="<%= stylize(is_active: controller_name == 'users') %>"><%= link_to 'Users',                  admin_users_path %></li>
-            <li class="<%= stylize(is_active: controller_name == 'redirects') %>"><%= link_to 'Redirects',          admin_redirects_path %></li>
-            <li class="<%= stylize(is_active: controller_name == 'imports') %>"><%= link_to 'Imports',              admin_imports_path %></li>
-            <li class="<%= stylize(is_active: controller_name == 'links') %>"><%= link_to 'Broken Links',           admin_links_path %></li>
+            <% if can? :read, Record %><li class="<%= stylize(is_active: controller_name == 'records') %>"><%= link_to 'Records',              admin_records_path %></li><% end %>
+            <% if can? :read, Guide %><li class="<%= stylize(is_active: controller_name == 'guides') %>"><%= link_to 'Guides',                admin_guides_path %></li><% end %>
+            <% if can? :read, Page %><li class="<%= stylize(is_active: controller_name == 'pages') %>"><%= link_to 'Pages',                  admin_pages_path %></li><% end %>
+            <% if can? :read, User %><li class="<%= stylize(is_active: controller_name == 'users') %>"><%= link_to 'Users',                  admin_users_path %></li><% end %>
+            <% if can? :read, Redirect %><li class="<%= stylize(is_active: controller_name == 'redirects') %>"><%= link_to 'Redirects',          admin_redirects_path %></li><% end %>
+            <% if can? :read, Import %><li class="<%= stylize(is_active: controller_name == 'imports') %>"><%= link_to 'Imports',              admin_imports_path %></li><% end %>
+            <% if can? :read, Link %><li class="<%= stylize(is_active: controller_name == 'links') %>"><%= link_to 'Broken Links',           admin_links_path %></li><% end %>
+            <% if can? :read, AccessToken %><li class="<%= stylize(is_active: controller_name == 'tokens') %>"><%= link_to 'API Keys',         admin_tokens_path %></li><% end %>
             <li class="is-divider"></li>
-            <li class="<%= stylize(is_active: controller_name == 'roles') %>"><%= link_to 'Roles',                  admin_roles_path %></li>
-            <li class="<%= stylize(is_active: controller_name == 'topics') %>"><%= link_to 'Topics',                admin_topics_path %></li>
-            <li class="<%= stylize(is_active: controller_name == 'categories') %>"><%= link_to 'Collection Types',  admin_categories_path %></li>
-            <li class="<%= stylize(is_active: controller_name == 'languages') %>"><%= link_to 'Languages',          admin_languages_path %></li>
-            <li class="<%= stylize(is_active: controller_name == 'countries') %>"><%= link_to 'Countries',          admin_countries_path %></li>
-            <li class="<%= stylize(is_active: controller_name == 'jurisdictions') %>"><%= link_to 'Jurisdictions',  admin_jurisdictions_path %></li>
-            <li class="<%= stylize(is_active: controller_name == 'subjects') %>"><%= link_to 'Subjects',            admin_subjects_path %></li>
+            <% if can? :read, Role %><li class="<%= stylize(is_active: controller_name == 'roles') %>"><%= link_to 'Roles',                  admin_roles_path %></li><% end %>
+            <% if can? :read, Topic %><li class="<%= stylize(is_active: controller_name == 'topics') %>"><%= link_to 'Topics',                admin_topics_path %></li><% end %>
+            <% if can? :read, Category %><li class="<%= stylize(is_active: controller_name == 'categories') %>"><%= link_to 'Collection Types',  admin_categories_path %></li><% end %>
+            <% if can? :read, Language %><li class="<%= stylize(is_active: controller_name == 'languages') %>"><%= link_to 'Languages',          admin_languages_path %></li><% end %>
+            <% if can? :read, Country %><li class="<%= stylize(is_active: controller_name == 'countries') %>"><%= link_to 'Countries',          admin_countries_path %></li><% end %>
+            <% if can? :read, Jurisdiction %><li class="<%= stylize(is_active: controller_name == 'jurisdictions') %>"><%= link_to 'Jurisdictions',  admin_jurisdictions_path %></li><% end %>
+            <% if can? :read, Subject %><li class="<%= stylize(is_active: controller_name == 'subjects') %>"><%= link_to 'Subjects',            admin_subjects_path %></li><% end %>
           </ul>
         </nav>
       </aside>

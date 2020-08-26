@@ -5,17 +5,20 @@ class Admin::SubjectsController < AdminController
   add_breadcrumb 'Subjects', '/admin/subjects'
 
   def index
-    @subjects = Subject.all.order(title: :asc)
+    @subjects = Subject.accessible_by(current_ability, :read).order(title: :asc)
+    authorize! :read, Subject
   end
 
   def new
     @subject = Subject.new
+    authorize! :create, @subject
   end
 
   def edit; end
 
   def create
     @subject = Subject.new(subject_params)
+    authorize! :create, @subject
 
     if @subject.save
       redirect_to admin_subjects_path, notice: "#{@subject.title} was created successfully."

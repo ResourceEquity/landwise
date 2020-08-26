@@ -2,8 +2,8 @@
 #
 # Table name: articles
 #
-#  id         :bigint(8)        not null, primary key
-#  guide_id   :bigint(8)
+#  id         :bigint           not null, primary key
+#  guide_id   :bigint
 #  title      :string
 #  position   :integer
 #  created_at :datetime         not null

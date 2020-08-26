@@ -21,6 +21,12 @@ class Ability
       can :manage, Redirect
       can :manage, Import
       can :manage, Link
+      can :manage, AccessToken
+    end
+
+    if user.developer?
+      can :manage, AccessToken, user_id: user.id
+      can :manage, User, id: user.id
     end
   end
 end

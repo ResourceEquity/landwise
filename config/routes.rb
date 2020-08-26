@@ -3,10 +3,15 @@ require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
 
+  if Rails.env.development?
+    mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
+  end
+
   root to: 'home#index'
-
+  
   devise_for :users, controllers: { registrations: 'users/registrations' }
-
+  
+  resources :api,        only: [:create]
   resources :home,       only: [:index]
   resources :library,    only: [:index]
   resources :admin,      only: [:index]
@@ -28,6 +33,7 @@ Rails.application.routes.draw do
     resources :roles
     resources :links
     resources :topics
+    resources :tokens
     resources :guides
     resources :imports
     resources :records

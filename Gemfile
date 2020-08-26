@@ -13,12 +13,14 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'breadcrumbs_on_rails'
 gem 'cancancan'
 gem 'carrierwave'
-gem 'ckeditor', github: 'galetahub/ckeditor'
+gem 'ckeditor', github: 'galetahub/ckeditor', tag: 'v4.2.4'
 gem 'cocoon'
 gem 'colorize'
 gem 'custom_error_message', github: 'thethanghn/custom-err-msg'
 gem 'devise'
 gem 'fog-aws'
+gem 'graphql'
+gem 'graphql-cache'
 gem 'hiredis'
 gem 'jbuilder', '~> 2.5'
 gem 'jwt'
@@ -95,3 +97,5 @@ group :test do
   gem 'vcr'
   gem 'webmock'
 end
+
+gem 'graphiql-rails', group: :development

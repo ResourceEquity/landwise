@@ -14,4 +14,8 @@ class ErrorsController < ApplicationController
     render template: 'errors/unprocessable_entity', formats: [:html]
   end
 
+  def unauthorized
+    render template: 'errors/unauthorized', formats: [:html]
+  end
+
 end

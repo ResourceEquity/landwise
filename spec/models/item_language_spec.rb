@@ -2,9 +2,9 @@
 #
 # Table name: item_languages
 #
-#  id          :bigint(8)        not null, primary key
-#  language_id :bigint(8)
-#  item_id     :bigint(8)
+#  id          :bigint           not null, primary key
+#  language_id :bigint
+#  item_id     :bigint
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #

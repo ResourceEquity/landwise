@@ -12,16 +12,19 @@ class Admin::RecordsController < AdminController
     end
 
     @records = @search.results
+    authorize! :read, Record
   end
 
   def new
     @record = Record.new
+    authorize! :create, @record
   end
 
   def edit; end
 
   def create
     @record = Record.new(record_params)
+    authorize! :create, @record
 
     if @record.save
       redirect_to admin_records_path, notice: "#{@record.title} was created successfully."

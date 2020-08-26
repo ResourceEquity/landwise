@@ -2,13 +2,13 @@
 #
 # Table name: import_errors
 #
-#  id         :bigint(8)        not null, primary key
+#  id         :bigint           not null, primary key
 #  message    :string
 #  field      :string
 #  line       :integer
 #  trace      :text
 #  row        :text
-#  import_id  :bigint(8)
+#  import_id  :bigint
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

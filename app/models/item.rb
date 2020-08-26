@@ -2,12 +2,13 @@
 #
 # Table name: items
 #
-#  id          :bigint(8)        not null, primary key
-#  record_id   :bigint(8)
+#  id          :bigint           not null, primary key
+#  record_id   :bigint
 #  title       :string
 #  year        :integer
 #  description :text
 #  url         :string
+#  position    :integer
 #  published   :boolean          default(TRUE)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

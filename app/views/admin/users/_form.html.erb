@@ -24,6 +24,7 @@
     <%= f.password_field :password_confirmation %>
   </div>
 
+  <% if current_user.admin? %>
   <div class="input-field">
     <label class="heading">Roles</label>
     <div class="checkbox-grid">
@@ -38,9 +39,11 @@
     <% end %>
     </div>
   </div>
+  <% end %>
 
 </div>
 
+<% if current_user.admin? %>
 <div class="dashboard-right">
   <div class="input-field">
     <%= f.label :title, 'Title' %>
@@ -77,3 +80,4 @@
     <%= f.text_area :bio %>
   </div>
 </div>
+<% end %>

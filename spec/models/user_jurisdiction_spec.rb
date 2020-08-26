@@ -2,9 +2,9 @@
 #
 # Table name: user_jurisdictions
 #
-#  id              :bigint(8)        not null, primary key
-#  user_id         :bigint(8)
-#  jurisdiction_id :bigint(8)
+#  id              :bigint           not null, primary key
+#  user_id         :bigint
+#  jurisdiction_id :bigint
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #

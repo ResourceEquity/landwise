@@ -5,17 +5,20 @@ class Admin::CategoriesController < AdminController
   add_breadcrumb 'Collection Types', '/admin/categories'
 
   def index
-    @categories = Category.all.order(title: :asc)
+    @categories = Category.accessible_by(current_ability, :read).order(title: :asc)
+    authorize! :read, Category
   end
 
   def new
     @category = Category.new
+    authorize! :create, @category
   end
 
   def edit; end
 
   def create
     @category = Category.new(category_params)
+    authorize! :create, @category
 
     if @category.save
       redirect_to admin_categories_path, notice: "#{@category.title} was created successfully."

@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_16_235749) do
+ActiveRecord::Schema.define(version: 2020_08_21_195220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "access_tokens", force: :cascade do |t|
+    t.string "title"
+    t.string "token"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_access_tokens_on_token", unique: true
+    t.index ["user_id"], name: "index_access_tokens_on_user_id"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -452,6 +462,7 @@ ActiveRecord::Schema.define(version: 2018_11_16_235749) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "access_tokens", "users"
   add_foreign_key "articles", "guides"
   add_foreign_key "guide_countries", "countries"
   add_foreign_key "guide_countries", "guides"

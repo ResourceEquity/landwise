@@ -5,17 +5,20 @@ class Admin::CountriesController < AdminController
   add_breadcrumb 'Countries', '/admin/countries'
 
   def index
-    @countries = Country.all.order(title: :asc)
+    @countries = Country.accessible_by(current_ability, :read).order(title: :asc)
+    authorize! :create, Country
   end
 
   def new
     @country = Country.new
+    authorize! :create, @category
   end
 
   def edit; end
 
   def create
     @country = Country.new(country_params)
+    authorize! :create, @country
 
     if @country.save
       redirect_to admin_countries_path, notice: "#{@country.title} was created successfully."

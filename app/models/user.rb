@@ -54,6 +54,7 @@ class User < ApplicationRecord
   has_many :categories,       through: :user_categories
   has_many :jurisdictions,    through: :user_jurisdictions
   has_many :favorites,        through: :user_favorites, class_name: 'Record', foreign_key: 'record_id'
+  has_many :access_tokens
 
   has_one_attached :avatar
 
@@ -66,6 +67,7 @@ class User < ApplicationRecord
   enum notification_interval: [:never, :weekly, :monthly]
 
   searchable do
+    integer :id
     text :first_name, :last_name, :email, :title
   end
 
@@ -75,6 +77,10 @@ class User < ApplicationRecord
 
   def admin?
     responsibilities.any? { |r| r.title.parameterize.underscore == 'admin' }
+  end
+
+  def developer?
+    responsibilities.any? { |r| r.title.parameterize.underscore == 'developer' }
   end
 
   alias_attribute :label, :name

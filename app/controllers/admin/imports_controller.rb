@@ -5,18 +5,21 @@ class Admin::ImportsController < AdminController
   add_breadcrumb 'Imports', '/admin/imports'
 
   def index
-    @imports = Import.all.order(created_at: :desc)
+    @imports = Import.accessible_by(current_ability, :read).order(created_at: :desc)
+    authorize! :read, Import
   end
 
   def show; end
 
   def new
     @import = Import.new
+    authorize! :create, @import
   end
 
   def create
     @import = Import.new(import_params)
     @import.user = current_user
+    authorize! :create, @import
 
     if @import.save
       ImportJob.perform_later(@import)

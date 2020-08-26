@@ -5,17 +5,20 @@ class Admin::RedirectsController < AdminController
   add_breadcrumb 'Redirects', '/admin/redirects'
 
   def index
-    @redirects = Redirect.all.order(from: :asc)
+    @redirects = Redirect.accessible_by(current_ability, :read).order(from: :asc)
+    authorize! :read, Redirect
   end
 
   def new
     @redirect = Redirect.new
+    authorize! :create, @redirect
   end
 
   def edit; end
 
   def create
     @redirect = Redirect.new(redirect_params)
+    authorize! :create, @redirect
 
     if @redirect.save
       redirect_to admin_redirects_path, notice: "Redirect from \"#{@redirect.from}\" to \"#{@redirect.to}\" was created successfully."

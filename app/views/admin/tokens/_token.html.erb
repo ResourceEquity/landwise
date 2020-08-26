@@ -1,0 +1,8 @@
+<div class="table-row">
+  <div class="item-title cell">
+    <%= link_to token.title, edit_admin_token_path(token) %>
+  </div>
+  <div class="item-destroy">
+    <%= link_to 'Delete', admin_token_path(token), method: :delete, data: { confirm: "Deleting this access token will revoke all access to Landwise data for #{token.title}. Are you sure you want to delete this?" }  %>
+  </div>
+</div>
