@@ -28,6 +28,8 @@ class Item < ApplicationRecord
 
   after_create :scan
 
+  after_save :clear_links, if: :links_updated?
+
   validates :title, presence: { message: '^Please enter an item title.' }
   validates :year, numericality: { message: '^Please enter a valid 4-digit year.', allow_nil: true, only_integer: true, greater_than_or_equal_to: 0 }
 
@@ -40,5 +42,15 @@ class Item < ApplicationRecord
   def admin_path
     Rails.application.routes.url_helpers.edit_admin_record_path(record)
   end
+
+  private
+
+    def links_updated?
+      LINK_FIELDS.any? { |field| send("saved_change_to_#{field}?") }
+    end
+
+    def clear_links
+      links.destroy_all
+    end
 
 end

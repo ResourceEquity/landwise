@@ -1,7 +1,39 @@
+.table {
+  width: 100%;
+}
+
+.table .header {
+  text-align: left;
+  background-color: $white;
+}
+
+.table .header th {
+  padding: 1.5rem 2rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.table .row {
+  &:nth-child(even) {
+    background-color: $faint-gray;
+  }
+  &:nth-child(odd) {
+    background-color: $light-gray;
+  }
+}
+
+.table .row td {
+  padding: 1.5rem 2rem;
+  white-space: nowrap;
+  max-width: 600px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .table-row {
   display: grid;
   height: 50px;
-  grid-template-columns: auto min-content min-content;
+  grid-template-columns: auto min-content min-content min-content min-content;
   grid-gap: 2rem 2rem;
   align-items: center;
 
@@ -53,7 +85,8 @@
   }
 }
 
-.table-row .cell a {
+.table-row .cell a,
+.table .row a {
   text-decoration: none;
   color: $green;
 
@@ -94,13 +127,19 @@
   color: saturate(darken($flash-red, 35%), 10%);
 }
 
+.table-row .item-created,
+.table-row .item-updated {
+  display: inline-block;
+}
+
 .table-row .item-code {
   text-align: right;
   white-space: nowrap;
 }
 
 .table-row .item-edit a,
-.table-row .item-destroy a {
+.table-row .item-destroy a,
+.table .row .item-destroy a {
   font-size: 1.3rem;
   text-decoration: none;
   text-transform: uppercase;
@@ -127,6 +166,7 @@
   color: $green;
 }
 
-.table-row .item-destroy a {
+.table-row .item-destroy a,
+.table .row .item-destroy a {
   color: $red;
 }

@@ -15,6 +15,8 @@ class ScanJob < ApplicationJob
       links = URI.extract(value.to_s, ['http', 'https', 'ftp'])
 
       links.each do |link|
+        next if Link.where(url: link, ignore: true).count.positive?
+
         begin
           route, stdout, stderr = URI.parse(link).route
         rescue URI::InvalidURIError

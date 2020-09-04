@@ -5,9 +5,8 @@ FactoryBot.define do
     creator         { FFaker::Name.name }
     description     { FFaker::Lorem.paragraph }
     published       { true }
-    category_id     { Category.sample.id }
-    jurisdiction_id { Jurisdiction.sample.id }
-    user_id         { User.sample.id }
+    category
+    jurisdiction
   end
 
 end

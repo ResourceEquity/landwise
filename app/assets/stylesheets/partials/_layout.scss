@@ -13,6 +13,8 @@
 
 .layout-admin .main-content {
   overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: auto;
   width: auto;
 }
 

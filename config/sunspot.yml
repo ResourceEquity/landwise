@@ -1,7 +1,7 @@
 test:
   solr:
     hostname: localhost
-    port: 8981
+    port: 8983
     log_level: WARNING
     path: /solr/test
 

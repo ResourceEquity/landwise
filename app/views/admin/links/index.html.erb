@@ -3,6 +3,15 @@
   <div></div>
 </div>
 
-<div class="table">
+<% if @links.any? %>
+<table class="table">
+  <tr class="header">
+    <th>URL</th>
+    <th>Original Scan</th>
+    <th>Last Scanned</th>
+    <th>Result</th>
+    <th></th>
+  </tr>
   <%= render partial: 'admin/links/link', collection: @links %>
-</div>
+</table>
+<% end %>

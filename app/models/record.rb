@@ -36,6 +36,8 @@ class Record < ApplicationRecord
 
   after_create :scan
 
+  after_save :clear_links, if: :links_updated?
+
   after_initialize :assign_admin, if: :new_record?
 
   validates :title, presence: { message: '^Please provide a record title.' }
@@ -104,6 +106,14 @@ class Record < ApplicationRecord
     def assign_admin
       responsibilities << Responsibility.find_by(title: 'Admin') unless responsibilities.any? { |r| r.title == 'Admin' }
       responsibilities << Responsibility.find_by(title: 'Public') unless responsibilities.any? { |r| r.title == 'Public' } || topics.any? { |t| t.title == 'Restricted Access' }
+    end
+
+    def links_updated?
+      LINK_FIELDS.any? { |field| send("saved_change_to_#{field}?") }
+    end
+
+    def clear_links
+      links.destroy_all
     end
 
 end
