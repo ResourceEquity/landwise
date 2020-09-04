@@ -10,6 +10,18 @@ class HomeController < ApplicationController
     end
 
     @recent = @search.results
+    
+    @facets = Record.search(include: [:topics, :record_countries, :countries]) do
+      fulltext '*'
+
+      facet :country_ids, :topic_ids, limit: -1
+    end
+
+    country_ids = @facets.facet(:country_ids).rows.map(&:value)
+    topic_ids = @facets.facet(:topic_ids).rows.map(&:value)
+
+    @countries = Country.where(id: country_ids).order(title: :asc)
+    @topics = Topic.where(id: topic_ids).order(title: :asc)
   end
 
 end

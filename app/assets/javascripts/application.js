@@ -7,6 +7,7 @@
 //= require jquery
 //= require rails-ujs
 //= require vendor/jquery.selectric
+//= require vendor/jquery.selectric.placeholder
 //= require_tree ./voltron
 
 // require jquery-ui

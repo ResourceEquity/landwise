@@ -12,30 +12,28 @@ class RecordsController < ApplicationController
         end
       end
 
+      all_of do
+        # with(:country_ids, search_filter(:country_ids))
+        # with(:topic_ids, search_filter(:topic_ids))
+        # with(:language_ids, search_filter(:language_ids))
+        # with(:year, search_filter(:year))
+        # with(:jurisdiction_id, search_filter(:jurisdiction_id))
+        # with(:category_id, search_filter(:category_id))
+        search_filter(:country_ids).each { |id| with(:country_ids, search_filter(:country_ids)) }
+        search_filter(:topic_ids).each { |id| with(:topic_ids, search_filter(:topic_ids)) }
+        search_filter(:language_ids).each { |id| with(:language_ids, search_filter(:language_ids)) }
+        search_filter(:year).each { |id| with(:year, search_filter(:year)) }
+        search_filter(:jurisdiction_id).each { |id| with(:jurisdiction_id, search_filter(:jurisdiction_id)) }
+        search_filter(:category_id).each { |id| with(:category_id, search_filter(:category_id)) }
+      end
+
+      with :published, true
+
       facet :country_ids, :topic_ids, :language_ids, :category_id, :jurisdiction_id, :year, limit: -1
 
       paginate page: search_params[:page] || 1, per_page: search_params[:per] || 25
 
       order_by search_params[:sort] if ['title_sort', 'updated_at', 'category_sort'].include?(search_params[:sort])
-
-      with(:country_ids,  search_filter(:country_ids))  if has_search_filter?(:country_ids)
-      with(:topic_ids,    search_filter(:topic_ids))    if has_search_filter?(:topic_ids)
-      with(:language_ids, search_filter(:language_ids)) if has_search_filter?(:language_ids)
-      with(:year,         search_filter(:year))         if has_search_filter?(:year)
-
-      if has_search_filter?(:jurisdiction_id)
-        search_filter(:jurisdiction_id).each do |jurisdiction_id|
-          with :jurisdiction_id, jurisdiction_id
-        end
-      end
-
-      if has_search_filter?(:category_id)
-        search_filter(:category_id).each do |category_id|
-          with :category_id, category_id
-        end
-      end
-
-      with :published, true
 
       if user_signed_in?
         with :roles, current_user.responsibilities.map(&:id)
@@ -65,10 +63,11 @@ class RecordsController < ApplicationController
     end
 
     def search_filter(param)
-      search_params[param].to_s.split(',')
+      Array(search_params[param]).compact.reject(&:blank?)
+      # search_params[param].to_s.split(',')
     end
 
     def search_params
-      params.permit(:q, :country_ids, :topic_ids, :language_ids, :jurisdiction_id, :category_id, :year, :page, :per, :sort)
+      params.permit(:q, :page, :per, :sort, country_ids: [], topic_ids: [], language_ids: [], jurisdiction_id: [], category_id: [], year: [])
     end
 end

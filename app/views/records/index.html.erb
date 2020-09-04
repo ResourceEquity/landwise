@@ -2,7 +2,7 @@
   <aside class="sidebar sidebar-green search-filters">
     <h2>Search</h2>
     <%= form_with url: records_path, method: :get, local: true, html: { class: 'record-search' } do |f| %>
-      <% current_filters(topic_ids: Topic, language_ids: Language, category_id: Category, jurisdiction_id: Jurisdiction, year: nil) do |item, remove, param, value| %>
+      <% current_filters(country_ids: Country, topic_ids: Topic, language_ids: Language, category_id: Category, jurisdiction_id: Jurisdiction, year: nil) do |item, remove, param, value| %>
         <%= f.hidden_field param, value: value %>
       <% end %>
       <%= f.text_field :q, value: params[:q], class: 'search-input', placeholder: 'Search the LandWise Library' %>
@@ -11,11 +11,11 @@
 
     <h2>Filter Results</h2>
 
-    <% if has_filters?('topic_ids', 'language_ids', 'category_id', 'jurisdiction_id', 'year', 'q') %>
+    <% if has_filters?('country_ids', 'topic_ids', 'language_ids', 'category_id', 'jurisdiction_id', 'year', 'q') %>
     <%= link_to 'Reset Filters', records_path, class: 'search-reset' %>
 
     <div class="applied-filters">
-      <% current_filters(topic_ids: Topic, language_ids: Language, category_id: Category, jurisdiction_id: Jurisdiction, year: nil) do |item, remove_url| %>
+      <% current_filters(country_ids: Country, topic_ids: Topic, language_ids: Language, category_id: Category, jurisdiction_id: Jurisdiction, year: nil) do |item, remove_url| %>
       <div class="applied-filter">
         <em><%= item.label %></em><%= link_to '', remove_url, class: 'remove-filter', title: 'Remove this filter' %>
       </div>
@@ -23,51 +23,60 @@
     </div>
     <% end %>
 
+    <% if has_facets_for?(:topic_ids) %>
     <div class="facet">
       <h3 class="facet-label">Topic</h3>
-      <% collection_for :topic_ids, Topic do |item, count| %>
+      <% collection_for :topic_ids, Topic do |item, _, count| %>
         <div class="facet-result">
-          <%= link_to item.title, replace_query_params(topic_ids: item.id) %><em><%= count %></em>
+          <%= link_to item.title, merge_query_params(topic_ids: [item.id]) %><em><%= count %></em>
         </div>
       <% end %>
     </div>
+    <% end %>
 
+    <% if has_facets_for?(:jurisdiction_id) %>
     <div class="facet">        
       <h3 class="facet-label">Jurisdiction</h3>
-      <% collection_for :jurisdiction_id, Jurisdiction do |item, count| %>
+      <% collection_for :jurisdiction_id, Jurisdiction do |item, _, count| %>
         <div class="facet-result">
-          <%= link_to item.title, replace_query_params(jurisdiction_id: item.id) %><em><%= count %></em>
+          <%= link_to item.title, merge_query_params(jurisdiction_id: [item.id]) %><em><%= count %></em>
         </div>
       <% end %>
     </div>
+    <% end %>
 
+    <% if has_facets_for?(:year) %>
     <div class="facet">
       <h3 class="facet-label">Year</h3>
-      <% collection_for :year do |year, count| %>
+      <% collection_for :year do |label, year, count| %>
         <div class="facet-result">
-          <%= link_to year, replace_query_params(year: year) %><em><%= count %></em>
+          <%= link_to label, merge_query_params(year: [year]) %><em><%= count %></em>
         </div>
       <% end %>
     </div>
+    <% end %>
 
+    <% if has_facets_for?(:category_id) %>
     <div class="facet">
       <h3 class="facet-label">Collection Type</h3>
-      <% collection_for :category_id, Category do |item, count| %>
+      <% collection_for :category_id, Category do |item, _, count| %>
         <div class="facet-result">
-          <%= link_to item.title, replace_query_params(category_id: item.id) %><em><%= count %></em>
+          <%= link_to item.title, merge_query_params(category_id: [item.id]) %><em><%= count %></em>
         </div>
       <% end %>
     </div>
+    <% end %>
 
+    <% if has_facets_for?(:language_ids) %>
     <div class="facet">
       <h3 class="facet-label">Language</h3>
-      <% collection_for :language_ids, Language do |item, count| %>
+      <% collection_for :language_ids, Language do |item, _, count| %>
         <div class="facet-result">
-          <%= link_to item.title, replace_query_params(language_ids: item.id) %><em><%= count %></em>
+          <%= link_to item.title, merge_query_params(language_ids: [item.id]) %><em><%= count %></em>
         </div>
       <% end %>
     </div>
-
+    <% end %>
 
   </aside>
   <main class="main-content">
