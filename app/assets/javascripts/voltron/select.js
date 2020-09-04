@@ -1,7 +1,7 @@
 Voltron.addModule('Select', function(){
   return {
     initialize: function(){
-      $('select').selectric({
+      $('select:not(.select2)').selectric({
         labelBuilder: function(item){
           let $option = $(item.element);
           if($option.data('label')){
@@ -10,7 +10,7 @@ Voltron.addModule('Select', function(){
             return $(item.element).text();
           }
         }
-      });
+      }).selectricPlaceholder();
     }
   }
 }, true);

@@ -1,17 +1,36 @@
 module ApplicationHelper
 
+  def query
+    @query ||= begin
+      url = request.base_url + request.original_fullpath
+      uri = URI.parse(url)
+
+      Rack::Utils.parse_query(uri.query)
+    end
+  end
+
   def collection_for(facet, constructor=nil)
+    ids = Array(query["#{facet}[]"] || query[facet.to_s]).map(&:to_s)
+
     mapping = @search.facet(facet).rows.map { |f| { f.value => f.count } }.reduce(Hash.new, :merge)
 
     if constructor.present?
       constructor.where(id: mapping.keys).order(title: :asc).each do |item|
-        yield item, (mapping[item.id] || 0)
+        next if ids.include?(item.id.to_s)
+        yield item, item, (mapping[item.id] || 0)
       end
     else
-      mapping.to_a.sort_by { |r| r[0] }.reverse.each do |title, value|
-        yield title, value
+      mapping.to_a.sort_by { |r| r[0] }.reverse.each do |title, count|
+        next if ids.include?(title.to_s)
+        label = title
+        label = 'Unknown' if facet == :year && title == 9999
+        yield label, title, count
       end
     end
+  end
+
+  def has_facets_for?(facet)
+    (@search.facet(facet).rows.map(&:value) - Array(query["#{facet}[]"] || query[facet.to_s]).map(&:to_i)).any?
   end
 
   def has_filters?(*fields)
@@ -20,7 +39,7 @@ module ApplicationHelper
 
   def current_filters(**mapping)
     mapping.map do |filter_param, model|
-      filter_ids = params[filter_param].to_s.split(',').map(&:to_i)
+      filter_ids = Array(params[filter_param]).compact.map(&:to_i)
 
       if filter_ids.any?
         if model.present?
@@ -34,11 +53,14 @@ module ApplicationHelper
             end
           end
         else
-          if filter_ids.one?
-            [[OpenStruct.new(label: filter_ids.first), replace_query_params(filter_param => nil), filter_param, params[filter_param]]]
+          labels = filter_ids.map do |value|
+            { value: value, label: filter_param == :year && value == 9999 ? 'Unknown' : value }
+          end
+          if labels.one?
+            [[OpenStruct.new(label: labels.first[:label]), replace_query_params(filter_param => nil), filter_param, params[filter_param]]]
           else
-            filter_ids.map do |result|
-              [OpenStruct.new(label: result), replace_query_params(filter_param => filter_ids - [result]), filter_param, params[filter_param]]
+            labels.map do |result|
+              [OpenStruct.new(label: result[:label]), replace_query_params(filter_param => filter_ids - [result[:value]]), filter_param, params[filter_param]]
             end
           end
         end

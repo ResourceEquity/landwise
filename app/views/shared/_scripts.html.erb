@@ -1,8 +1,7 @@
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
-
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=initTranslate" async defer></script>
 
 <% if Rails.env.production? %>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js" async defer></script>
 <% end %>
 
@@ -48,6 +47,7 @@ window.twttr = (function(d, s, id){
 }(document, 'script', 'twitter-wjs'));
 </script>
 
+<% if Rails.env.production? %>
 <script type="text/javascript">
 window.addEventListener("load", function(){
 window.cookieconsent.initialise({
@@ -68,7 +68,6 @@ window.cookieconsent.initialise({
 })});
 </script>
 
-<% if Rails.env.production? %>
 <script type="text/javascript">
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-29983200-1']);

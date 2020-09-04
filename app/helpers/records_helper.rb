@@ -35,6 +35,23 @@ module RecordsHelper
     end.join('').html_safe
   end
 
+  def merge_query_params(**query_params)
+    url = request.base_url + request.original_fullpath
+    uri = URI.parse(url)
+
+    query = Rack::Utils.parse_query(uri.query)
+
+    query_params = query_params.map do |key, value|
+      if value.is_a?(Array)
+        { key => (Array(query["#{key.to_s}[]"]) + value.map(&:to_s)).compact.uniq }
+      else
+        { key => value }
+      end
+    end.reduce(Hash.new, :merge)
+
+    replace_query_params(query_params)
+  end
+
   def replace_query_params(**query_params)
     url = request.base_url + request.original_fullpath
     uri = URI.parse(url)
@@ -43,6 +60,9 @@ module RecordsHelper
     query_params.each do |key, value|
       if value.nil?
         query.delete(key.to_s)
+        query.delete("#{key.to_s}[]")
+      elsif value.is_a?(Array)
+        query["#{key.to_s}[]"] = value
       else
         query[key.to_s] = value
       end
