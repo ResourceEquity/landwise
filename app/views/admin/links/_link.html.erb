@@ -1,6 +1,6 @@
 <tr class="row">
   <td class="item-title cell">
-    <%= link_to link.url, admin_link_path(link) %> (<%= link_to "Edit #{link.resource.class.name.titleize}", link.resource.admin_path %>)
+    <%= link_to link.url.truncate(), admin_link_path(link) %> (<%= link_to "Edit #{link.resource.class.name.titleize}", link.resource.admin_path %>)
   </td>
   <td class="item-created">
     <%= link.created_at.strftime('%-m/%-d/%Y') %>
