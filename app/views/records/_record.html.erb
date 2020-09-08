@@ -22,7 +22,7 @@
     <% years = record.items.map(&:year).flatten.compact.uniq.sort.reverse %>
     <% if years.any? %>
     <dt>Year<%= years.length > 1 ? 's' : '' %>:</dt>
-    <dd><%= years.join(', ') %></dd>
+    <dd><%= years.map { |y| y == 9999 ? 'Unknown' : y }.join(', ') %></dd>
     <% end %>
   </dl>
 
