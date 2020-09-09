@@ -19,8 +19,11 @@ class ApiController < ApplicationController
     result = ResourceEquitySchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
   rescue => e
+    logger.error e.message
+    logger.error e.backtrace.join("\n")
+
     if Rails.env.development?
-      handle_error_in_development e
+      render json: { errors: [{ message: e.message, code: 500, backtrace: e.backtrace }], data: {} }, status: 500
     else
       render json: { errors: [{ message: e.message, code: 500 }], data: {} }, status: 500
     end
@@ -46,13 +49,6 @@ class ApiController < ApplicationController
     else
       raise ArgumentError, "Unexpected parameter: #{variables_param}"
     end
-  end
-
-  def handle_error_in_development(e)
-    logger.error e.message
-    logger.error e.backtrace.join("\n")
-
-    render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} }, status: 500
   end
 
   def current_user
