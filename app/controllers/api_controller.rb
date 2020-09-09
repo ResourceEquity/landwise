@@ -23,9 +23,9 @@ class ApiController < ApplicationController
     logger.error e.backtrace.join("\n")
 
     if Rails.env.development?
-      render json: { errors: [{ message: e.message, code: 500, backtrace: e.backtrace }], data: {} }, status: 500
+      render json: { errors: [{ message: e.message, code: 500, backtrace: e.backtrace }] }, status: 500
     else
-      render json: { errors: [{ message: e.message, code: 500 }], data: {} }, status: 500
+      render json: { errors: [{ message: e.message, code: 500 }] }, status: 500
     end
   end
 
