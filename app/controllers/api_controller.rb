@@ -52,7 +52,8 @@ class ApiController < ApplicationController
   end
 
   def current_user
-    bearer = request.headers['Bearer'].to_s.split(/Bearer\s+/).last
+    bearer = request.headers['Authorization'].to_s.strip.split(/Bearer\s+/).last
+    bearer = request.headers['Bearer'].to_s.strip.split(/Bearer\s+/).last unless bearer.present?
     access = AccessToken.find_by!(token: bearer)
     access.user
   rescue ActiveRecord::RecordNotFound => e
