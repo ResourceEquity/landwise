@@ -12,19 +12,19 @@ class RecordsController < ApplicationController
         end
       end
 
-      any_of do
-        # with(:country_ids, search_filter(:country_ids))
-        # with(:topic_ids, search_filter(:topic_ids))
-        # with(:language_ids, search_filter(:language_ids))
-        # with(:year, search_filter(:year))
-        # with(:jurisdiction_id, search_filter(:jurisdiction_id))
-        # with(:category_id, search_filter(:category_id))
-        search_filter(:country_ids).each      { |id| with(:country_ids, id) }
-        search_filter(:topic_ids).each        { |id| with(:topic_ids, id) }
-        search_filter(:language_ids).each     { |id| with(:language_ids, id) }
-        search_filter(:year).each             { |id| with(:year, id) }
-        search_filter(:jurisdiction_id).each  { |id| with(:jurisdiction_id, id) }
-        search_filter(:category_id).each      { |id| with(:category_id, id) }
+      all_of do
+        with(:country_ids,      search_filter(:country_ids))
+        with(:topic_ids,        search_filter(:topic_ids))
+        with(:language_ids,     search_filter(:language_ids))
+        with(:year,             search_filter(:year))
+        with(:jurisdiction_id,  search_filter(:jurisdiction_id))
+        with(:category_id,      search_filter(:category_id))
+        # search_filter(:country_ids).each      { |id| with(:country_ids, id) }
+        # search_filter(:topic_ids).each        { |id| with(:topic_ids, id) }
+        # search_filter(:language_ids).each     { |id| with(:language_ids, id) }
+        # search_filter(:year).each             { |id| with(:year, id) }
+        # search_filter(:jurisdiction_id).each  { |id| with(:jurisdiction_id, id) }
+        # search_filter(:category_id).each      { |id| with(:category_id, id) }
       end
 
       with :published, true
