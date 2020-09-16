@@ -48,7 +48,7 @@ module Types
 
         facet :country_ids, :topic_ids, :language_ids, :category_id, :jurisdiction_id, limit: -1
   
-        paginate page: page, per_page: 9999 # [[per_page, 1].max, 200].min
+        paginate page: page, per_page: [[per_page, 1].max, 200].min
   
         if ['title_sort', 'updated_at', 'category_sort'].include?(sort)
           order_by sort, direction

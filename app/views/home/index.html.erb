@@ -6,13 +6,10 @@
         <div class="search-wrapper">
           <div class="search-input-wrapper">
             <%= f.text_field :q, class: 'search-input', placeholder: 'Search the LandWise Library' %>
-            <% if params[:view] == 'advanced' %>
             <div>
               <a href="javascript:void(0);" class="filter-link">Advanced Search</a>
             </div>
-            <% end %>
           </div>
-          <% if params[:view] == 'advanced' %>
           <div class="advanced-search" style="display: none;">
             <div class="search-column">
               <h4>Country</h4>
@@ -33,16 +30,17 @@
           <button type="button" class="filter-button">
             <div class="filter-icon">
           </button>
-          <% end %>
         </div>
-        <% if params[:view] != 'advanced' %>
-        <div class="search-facet">
-          <%= f.select 'country_ids[]', '<option value="">All Countries</option>'.html_safe + options_from_collection_for_select(@countries, :id, :title), {}, placeholder: 'All Countries' %>
-        </div>
-        <div class="search-facet">
-          <%= f.select 'topic_ids[]', '<option value="">All Topics</option>'.html_safe + options_from_collection_for_select(@topics, :id, :title), {}, placeholder: 'All Topics' %>
-        </div>
-        <% end %>
+        <% # if params[:view] != 'advanced' %>
+        <%
+        # <div class="search-facet">
+        #   <%= f.select 'country_ids[]', '<option value="">All Countries</option>'.html_safe + options_from_collection_for_select(@countries, :id, :title), {}, placeholder: 'All Countries'
+        # </div>
+        # <div class="search-facet">
+        #   <%= f.select 'topic_ids[]', '<option value="">All Topics</option>'.html_safe + options_from_collection_for_select(@topics, :id, :title), {}, placeholder: 'All Topics'
+        # </div>
+        %>
+        <% # end %>
         <%= f.submit 'Search', class: 'button button-solid is-green' %>
         <%= button_tag 'Browse', class: 'button button-ghost is-white', onclick: "window.location = '#{library_index_path}';", type: 'button' %>
       </div>

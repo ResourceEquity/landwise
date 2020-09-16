@@ -23,6 +23,17 @@
     </div>
     <% end %>
 
+    <% if has_facets_for?(:country_ids) %>
+    <div class="facet">
+      <h3 class="facet-label">Country</h3>
+      <% collection_for :country_ids, Country do |item, _, count| %>
+        <div class="facet-result">
+          <%= link_to item.title, merge_query_params(country_ids: [item.id]) %><em><%= count %></em>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
+
     <% if has_facets_for?(:topic_ids) %>
     <div class="facet">
       <h3 class="facet-label">Topic</h3>
