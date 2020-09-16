@@ -6,7 +6,7 @@ module Types
     field :title,       String, null: false, cache: { key: :updated_at }, description: 'Title of the record item'
     field :description, String, null: true, cache: { key: :updated_at }, description: 'Description of the record item, may be null'
     field :website,     String, null: true, cache: { key: :updated_at }, description: 'URL to the item website, article, or document. May be null'
-    field :document,    String, null: true, cache: { key: :updated_at }, description: 'Document attachment for the record item, if any. May be null. Difference between website and document is that document is downloaded, whereas website is simply linked to. Document links are only valid for 1 hour from time of query'
+    field :document,    String, null: true, cache: false, description: 'Document attachment for the record item, if any. May be null. Difference between website and document is that document is downloaded, whereas website is simply linked to. Document links are only valid for 1 hour from time of query'
 
     field :year,        Integer, null: true, cache: { key: :updated_at }, description: 'Integer value of the year associated with the record item. May be null'
 
