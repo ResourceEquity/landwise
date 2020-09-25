@@ -22,12 +22,6 @@ Rails.application.routes.draw do
     resources :articles, only: [:show]
   end
 
-  resources :example, only: [:index]
-
-  get '/example1', to: 'example#example1'
-  get '/example2', to: 'example#example2'
-  get '/example3', to: 'example#example3'
-
   namespace :admin do
     resources :pages
     resources :users
