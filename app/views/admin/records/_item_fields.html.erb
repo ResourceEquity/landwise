@@ -38,7 +38,7 @@
     <%= f.file_field :document %>
     <% if f.object.document.attached? %>
     <div class="download-attachment">
-      <%= link_to f.object.document.blob.filename, f.object.document.service.send(:object_for, object.document.key).public_url %> (<%= number_to_human_size(f.object.document.blob.byte_size) %>)
+      <%= link_to f.object.document.blob.filename, f.object.document.service.send(:object_for, f.object.document.key).public_url %> (<%= number_to_human_size(f.object.document.blob.byte_size) %>)
     </div>
     <% end %>
   </div>
