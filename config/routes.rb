@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :admin,      only: [:index]
   resources :favorites,  only: [:create, :destroy]
   resources :records,    only: [:index, :show]
+  resources :documents,  only: [:show]
   resources :guides,     only: [:index, :show] do
     resources :articles, only: [:show]
   end
