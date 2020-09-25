@@ -28,7 +28,7 @@ module Types
     end
 
     def document
-      object.document.attached? ? object.document.service_url(expires_in: 1.week, disposition: :attachment) : nil
+      object.document.attached? ? object.document.service.send(:object_for, object.document.key).public_url : nil
     end
 
   end
