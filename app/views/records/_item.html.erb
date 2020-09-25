@@ -8,7 +8,7 @@
   <% if item.document.attached? || item.url.present? %>
   <div class="item-links">
     <% if item.document.attached? %>
-    <span><%= link_to 'Download', item.document.service_url(expires_in: 1.hour, disposition: :attachment), class: 'item-download' %> (<%= number_to_human_size(item.document.blob.byte_size) %>)</span>
+    <span><%= link_to 'Download', item.document.service.send(:object_for, object.document.key).public_url, class: 'item-download' %> (<%= number_to_human_size(item.document.blob.byte_size) %>)</span>
     <% end %>
 
     <% if item.url.present? %>
