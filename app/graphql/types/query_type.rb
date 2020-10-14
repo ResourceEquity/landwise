@@ -14,7 +14,7 @@ module Types
     end
 
     def records(record_ids: [], page: 0, per_page: 50)
-      limit = [[object.per_page, 1].max, 200].min
+      limit = [[per_page, 1].max, 200].min
       offset = limit * page
 
       if record_ids.any?
