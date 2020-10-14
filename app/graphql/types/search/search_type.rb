@@ -22,7 +22,8 @@ module Types
     end
     
     def updated_at
-      records.map(&:updated_at).max || Time.current
+      @updates ||= query(1, 1, :updated_at, :desc)
+      @updates.results.first&.updated_at || Time.current
     end
 
     def facets
@@ -49,7 +50,7 @@ module Types
   
         paginate page: page, per_page: [[per_page, 1].max, 200].min
   
-        if ['title_sort', 'updated_at', 'category_sort'].include?(sort)
+        if ['title_sort', 'updated_at', 'category_sort'].include?(sort.to_s)
           order_by sort, direction
         end
   
