@@ -9,6 +9,8 @@ module Types
 
     field :records, [Types::Record::RecordType], null: false, description: 'List of records' do
       argument :record_ids, [ID], required: false, description: 'Array of specific record ids to fetch'
+      argument :page,       Integer, required: false, description: 'Page number of records to return, starts at 0'
+      argument :per_page,   Integer, required: false, description: 'Number of results per page, 1-200, default 50'
     end
 
     def records(record_ids: [], page: 0, per_page: 50)
