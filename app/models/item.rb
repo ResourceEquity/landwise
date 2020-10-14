@@ -18,7 +18,7 @@ class Item < ApplicationRecord
 
   LINK_FIELDS = [:url, :description]
 
-  belongs_to :record, inverse_of: :items
+  belongs_to :record, inverse_of: :items, touch: true
 
   has_many :item_languages, dependent: :delete_all
   has_many :languages, through: :item_languages

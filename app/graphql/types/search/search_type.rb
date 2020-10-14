@@ -22,8 +22,7 @@ module Types
     end
     
     def updated_at
-      @updates ||= query(1, 1, :updated_at, :desc)
-      @updates.results.first&.updated_at || Time.current
+      records.map(&:updated_at).max || Time.current
     end
 
     def facets

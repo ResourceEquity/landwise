@@ -12,11 +12,12 @@ module Types
     end
 
     def records(record_ids: [], page: 0, per_page: 50)
+      limit = [[object.per_page, 1].max, 200].min
+      offset = limit * page
+
       if record_ids.any?
-        @records ||= ::Record.where(id: Array.wrap(record_ids))
+        @records ||= ::Record.where(id: Array.wrap(record_ids)).offset(offset).limit(limit)
       else
-        limit = [[object.per_page, 1].max, 200].min
-        offset = limit * page
         @records ||= ::Record.all.order(id: :asc).offset(offset).limit(limit)
       end
     end
