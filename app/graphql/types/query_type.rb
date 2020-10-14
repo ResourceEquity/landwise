@@ -7,6 +7,20 @@ module Types
       ::Facet.new
     end
 
+    field :records, [Types::Record::RecordType], null: false, description: 'List of records' do
+      argument :record_ids, [ID], required: false, description: 'Array of specific record ids to fetch'
+    end
+
+    def records(record_ids: [], page: 0, per_page: 50)
+      if record_ids.any?
+        @records ||= ::Record.where(id: Array.wrap(record_ids))
+      else
+        limit = [[object.per_page, 1].max, 200].min
+        offset = limit * page
+        @records ||= ::Record.all.order(id: :asc).offset(offset).limit(limit)
+      end
+    end
+
     field :search, Types::Search::SearchType, null: false, description: 'Performs a search of all accessible records' do
       argument :query,      String, required: false, description: 'Optional query search term'
       argument :page,       Integer, required: false, description: 'The page number of results to return, beginning with 1.'
