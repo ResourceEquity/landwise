@@ -25,7 +25,7 @@
         <h3 class="facet-label">Country</h3>
         <% collection_for :country_ids, Country do |item, _, count| %>
           <div class="facet-result">
-            <%= link_to item.title, records_path(country_ids: item.id) %><em><%= count %></em>
+            <%= link_to item.title, records_path(country_ids: [item.id]) %><em><%= count %></em>
           </div>
         <% end %>
       </div>
@@ -33,14 +33,14 @@
         <h3 class="facet-label">Jurisdiction</h3>
         <% collection_for :jurisdiction_id, Jurisdiction do |item, _, count| %>
           <div class="facet-result">
-            <%= link_to item.title, records_path(jurisdiction_id: item.id) %><em><%= count %></em>
+            <%= link_to item.title, records_path(jurisdiction_id: [item.id]) %><em><%= count %></em>
           </div>
         <% end %>
 
         <h3 class="facet-label">Topic</h3>
         <% collection_for :topic_ids, Topic do |item, _, count| %>
           <div class="facet-result">
-            <%= link_to item.title, records_path(topic_ids: item.id) %><em><%= count %></em>
+            <%= link_to item.title, records_path(topic_ids: [item.id]) %><em><%= count %></em>
           </div>
         <% end %>
       </div>
@@ -48,14 +48,14 @@
         <h3 class="facet-label">Collection Type</h3>
         <% collection_for :category_id, Category do |item, _, count| %>
           <div class="facet-result">
-            <%= link_to item.title, records_path(category_id: item.id) %><em><%= count %></em>
+            <%= link_to item.title, records_path(category_id: [item.id]) %><em><%= count %></em>
           </div>
         <% end %>
 
         <h3 class="facet-label">Language</h3>
         <% collection_for :language_ids, Language do |item, _, count| %>
           <div class="facet-result">
-            <%= link_to item.title, records_path(language_ids: item.id) %><em><%= count %></em>
+            <%= link_to item.title, records_path(language_ids: [item.id]) %><em><%= count %></em>
           </div>
         <% end %>
       </div>
