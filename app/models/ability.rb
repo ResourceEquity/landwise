@@ -25,6 +25,7 @@ class Ability
     end
 
     if user.developer?
+      can :manage, Redirect
       can :manage, AccessToken, user_id: user.id
       can :manage, User, id: user.id
     end
