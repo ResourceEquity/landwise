@@ -42,7 +42,7 @@ class RecordsController < ApplicationController
 
     raise ActionController::RoutingError, 'Not Found' unless @record.visible_to?(current_user)
 
-    redirect_to "https://resourceequity.org/record/#{@record.to_param}"
+    redirect_to "https://resourceequity.org/record/#{@record.to_param}", status: :moved_permanently
 
 #    add_breadcrumb 'Search Results', records_path(session[:search_crumb])
 #
