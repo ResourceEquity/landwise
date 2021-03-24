@@ -4,6 +4,7 @@ module Types
     field :id, ID, null: false
 
     field :url,           String, null: false, cache: { key: :updated_at }
+    field :path,          String, null: false, cache: { key: :updated_at }
     field :title,         String, null: true, cache: { key: :updated_at }
     field :creator,       String, null: true, cache: { key: :updated_at }
     field :description,   String, null: true, cache: { key: :updated_at }
@@ -21,6 +22,10 @@ module Types
 
     def url
       Rails.application.routes.url_helpers.record_url(object, protocol: 'https')
+    end
+
+    def path
+      Rails.application.routes.url_helpers.record_path(object)
     end
 
     def category

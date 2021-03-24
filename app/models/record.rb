@@ -73,16 +73,16 @@ class Record < ApplicationRecord
 
   accepts_nested_attributes_for :items, reject_if: :all_blank, allow_destroy: true
 
+  def to_param
+    [id, title.gsub(/\'/, '').gsub(/[^A-Z0-9_]+/i, '-')].join('-').parameterize.truncate(80, omission: '')
+  end
+
   def scan(delay = 1.week)
     ScanJob.set(wait: delay).perform_later(self)
   end
 
   def admin_path
     Rails.application.routes.url_helpers.edit_admin_record_path(self)
-  end
-
-  def to_param
-    "#{id}-#{title.parameterize.truncate(80, omission: '')}"
   end
 
   def favorited_by?(user)
